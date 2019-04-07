@@ -9,4 +9,7 @@ var config = {
 };
 var firebase = firebase.initializeApp(config);
 var database = firebase.database();
-print("wow")
+var ref = database.ref("/");
+ref.once("value").then(function(snapshot) {
+    console.debug(snapshot.val())
+});
