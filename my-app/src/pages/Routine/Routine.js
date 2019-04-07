@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import {
     AppBar,
+    Paper,
+    List
 } from '../../components';
 import './styles.css';
 
@@ -13,7 +15,9 @@ class RoutineComponent extends Component {
         return (
             <div>
                 <AppBar/>
-                <h1> list of routines here </h1>
+                <br />
+                <h3>Your Routine: Favorite Ab Workout</h3>
+                <List />
             </div>
         );
     }
