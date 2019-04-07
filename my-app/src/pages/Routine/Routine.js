@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-    Heading
+    AppBar,
 } from '../../components';
 import './styles.css';
+
+// import AppBar from '../../components/Heading/AppBar.js';
 
 class RoutineComponent extends Component {
     render() {
         return (
             <div>
-                <Heading />
+                <AppBar/>
                 <h1> list of routines here </h1>
             </div>
         );
