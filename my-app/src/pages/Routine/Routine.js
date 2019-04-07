@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
     AppBar,
     Paper,
-    List
+    List,
+    Button
 } from '../../components';
 import './styles.css';
 
@@ -17,6 +18,9 @@ class RoutineComponent extends Component {
                 <AppBar/>
                 <br />
                 <h3>Your Routine: Favorite Ab Workout</h3>
+                <br />
+                <Button/>
+                <br />
                 <List />
             </div>
         );
