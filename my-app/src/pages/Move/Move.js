@@ -12,15 +12,15 @@ class MoveComponent extends Component {
         return (
             <div>
                 <AppBar />
-                <h2> Leg Workout </h2>
+                <h2> [move name] </h2>
                 <Timer
-                    initialTime={45000}
+                    initialTime={45000} // hardcode. replace.
                     direction="backward"
                 >
-                    {() => (
+                    {() => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
                         <React.Fragment>
-                            <Timer.Minutes />0:
-                            <Timer.Seconds />
+                            <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                            <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/> 
                         </React.Fragment>
                     )}
                 </Timer>
