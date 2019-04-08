@@ -15,6 +15,7 @@ const styles = {
     fontSize:'30px',
     // border:'1px #666 solid',
   },
+  // background: '#000000'
 };
 
 function SimpleAppBar(props) {
