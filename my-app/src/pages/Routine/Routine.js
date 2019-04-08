@@ -7,7 +7,7 @@ import {
     AppBar,
     Paper,
     List,
-    ListGrid
+    Button
 } from '../../components';
 import './styles.css';
 
@@ -19,8 +19,11 @@ class RoutineComponent extends Component {
             <div>
                 <AppBar/>
                 <br />
-                    <h3>Your Routine: Favorite Ab Workout</h3>
-                    <List />
+                <h3>Your Routine: Favorite Ab Workout</h3>
+                <br />
+                <Button/>
+                <br />
+                <List />
             </div>
         );
     }
