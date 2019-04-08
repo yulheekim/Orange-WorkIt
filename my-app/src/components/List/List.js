@@ -10,17 +10,43 @@ import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+
 const styles = theme => ({
   root: {
     width: '100%',
     // maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  card: {
+    width: '100%',
+    justify: "center"
+  }
 });
+
+// function ListCard(props) {
+//   const { classes } = props;
+//   return (
+//     <Grid
+//     container
+//     spacing={0}
+//     direction="column"
+//     alignItems="center"
+//     justify="center"
+//     style={{ minHeight: '10vh' }}
+//     >
+  
+//     <Grid item xs={12}>
+//       {FolderList(props)}
+//     </Grid>      
+//     </Grid>
+//  )}
 
 function FolderList(props) {
   const { classes } = props;
   return (
+    <Card className={classes.card}>
     <List className={classes.root}>
       <ListItem button>
         <Avatar>
@@ -44,6 +70,7 @@ function FolderList(props) {
         <KeyboardArrowRight />
       </ListItem>
     </List>
+    </Card>
   );
 }
 

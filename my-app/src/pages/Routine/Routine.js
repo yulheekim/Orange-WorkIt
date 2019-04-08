@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Grid from '@material-ui/core/Grid';
+
 import {
     AppBar,
     Paper,
-    List
+    List,
+    ListGrid
 } from '../../components';
 import './styles.css';
 
@@ -16,8 +19,8 @@ class RoutineComponent extends Component {
             <div>
                 <AppBar/>
                 <br />
-                <h3>Your Routine: Favorite Ab Workout</h3>
-                <List />
+                    <h3>Your Routine: Favorite Ab Workout</h3>
+                    <List />
             </div>
         );
     }
