@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Timer from 'react-compound-timer';
 
 import {
     AppBar
@@ -11,8 +12,18 @@ class MoveComponent extends Component {
         return (
             <div>
                 <AppBar />
-                <h1> details about a move inside a routine </h1>
                 <h2> Leg Workout </h2>
+                <Timer
+                    initialTime={45000}
+                    direction="backward"
+                >
+                    {() => (
+                        <React.Fragment>
+                            <Timer.Minutes />0:
+                            <Timer.Seconds />
+                        </React.Fragment>
+                    )}
+                </Timer>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/aCa8R9II8F0?controls=0&start=54&end=83" 
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
