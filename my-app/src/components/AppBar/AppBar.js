@@ -23,7 +23,7 @@ function SimpleAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="#000000" style={styles}>
+      <AppBar position="static" style={styles}>
         <Toolbar>
           <Typography variant="h6" color="inherit">
             WorkIt

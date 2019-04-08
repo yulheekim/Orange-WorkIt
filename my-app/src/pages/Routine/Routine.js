@@ -19,11 +19,12 @@ class RoutineComponent extends Component {
             <div>
                 <AppBar/>
                 <br />
-                <h3>Your Routine: Favorite Ab Workout</h3>
-                <br />
-                <Button/>
-                <br />
-                <List />
+                <div class="page-content">
+                    <h3>Your Routine: Favorite Ab Workout</h3>
+                    <Button/>
+                    <br />
+                    <List />
+                </div>
             </div>
         );
     }
