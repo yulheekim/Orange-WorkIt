@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import firebase from '../../firebaseTest.js';
 
 
+import Grid from '@material-ui/core/Grid';
+
 import {
     AppBar,
     Paper,
-    List
+    List,
+    Button
 } from '../../components';
 import './styles.css';
 
@@ -42,8 +45,12 @@ class RoutineComponent extends Component {
             <div>
                 <AppBar/>
                 <br />
-                <h3>Your Routine: Favorite Ab Workout</h3>
-                <List />
+                <div class="page-content">
+                    <h3>Your Routine: Favorite Ab Workout</h3>
+                    <Button/>
+                    <br />
+                    <List />
+                </div>
             </div>
         );
     }
