@@ -21,14 +21,21 @@ class RoutineComponent extends Component {
     };
   }
     componentDidMount() {
-        var routines = []
+        let routines = [];
         const ref = firebase.firestore().collection('routines');
         ref.get().then((doc) => {
             doc.forEach(doc => {
                 if (doc.exists) {
                     console.log(doc.data());
-                    routines.push(doc.data());
-
+                    let new_routine = doc.data();
+                    new_routine.moves = [];
+                    doc.ref.collection('moves').get().then((docs) => {
+                        docs.forEach(doc => {
+                            console.log(doc.data());
+                            new_routine.moves.push(doc.data());
+                        });
+                    });
+                    routines.push(new_routine);
                     this.setState({routines: routines, key: doc.id, isLoading: false});
                 } else {
                     console.log("No such document!");
