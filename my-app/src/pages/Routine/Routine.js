@@ -17,16 +17,39 @@ import './styles.css';
 
 class RoutineComponent extends Component {
     constructor(props) {
-    super(props);
+    super();
     this.state = {
-      routines: [],
+      routines: [{name: "abs",
+                    moves: [{
+                        end_time: "131",
+                        start_time: "91",
+                        name: "spiderman plank",
+                        total_time: "45",
+                        video_url: "https://youtu.be/UBnfm4s7CRA?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
+                    },
+                    {
+                        end_time: "91",
+                        start_time: "51",
+                        name: "plank squat",
+                        total_time: "45",
+                        video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
+                    },
+                    {
+                        end_time: "1",
+                        start_time: "41",
+                        name: "crunches",
+                        total_time: "45",
+                        video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
+                    }]},
+                ],
       key: ''
     };
   }
     componentDidMount() {
         let routines = [];
         const ref = firebase.firestore().collection('routines');
-        ref.get().then((doc) => {
+        ref.get()
+        .then((doc) => {
             doc.forEach(doc => {
                 if (doc.exists) {
                     // console.log(doc.data());
@@ -39,15 +62,16 @@ class RoutineComponent extends Component {
                         });
                     });
                     routines.push(new_routine);
-                    this.setState({routines: routines, key: doc.id, isLoading: false});
+                    // this.setState({routines: routines, key: doc.id, isLoading: false});
                 } else {
                     console.log("No such document!");
                 }
             })
         });
-        setTimeout(() => { console.log(this.state.routines); }, 1000);
+        // setTimeout(() => { console.log(this.state.routines); }, 500);
     }
     render() {
+        setTimeout(() => { console.log(this.state.routines); }, 500);
         return (
             <div>
                 <AppBar/>
@@ -56,7 +80,7 @@ class RoutineComponent extends Component {
                     <h3>Your Routine: Favorite Ab Workout</h3>
                     <Button/>
                     <br />
-                    <List />
+                    <List routines={this.state.routines} />
                 </div>
             </div>
         );
