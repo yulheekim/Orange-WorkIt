@@ -22,12 +22,13 @@ function MoveComponent(props) {
     return (
         <div>
             <AppBar /> 
+            <br />
+            <br />
             <div class="page-content">
-                <h2> Plank </h2>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/aCa8R9II8F0?controls=0&start=54&end=83" 
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/aCa8R9II8F0?controls=0&start=54&end=83?" 
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <br />
-                <br />
+                <h2> Plank </h2>
                 <Card>
                     <div class="timer">
                     <Timer
