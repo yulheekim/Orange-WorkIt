@@ -5,9 +5,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import _ from 'lodash';
 
@@ -27,32 +24,25 @@ const styles = theme => ({
     justify: "center"
   }
 });
-
+function populateMoves(moves) {
+    const img_lst = [squats, plank, crunches];
+    return _.map(moves, (move, index) => {
+        return (
+          <ListItem button key={index}>
+              <Avatar src={img_lst[index]}>
+              </Avatar>
+              <ListItemText primary={move.name} secondary={"time: " + moves.total_time + "sec"} />
+              <KeyboardArrowRight/>
+          </ListItem>
+            )
+    });
+}
 function FolderList(props) {
     const {classes} = props;
 
     return (<Card className={classes.card}>
         <List className={classes.root}>
-
-            <ListItem button="button">
-                    <Avatar src={plank}>
-                    </Avatar>
-                    <ListItemText primary={props.moves[0].name} secondary={"time: " + props.moves[0].total_time + "sec"} />
-                    <KeyboardArrowRight/>
-            </ListItem>
-
-            <ListItem button="button">
-                    <Avatar src={squats}></Avatar>
-                <ListItemText primary={props.moves[1].name} secondary={"time: " + props.moves[1].total_time + "sec"}/>
-                <KeyboardArrowRight/>
-            </ListItem>
-
-            <ListItem button="button">
-                <Avatar src={crunches}>
-                </Avatar>
-                <ListItemText primary={props.moves[2].name} secondary={"time: " + props.moves[2].total_time + "sec"}/>
-                <KeyboardArrowRight/>
-            </ListItem>
+            {populateMoves(props.moves)}
         </List>
     </Card>);
 }

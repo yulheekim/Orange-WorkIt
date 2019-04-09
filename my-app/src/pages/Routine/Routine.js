@@ -12,6 +12,7 @@ import {
 } from '../../components';
 import {
     load_moves,
+    load_routines
 } from '../../reducers/reducer';
 import './styles.css';
 
@@ -19,6 +20,7 @@ import './styles.css';
 
 class RoutineComponent extends Component {
     componentDidMount() {
+        this.props.load_routines(1);
         this.props.load_moves(1);
     }
 
@@ -26,7 +28,7 @@ class RoutineComponent extends Component {
         if (this.props.loading) {
             return <div>Loading...</div>
         }
-        console.log(this.props.moves);
+        console.log(this.props.routines);
         return (
             <div>
                 <AppBar/>
@@ -46,14 +48,16 @@ export { RoutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves } = reducer;
+    const { loading, moves, routines } = reducer;
     return {
         ...ownProps,
         loading,
         moves,
+        routines
     };
 };
 
 export const Routine = connect(mapStateToProps, {
     load_moves,
+    load_routines
 })(RoutineComponent);
