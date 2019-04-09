@@ -19,7 +19,7 @@ class RoutineComponent extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      routines: {},
+      routines: [],
       key: ''
     };
   }
@@ -29,12 +29,12 @@ class RoutineComponent extends Component {
         ref.get().then((doc) => {
             doc.forEach(doc => {
                 if (doc.exists) {
-                    console.log(doc.data());
+                    // console.log(doc.data());
                     let new_routine = doc.data();
                     new_routine.moves = [];
                     doc.ref.collection('moves').get().then((docs) => {
                         docs.forEach(doc => {
-                            console.log(doc.data());
+                            // console.log(doc.data());
                             new_routine.moves.push(doc.data());
                         });
                     });
@@ -45,7 +45,7 @@ class RoutineComponent extends Component {
                 }
             })
         });
-        setTimeout(function(){ console.log(routines); }, 1000);
+        setTimeout(() => { console.log(this.state.routines); }, 1000);
     }
     render() {
         return (
