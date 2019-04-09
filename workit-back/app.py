@@ -39,7 +39,7 @@ def signin():
 @app.route('/routine', methods=['POST'])
 def routine():
     #if request.method == 'POST':
-    return RelationsView.make_routine()
+    return RoutineView.make_routine()
     # elif request.method == 'GET':
     #     return RelationsView.get_relations()
 
@@ -47,6 +47,17 @@ def routine():
 def routines_by_user_id(user_id):
     return RoutineView.get_routines(user_id)
 
+
+@app.route('/move', methods=['POST'])
+def move():
+    #if request.method == 'POST':
+    return MoveView.make_move()
+    # elif request.method == 'GET':
+    #     return RelationsView.get_relations()
+
+@app.route('/moves/<string:routine_id>', methods=['GET'])
+def moves_by_user_id(routine_id):
+    return MoveView.get_moves(routine_id)
 
 
 if __name__ == '__main__':

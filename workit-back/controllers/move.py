@@ -5,14 +5,11 @@ from models.user import UserModel
 
 class MoveController():
     @classmethod
-    def make_move(cls, user_id, first, last, death_year, is_deceased, gender, relation, notes, is_step, is_adopted, birth_date, lives_in, nickname):
+    def make_move(cls, routine_id, name, start_time, end_time, total_time, order, video_url):
         # if not UserModel.find_by_id(user_id):
         #     return "User with that id does not exist", 400, None
-        rln = relation[0]
-        related_to = relation[1]
-        relation_out = "uncle" #placeholder. have to do computation for relationship
         try:
-            new_move = MoveModel(user_id, first, last, death_year, is_deceased, gender, relation_out, notes, is_step, is_adopted, birth_date, lives_in, nickname)
+            new_move = MoveModel(routine_id, name, start_time, end_time, total_time, order, video_url)
             new_move.save_to_db()
         except:
             # cls.logger.exception("Error in creating new user")
@@ -26,6 +23,6 @@ class MoveController():
             moves = MoveModel.find_by_routine_id(routine_id)
             if moves == []:
                 return "No moves found for the given routine id", 400, None
-            return "", 200, relations
+            return "", 200, moves
         except:
             return "Error retrieving moves for routine id",500, None

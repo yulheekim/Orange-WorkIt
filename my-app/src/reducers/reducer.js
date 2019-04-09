@@ -1,17 +1,71 @@
+import axios from 'axios';
+
+const api = "http://127.0.0.1:5000/";
+
 //Action Types
-export const TOGGLE_MODAL= 'workit/TOGGLE_MODAL';
+export const LOAD_MOVES= 'workit/LOAD_MOVES';
+export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
+export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 
 const INITIAL_STATE = {
-    show_which: 0,
-};
+                loading: true,
+                moves: [{
+                    end_time: "131",
+                    start_time: "91",
+                    name: "spiderman plank",
+                    total_time: "45",
+                    video_url: "https://youtu.be/UBnfm4s7CRA?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
+                },
+                {
+                    end_time: "91",
+                    start_time: "51",
+                    name: "plank squat",
+                    total_time: "45",
+                    video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
+                },
+                {
+                    end_time: "1",
+                    start_time: "41",
+                    name: "crunches",
+                    total_time: "45",
+                    video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
+                }],
+                routines: [{
+                        id: 1,
+                        name: "abs",
+                    },
+                    {
+                        id: 2,
+                        name: "back"
+                    }
+                ],
+                error_message: "",
+            }
 
 //Reducers
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
-        case TOGGLE_MODAL:
+        case LOAD_MOVES:
             return {
                 ...state,
-                show_which: action.payload,
+                loading: true,
+            };
+        case LOAD_MOVES_SUCCESS:
+            if (action.payload) {
+                return {
+                    ...state,
+                    moves: action.payload,
+                    loading: false
+                };
+            }
+            return {
+                ...state,
+                error_message: ""
+            }
+        case LOAD_MOVES_FAILURE:
+            return {
+                ...state,
+                error_message: "Error in loading moves",
             };
         default:
             return {
@@ -21,11 +75,25 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
-export const toggle_modal = (id) => {
+export const load_moves = (user_id) => {
+    const url = api + `moves/${user_id}`;
     return (dispatch) => {
         dispatch({
-            type: TOGGLE_MODAL,
-            payload: id
-        })
-    };
+            type: LOAD_MOVES
+        });
+        axios.get(url)
+          .then((response) => load_moves_success(dispatch, response))
+          .catch((error) => load_moves_failure(dispatch, error))
+    }
+}
+export const load_moves_success = (dispatch, response) => {
+    dispatch({
+        type: LOAD_MOVES_SUCCESS,
+        payload: response.data.response
+    });
+}
+export const load_moves_failure = (dispatch, response) => {
+    dispatch({
+        type: LOAD_MOVES_FAILURE,
+    })
 }

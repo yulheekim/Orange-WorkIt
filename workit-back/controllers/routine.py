@@ -4,15 +4,11 @@ from models.user import UserModel
 
 class RoutineController():
     @classmethod
-    def make_routine(cls, user_id, first, last, death_year, is_deceased, gender, relation, notes, is_step, is_adopted, birth_date, lives_in, nickname):
+    def make_routine(cls, user_id, name):
         # if not UserModel.find_by_id(user_id):
         #     return "User with that id does not exist", 400, None
-        rln = relation[0]
-        related_to = relation[1]
-        relation_out = "uncle" #placeholder. have to do computation for relationship
         try:
-            print(user_id, first, last, death_year, is_deceased, gender, relation_out, notes, is_step, is_adopted, birth_date, lives_in, nickname)
-            new_routine = routineModel(user_id, first, last, death_year, is_deceased, gender, relation_out, notes, is_step, is_adopted, birth_date, lives_in, nickname)
+            new_routine = RoutineModel(user_id, name)
             new_routine.save_to_db()
         except:
             # cls.logger.exception("Error in creating new user")

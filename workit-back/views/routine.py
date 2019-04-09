@@ -10,15 +10,15 @@ class RoutineView(MethodView):
     @classmethod
     def make_routine(cls):
         data = json.loads(request.data.decode('utf-8'))
-        req_params = ['user_id', 'first', 'last', 'notes', 'is_step', 'is_adopted', 'birth_date', 'lives_in', 'nickname']
+        req_params = ["user_id", "name"]
         for param in req_params:
             if param not in data:
                 return json.dumps({"response": "ill-formed request"}), 400
 
-        if not (isinstance(data['user_id'], int) and isinstance(data['first'], str) and isinstance(data['last'], str) and isinstance(data['notes'], str) and isinstance(data['is_step'], bool) and isinstance(data['is_adopted'], bool) and isinstance(data['lives_in'], str) and isinstance(data['nickname'], str)):
+        if not (isinstance(data["user_id"], int) and isinstance(data["name"], str)):
             return json.dumps({"response": "ill-formed request"}), 400
         
-        error_message, status, response = RoutineController.make_routine(data['user_id'], data['gender'], data['relation'], data['notes'])
+        error_message, status, response = RoutineController.make_routine(data['user_id'], data['name'])
         if error_message:
             return json.dumps({"response": error_message}), status
 
