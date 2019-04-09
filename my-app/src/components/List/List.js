@@ -12,6 +12,9 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import _ from 'lodash';
 
 import Card from '@material-ui/core/Card';
+import squats from '../../assets/squats.png';
+import plank from '../../assets/plank.png';
+import crunches from '../../assets/crunches.png';
 
 const styles = theme => ({
   root: {
@@ -62,24 +65,20 @@ function FolderList(props) {
         <List className={classes.root}>
 
             <ListItem button="button">
-                    <Avatar>
-                        <ImageIcon/>
+                    <Avatar src={plank}>
                     </Avatar>
                     <ListItemText primary={first_routine.moves[0].name} secondary={"time: " + first_routine.moves[0].total_time + "sec"} />
                     <KeyboardArrowRight/>
             </ListItem>
 
             <ListItem button="button">
-                <Avatar>
-                    <WorkIcon/>
-                </Avatar>
+                    <Avatar src={squats}></Avatar>
                 <ListItemText primary={first_routine.moves[1].name} secondary={"time: " + first_routine.moves[1].total_time + "sec"}/>
                 <KeyboardArrowRight/>
             </ListItem>
 
             <ListItem button="button">
-                <Avatar>
-                    <BeachAccessIcon/>
+                <Avatar src={crunches}>
                 </Avatar>
                 <ListItemText primary={first_routine.moves[2].name} secondary={"time: " + first_routine.moves[2].total_time + "sec"}/>
                 <KeyboardArrowRight/>
