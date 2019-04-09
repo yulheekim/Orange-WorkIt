@@ -11,7 +11,6 @@ import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 import Card from '@material-ui/core/Card';
-import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
