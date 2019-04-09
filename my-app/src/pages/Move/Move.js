@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Timer from 'react-compound-timer';
 import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
 
 import {
     AppBar
@@ -37,10 +38,15 @@ function MoveComponent(props) {
                             initialTime={45000} // hardcode. replace.
                             direction="backward"
                         >
-                            {() => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                            {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
                                 <React.Fragment>
+                                <div>
                                     <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
                                     <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/> 
+                                </div>
+                                <div>
+                                    <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
+                                </div>
                                 </React.Fragment>
                             )}
                         </Timer>
@@ -50,6 +56,7 @@ function MoveComponent(props) {
         </div>
     )
 };
+
 
 // class MoveComponent extends Component {
 //     render() {
