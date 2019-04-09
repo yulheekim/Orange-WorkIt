@@ -9,6 +9,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import _ from 'lodash';
 
 import Card from '@material-ui/core/Card';
 
@@ -35,42 +36,56 @@ const styles = theme => ({
 //     justify="center"
 //     style={{ minHeight: '10vh' }}
 //     >
-  
+
 //     <Grid item xs={12}>
 //       {FolderList(props)}
-//     </Grid>      
+//     </Grid>
 //     </Grid>
 //  )}
-
+// function populateRoutines(first_routine) {
+//     console.log(first_routine)
+//     if (first_routine.moves) {
+//     return _.map(first_routine.moves, (move, index) => {
+//         return (
+//
+//             )
+//     });
+// }
+// }
 function FolderList(props) {
-  const { classes } = props;
-  return (
-    <Card className={classes.card}>
-    <List className={classes.root}>
-      <ListItem button>
-        <Avatar>
-          <ImageIcon />
-        </Avatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-        <KeyboardArrowRight />
-      </ListItem>
-      <ListItem button>
-        <Avatar>
-          <WorkIcon />
-        </Avatar>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
-        <KeyboardArrowRight />
-      </ListItem>
-      <ListItem button>
-        <Avatar>
-          <BeachAccessIcon />
-        </Avatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
-        <KeyboardArrowRight />
-      </ListItem>
-    </List>
-    </Card>
-  );
+    const {classes} = props;
+
+    const first_routine = props.routines[0];
+    setTimeout(() => { first_routine && console.log(first_routine.moves); }, 1000);
+
+    return (<Card className={classes.card}>
+        <List className={classes.root}>
+
+            <ListItem button="button">
+                    <Avatar>
+                        <ImageIcon/>
+                    </Avatar>
+                    <ListItemText primary={first_routine.moves[0].name} secondary={"time: " + first_routine.moves[0].total_time + "sec"} />
+                    <KeyboardArrowRight/>
+            </ListItem>
+
+            <ListItem button="button">
+                <Avatar>
+                    <WorkIcon/>
+                </Avatar>
+                <ListItemText primary={first_routine.moves[1].name} secondary={"time: " + first_routine.moves[1].total_time + "sec"}/>
+                <KeyboardArrowRight/>
+            </ListItem>
+
+            <ListItem button="button">
+                <Avatar>
+                    <BeachAccessIcon/>
+                </Avatar>
+                <ListItemText primary={first_routine.moves[2].name} secondary={"time: " + first_routine.moves[2].total_time + "sec"}/>
+                <KeyboardArrowRight/>
+            </ListItem>
+        </List>
+    </Card>);
 }
 
 FolderList.propTypes = {
