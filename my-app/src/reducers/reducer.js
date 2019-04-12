@@ -2,7 +2,14 @@ import axios from 'axios';
 
 const api = "http://127.0.0.1:5000/";
 
-//Action Types
+// Action Types
+
+export const CHANGE_USERNAME = 'workit/CHANGE_USERNAME';
+export const HANDLE_LOGIN = 'workit/HANDLE_LOGIN';
+export const HANDLE_LOGIN_SUCCESS = 'workit/HANDLE_LOGIN_SUCCESS';
+export const HANDLE_LOGIN_FAILURE = 'workit/HANDLE_LOGIN_FAILURE';
+
+
 export const LOAD_ROUTINES= 'workit/LOAD_ROUTINES';
 export const LOAD_ROUTINES_SUCCESS= 'workit/LOAD_ROUTINES_SUCCESS';
 export const LOAD_ROUTINES_FAILURE= 'workit/LOAD_ROUTINES_FAILURE';
@@ -12,6 +19,8 @@ export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 
 const INITIAL_STATE = {
+                username: "",
+                user_id: 0,
                 loading: true,
                 routines: [{
                     id: 1,
@@ -45,9 +54,36 @@ const INITIAL_STATE = {
                 error_message: "",
             }
 
-//Reducers
+// Reducers
+
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case CHANGE_USERNAME:
+            return{
+                ...state,
+                username: action.payload
+            };
+        case HANDLE_LOGIN:
+            return{
+                ...state
+            };
+        case HANDLE_LOGIN_SUCCESS:
+            if (action.payload) {
+                console.log(action.payload)
+                return {
+                    ...state,
+                    user_id: action.payload
+                }
+            }
+            return {
+                ...state,
+                error_message: "Login data not fetched!"
+            }
+        case HANDLE_LOGIN_FAILURE:
+            return {
+                ...state,
+                error_message: "Error loading user's login data",
+            };
         case LOAD_ROUTINES:
             return {
                 ...state,
@@ -101,6 +137,43 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
+
+export const change_username = (username) => {
+    return (dispatch) => {
+        dispatch({
+            type: CHANGE_USERNAME,
+            payload: username
+        })
+}}
+
+export const handle_login = (username) => {
+    const url = api + "signin";
+    return (dispatch) => {
+        dispatch({
+            type: HANDLE_LOGIN
+        });
+        axios.post(url, {
+            "username": username,
+        })
+            .then((response) => handle_login_success(dispatch, response))
+            .catch((error) => handle_login_failure(dispatch, error))
+    }
+}
+
+export const handle_login_success = (dispatch, response) => {
+    dispatch({
+        type: HANDLE_LOGIN_SUCCESS,
+        payload: response.data.response
+    });
+}
+
+export const handle_login_failure = (dispatch, response) => {
+    dispatch({
+        type: HANDLE_LOGIN_FAILURE,
+    })
+}
+
+
 export const load_routines = (user_id) => {
     const url = api + `routines/${user_id}`;
     return (dispatch) => {
