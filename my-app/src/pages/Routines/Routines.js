@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import Grid from '@material-ui/core/Grid';
-
 import {
     AppBar,
     Paper,
-    List,
+    ListRoutines,
     Button
 } from '../../components';
 import {
@@ -18,10 +16,10 @@ import './styles.css';
 
 // import AppBar from '../../components/Heading/AppBar.js';
 
-class RoutineComponent extends Component {
+class RoutinesComponent extends Component {
     componentDidMount() {
-        // this.props.load_routines(1);
-        this.props.load_moves(this.props.routine_id);
+        this.props.load_routines(1);
+        // this.props.load_moves(1);
     }
 
     render() {
@@ -34,31 +32,29 @@ class RoutineComponent extends Component {
                 <AppBar/>
                 <br />
                 <div className="page-content">
-                    <h3>Your Routine: Favorite Ab Workout</h3>
-                    <Button/>
+                    <h3>Your Routines: </h3>
                     <br />
-                    <List moves={this.props.moves} />
+                    <ListRoutines moves={this.props.routines} />
                 </div>
             </div>
         );
     }
 }
 
-export { RoutineComponent };
+export { RoutinesComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, routines, routine_id } = reducer;
+    const { loading, moves, routines } = reducer;
     return {
         ...ownProps,
         loading,
         moves,
-        routines,
-        routine_id
+        routines
     };
 };
 
-export const Routine = connect(mapStateToProps, {
+export const Routines = connect(mapStateToProps, {
     load_moves,
     load_routines
-})(RoutineComponent);
+})(RoutinesComponent);

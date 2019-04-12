@@ -24,13 +24,13 @@ const styles = theme => ({
         justify: "center"
     }
 });
-function populateMoves(moves) {
+function populateRoutines(routines) {
     const img_lst = [squats, plank, crunches];
-    return _.map(moves, (move, index) => {
+    return _.map(routines, (routine, index) => {
         return (
             <ListItem button key={index}>
                 <Avatar src={img_lst[index]}></Avatar>
-                <ListItemText primary={move.name} secondary={"time: " + moves.total_time + "sec"}/>
+                <ListItemText primary={routine.name} secondary={"id: " + routine.id}/>
                 <KeyboardArrowRight/>
             </ListItem>
         )
@@ -38,10 +38,10 @@ function populateMoves(moves) {
 }
 function FolderList(props) {
     const {classes} = props;
-
+    
     return (<Card className={classes.card}>
         <List className={classes.root}>
-            {populateMoves(props.moves)}
+            {populateRoutines(props.routines)}
         </List>
     </Card>);
 }

@@ -3,6 +3,11 @@ import axios from 'axios';
 const api = "http://127.0.0.1:5000/";
 
 //Action Types
+export const CHANGE_USERNAME= 'workit/CHANGE_USERNAME';
+export const HANDLE_LOGIN= 'workit/HANDLE_LOGIN';
+export const HANDLE_LOGIN_SUCCESS= 'workit/HANDLE_LOGIN_SUCCESS';
+export const HANDLE_LOGIN_FAILURE= 'workit/HANDLE_LOGIN_FAILURE';
+
 export const LOAD_ROUTINES= 'workit/LOAD_ROUTINES';
 export const LOAD_ROUTINES_SUCCESS= 'workit/LOAD_ROUTINES_SUCCESS';
 export const LOAD_ROUTINES_FAILURE= 'workit/LOAD_ROUTINES_FAILURE';
@@ -12,7 +17,11 @@ export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 
 const INITIAL_STATE = {
+                username: "",
+                user_id: 0,
+                loggedin: false,
                 loading: true,
+                routine_id: 0,
                 routines: [{
                     id: 1,
                     name: "abs",
@@ -48,13 +57,45 @@ const INITIAL_STATE = {
 //Reducers
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case CHANGE_USERNAME:
+            return {
+                ...state,
+                username: action.payload,
+            };
+        case HANDLE_LOGIN:
+            return {
+                ...state,
+                loggedin: false
+            }
+        case HANDLE_LOGIN_SUCCESS:
+            if(action.payload){
+                return {
+                    ...state,
+                    error_message: "",
+                    username: "",
+                    user_id: action.payload,
+                    loggedin: true
+                }
+            } else {
+                return {
+                    ...state,
+                }
+            }
+
+        case HANDLE_LOGIN_FAILURE:
+            return {
+                ...state,
+                error_message: "Something went wrong while logging in.",
+            }
         case LOAD_ROUTINES:
+            console.log("loading routines...")
             return {
                 ...state,
                 loading: true,
             };
         case LOAD_ROUTINES_SUCCESS:
             if (action.payload) {
+                console.log("successfully loaded routines")
                 return {
                     ...state,
                     routines: action.payload,
@@ -70,7 +111,7 @@ export default function reducer(state = INITIAL_STATE, action) {
                 ...state,
                 error_message: "Error in loading moves",
             };
-        
+
         case LOAD_MOVES:
             return {
                 ...state,
@@ -81,7 +122,7 @@ export default function reducer(state = INITIAL_STATE, action) {
                 return {
                     ...state,
                     moves: action.payload,
-                    loading: false
+                    loading: false,
                 };
             }
             return {
@@ -101,6 +142,40 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
+export const change_username = (new_username) => {
+    return (dispatch) => {
+        dispatch({
+            type: CHANGE_USERNAME,
+            payload: new_username
+        })
+    }
+}
+export const handle_login = (username) => {
+    const url = api + `signin`;
+    return (dispatch) => {
+        dispatch({
+            type: HANDLE_LOGIN,
+        });
+        axios.post(url, {
+            "username": username,
+        })
+          .then((response) => handle_login_success(dispatch, response))
+          .catch((error) => handle_login_failure(dispatch, error))
+    }
+}
+export const handle_login_success = (dispatch, response) => {
+    dispatch({
+        type: HANDLE_LOGIN_SUCCESS,
+        payload: response.data.response,
+    });
+}
+
+export const handle_login_failure = (dispatch, error) => {
+    dispatch({
+        type: HANDLE_LOGIN_FAILURE,
+    });
+}
+
 export const load_routines = (user_id) => {
     const url = api + `routines/${user_id}`;
     return (dispatch) => {
@@ -146,5 +221,3 @@ export const load_moves_failure = (dispatch, response) => {
         type: LOAD_MOVES_FAILURE,
     })
 }
-
-
