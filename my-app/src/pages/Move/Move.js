@@ -12,7 +12,8 @@ import './styles.css';
 
 import {
     load_moves,
-    load_routines
+    load_routines, 
+    increment_move_index
 } from '../../reducers/reducer';
 
 const styles = theme => ({
@@ -23,9 +24,28 @@ const styles = theme => ({
     },
   });
 
+//   function loopMoves(moves) {
+//     const img_lst = [squats, plank, crunches];
+//     return _.map(moves, (move, index) => {
+//         return (
+//           <ListItem button key={index}>
+//               <Avatar src={img_lst[index]}>
+//               </Avatar>
+//               <ListItemText primary={move.name} secondary={"time: " + move.total_time + "sec"} />
+//               <KeyboardArrowRight/>
+//           </ListItem>
+//             )
+//     });
+// }
 
-const MoveComponent = ({ moves }) => {
-    console.log(moves)
+function loadNext(move_index) {
+    increment_move_index(move_index);
+
+    
+};
+
+const MoveComponent = ({ moves, move_index }) => {    
+    setTimeout(() => console.log(move_index), 5000);
     return (
         <div>
             <AppBar /> 
@@ -37,12 +57,16 @@ const MoveComponent = ({ moves }) => {
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
                 <br />
-                <h2>{moves[0].name}</h2>
+                <h2>{moves[move_index].name}</h2>
                 <Card>
                     <div class="timer">
                     <Timer
-                            initialTime={45000} // hardcode. replace.
+                            initialTime={1000} // hardcode. replace.
                             direction="backward"
+                            checkpoints={[
+                                {time: 0,
+                                callback: () => loadNext(move_index) } // callback function for when timer reaches 0
+                            ]}
                         >
                             {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
                                 <React.Fragment>
@@ -67,16 +91,18 @@ export { MoveComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves } = reducer;
+    const { loading, moves, move_index } = reducer;
     return {
         ...ownProps,
         loading,
         moves,
+        move_index
     };
 };
 
 export const Move = connect(mapStateToProps, {
     load_moves,
+    increment_move_index
 })(MoveComponent);
 
 // class MoveComponent extends Component {
