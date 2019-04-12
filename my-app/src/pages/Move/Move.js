@@ -10,6 +10,11 @@ import {
 } from '../../components';
 import './styles.css';
 
+import {
+    load_moves,
+    load_routines
+} from '../../reducers/reducer';
+
 const styles = theme => ({
     card: {
       width: '100%',
@@ -18,8 +23,9 @@ const styles = theme => ({
     },
   });
 
-function MoveComponent(props) {
-    const { classes } = props;
+
+const MoveComponent = ({ moves }) => {
+    console.log(moves)
     return (
         <div>
             <AppBar /> 
@@ -31,7 +37,7 @@ function MoveComponent(props) {
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
                 <br />
-                <h2> Spiderman Plank </h2>
+                <h2>{moves[0].name}</h2>
                 <Card>
                     <div class="timer">
                     <Timer
@@ -57,6 +63,21 @@ function MoveComponent(props) {
     )
 };
 
+export { MoveComponent };
+
+const mapStateToProps = (state, ownProps) => {
+    const { reducer } = state;
+    const { loading, moves } = reducer;
+    return {
+        ...ownProps,
+        loading,
+        moves,
+    };
+};
+
+export const Move = connect(mapStateToProps, {
+    load_moves,
+})(MoveComponent);
 
 // class MoveComponent extends Component {
 //     render() {
@@ -84,18 +105,17 @@ function MoveComponent(props) {
 //     }
 // }
 
-MoveComponent.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+// MoveComponent.propTypes = {
+//     classes: PropTypes.object.isRequired,
+//   };
 
-export { MoveComponent };
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        ...ownProps
-    };
-};
+// const mapStateToProps = (state, ownProps) => {
+//     return {
+//         ...ownProps
+//     };
+// };
 
-export const Move = connect(mapStateToProps, {
+// export const Move = connect(mapStateToProps, {
 
-})(MoveComponent);
+// })(MoveComponent);

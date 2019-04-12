@@ -31,7 +31,7 @@ function populateMoves(moves) {
           <ListItem button key={index}>
               <Avatar src={img_lst[index]}>
               </Avatar>
-              <ListItemText primary={move.name} secondary={"time: " + moves.total_time + "sec"} />
+              <ListItemText primary={move.name} secondary={"time: " + move.total_time + "sec"} />
               <KeyboardArrowRight/>
           </ListItem>
             )
