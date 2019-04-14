@@ -33,6 +33,7 @@ class AddmoveComponent extends Component {
     uploadMove() {
         //TODO: checking for valid form
         //TODO: implement props (routine_id, routine_size)
+        // TODO: fix onClick to trigger this
         console.log('Move uploading')
         this.props.send_move({
             routine_id: this.props.routine_id,
