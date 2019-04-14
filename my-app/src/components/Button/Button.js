@@ -18,7 +18,7 @@ function SimpleButton(props) {
 
   return (
     <div>
-      <Button component={Link} to="/move" variant="contained" color="primary" 
+      <Button component={Link} to={props.to} variant="contained" color="primary"
       className={classes.button}>
         Start Workout!
       </Button>

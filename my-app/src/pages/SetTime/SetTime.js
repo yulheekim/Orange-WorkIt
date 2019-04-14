@@ -14,12 +14,12 @@ import {
     load_routines
 } from '../../reducers/reducer';
 import './styles.css';
+import SetTimeButton from "../../components/Button/Button";
 
 // import AppBar from '../../components/Heading/AppBar.js';
 
 class SetTimeComponent extends Component {
     componentDidMount() {
-
     }
 
     render() {
@@ -29,9 +29,17 @@ class SetTimeComponent extends Component {
                 <br />
                 <div className="page-content">
                     <h3>Set Time</h3>
-                    <span>Move Time</span><TextField/>
-                    <span>Break Time</span><TextField/>
-                    <Button/>
+                    <TextField
+                        id="moveTime"
+                        label="Move Time(s)"
+                        type="number"
+                    />
+                    <TextField
+                        id="moveTime"
+                        label="Break Time(s)"
+                        type="number"
+                    />
+                    <Button to={{pathname: "/move",state: {move_time: 45, break_time:20}}}/>
                     <br />
                 </div>
             </div>
