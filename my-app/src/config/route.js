@@ -4,7 +4,8 @@ import {
     Routine,
     Move,
     Login,
-    Addroutine
+    Addroutine,
+    Addmove
 } from '../pages';
 
 const AppNavigator = () => (
@@ -15,6 +16,7 @@ const AppNavigator = () => (
             <Route exact path="/login" component={Login} />
             <Route exact path="/routine" component={Routine} />
             <Route exact path="/addroutine" component={Addroutine} />
+            <Route exact path="/addmove" component={Addmove} />
         </Switch>
     </BrowserRouter>
 )
