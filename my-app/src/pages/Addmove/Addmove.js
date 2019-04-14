@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 import {
     AppBar,
-    Button,
 } from '../../components';
 import {
     send_move,
@@ -30,16 +29,17 @@ class AddmoveComponent extends Component {
         this.setState({ [name]: value });
     };
 
-    uploadMove() {
+    uploadMove = () => {
         //TODO: checking for valid form
         //TODO: implement props (routine_id, routine_size)
-        // TODO: fix onClick to trigger this
         console.log('Move uploading')
-        this.props.send_move({
-            routine_id: this.props.routine_id,
-            order: this.props.routine_size,
+        const move = {
+            routine_id: 1,
+            order: 3,
             ...this.state
-        });
+        };
+        console.log(move);
+        this.props.send_move(move);
     }
 
     render() {
@@ -51,15 +51,16 @@ class AddmoveComponent extends Component {
                     <h3>Add a Move!</h3>
                     <TextField id="1" label="Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="2" label="Video URL" name="url" onChange={this.handleChange}/>
+                    <TextField id="2" label="Video URL" name="video_url" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="3" label="Start Time" name="start" onChange={this.handleChange}/>
+                    <TextField id="3" label="Start Time" name="start_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="4" label="End Time" name="end" onChange={this.handleChange}/>
+                    <TextField id="4" label="End Time" name="end_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="5" label="Duration" name="duration" onChange={this.handleChange}/>
+                    <TextField id="5" label="Duration" name="total_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button name={"Add Move"} link={"/routine"} onClick={this.uploadMove}/>
+                    <Button label="Add Move" variant="contained" color="primary"
+                    onClick={this.uploadMove}/>
                 </div>
             </div>
         );

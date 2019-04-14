@@ -240,7 +240,7 @@ export const load_moves_failure = (dispatch, response) => {
 }
 
 export const send_move = (routine_id) => {
-    const url = api + 'moves/';
+    const url = api + 'move';
     return (dispatch) => {
         dispatch({
             type: SEND_MOVE
