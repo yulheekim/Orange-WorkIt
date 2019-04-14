@@ -43,7 +43,8 @@ class LoginComponent extends Component {
         }
         return (
             <div>
-                <h1>WorkIt</h1>
+                <AppBar/>
+                <br/>
                 <div className="page-content">
                     <TextField
                         id="outlined-name"
@@ -55,6 +56,7 @@ class LoginComponent extends Component {
                         variant="outlined"
                     />
                 </div>
+                <br/>
                 <div className={"page-content"}>
                     <Button variant="contained" color="primary" onClick={()=>this.handleLogin()} className="loginButton">
                         Login
