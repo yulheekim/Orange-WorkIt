@@ -5,7 +5,7 @@ import { TextField } from '@material-ui/core';
 
 import {
     AppBar,
-    Button
+    Button,
 } from '../../components';
 import './styles.css';
 
@@ -27,6 +27,10 @@ class AddmoveComponent extends Component {
         this.setState({ [name]: value });
     };
 
+    uploadMove() {
+        // upload current state to db as new move under this.props.routine
+    }
+
     render() {
         return (
             <div>
@@ -34,9 +38,9 @@ class AddmoveComponent extends Component {
                 <br />
                 <div class="page-content">
                     <h3>Add a Move!</h3>
-                    <TextField required id="1" label="Name" name="name" onChange={this.handleChange}/>
+                    <TextField id="1" label="Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField required id="2" label="Video URL" name="url" onChange={this.handleChange}/>
+                    <TextField id="2" label="Video URL" name="url" onChange={this.handleChange}/>
                     <br /><br />
                     <TextField id="3" label="Start Time" name="start" onChange={this.handleChange}/>
                     <br /><br />
@@ -44,7 +48,7 @@ class AddmoveComponent extends Component {
                     <br /><br />
                     <TextField id="5" label="Duration" name="duration" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button name={"Add"} />
+                    <Button name={"Add Move"} link={"/move"} onClick={this.uploadMove}/>
                 </div>
             </div>
         );
