@@ -20,6 +20,10 @@ export const LOAD_MOVES= 'workit/LOAD_MOVES';
 export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 
+export const SEND_MOVE= 'workit/SEND_MOVE';
+export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
+export const SEND_MOVE_FAILURE= 'workit/SEND_MOVE_FAILURE';
+
 const INITIAL_STATE = {
                 username: "",
                 user_id: 0,
@@ -108,7 +112,7 @@ export default function reducer(state = INITIAL_STATE, action) {
                 ...state,
                 error_message: "Error in loading moves",
             };
-        
+
         case LOAD_MOVES:
             return {
                 ...state,
@@ -130,6 +134,19 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 error_message: "Error in loading moves",
+            };
+        case SEND_MOVE:
+            return {
+                ...state,
+            };
+        case SEND_MOVE_SUCCESS:
+            return {
+                ...state,
+            };
+        case SEND_MOVE_FAILURE:
+            return {
+                ...state,
+                error_message: "Error in sending move",
             };
         default:
             return {
@@ -222,4 +239,25 @@ export const load_moves_failure = (dispatch, response) => {
     })
 }
 
-
+export const send_move = (routine_id) => {
+    const url = api + 'moves/';
+    return (dispatch) => {
+        dispatch({
+            type: SEND_MOVE
+        });
+        axios.post(url)
+          .then((response) => send_move_success(dispatch, response))
+          .catch((error) => send_move_failure(dispatch, error))
+    }
+}
+export const send_move_success = (dispatch, response) => {
+    dispatch({
+        type: SEND_MOVE_SUCCESS,
+        payload: response.data.response
+    });
+}
+export const send_move_failure = (dispatch, response) => {
+    dispatch({
+        type: SEND_MOVE_FAILURE,
+    })
+}

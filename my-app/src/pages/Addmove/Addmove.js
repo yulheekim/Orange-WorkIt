@@ -7,6 +7,9 @@ import {
     AppBar,
     Button,
 } from '../../components';
+import {
+    send_move,
+} from '../../reducers/reducer';
 import './styles.css';
 
 
@@ -15,10 +18,10 @@ class AddmoveComponent extends Component {
         super(props);
         this.state = {
             name: '',
-            url: '',
-            start: '',
-            end: '',
-            duration:'',
+            start_time: '',
+            end_time: '',
+            total_time:'',
+            video_url: '',
         };
     };
 
@@ -28,7 +31,14 @@ class AddmoveComponent extends Component {
     };
 
     uploadMove() {
-        // upload current state to db as new move under this.props.routine
+        //TODO: checking for valid form
+        //TODO: implement props (routine_id, routine_size)
+        console.log('Move uploading')
+        this.props.send_move({
+            routine_id: this.props.routine_id,
+            order: this.props.routine_size,
+            ...this.state
+        });
     }
 
     render() {
@@ -48,7 +58,7 @@ class AddmoveComponent extends Component {
                     <br /><br />
                     <TextField id="5" label="Duration" name="duration" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button name={"Add Move"} link={"/move"} onClick={this.uploadMove}/>
+                    <Button name={"Add Move"} link={"/routine"} onClick={this.uploadMove}/>
                 </div>
             </div>
         );
@@ -64,5 +74,5 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const Addmove = connect(mapStateToProps, {
-
+    send_move
 })(AddmoveComponent);
