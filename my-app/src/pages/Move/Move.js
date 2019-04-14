@@ -109,14 +109,25 @@ const styles = theme => ({
 
 //====================
 class MoveComponent extends Component {
-    componentDidMount() {
-        //console.log(this.props.location.state.move_time)
-        this.index = 0;
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            index: 0
+        };
+       
+    };
+    // componentDidMount() {
+    //     //console.log(this.props.location.state.move_time)
+    //     this.state.index = 0;
+    // }
 
     handleNext() {
-        increment_move_index(this.props.move_index)
-    }
+        console.log("made it to handle next!")
+        this.setState((state) => {
+            return {index: state.index + 1}
+        })
+        console.log(this.state.index)
+    };
 
     render() {
         return ( // hardcode <h2>. replace.
@@ -130,7 +141,7 @@ class MoveComponent extends Component {
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
                 <br />
-                <h2>{this.props.moves[this.props.move_index].name}</h2>
+                <h2>{this.props.moves[this.state.index].name}</h2>
                 <Card>
                     <div class="timer">
                     <Timer
@@ -138,7 +149,7 @@ class MoveComponent extends Component {
                             direction="backward"
                             checkpoints={[
                                 {time: 0,
-                                callback: () => this.index++ } // callback function for when timer reaches 0
+                                callback: () => this.handleNext() } // callback function for when timer reaches 0
                             ]}
                         >
                             {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
