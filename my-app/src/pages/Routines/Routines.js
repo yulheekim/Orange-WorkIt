@@ -18,14 +18,14 @@ import './styles.css';
 
 class RoutinesComponent extends Component {
     componentDidMount() {
-        this.props.load_routines(1);
-        // this.props.load_moves(1);
+        this.props.load_routines(this.props.user_id);
     }
 
     render() {
         if (this.props.loading) {
             return <div>Loading...</div>
         }
+
         console.log(this.props.routines);
         return (
             <div>
@@ -34,7 +34,7 @@ class RoutinesComponent extends Component {
                 <div className="page-content">
                     <h3>Your Routines: </h3>
                     <br />
-                    <ListRoutines moves={this.props.routines} />
+                    <ListRoutines routines={this.props.routines} />
                 </div>
             </div>
         );
@@ -45,12 +45,13 @@ export { RoutinesComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, routines } = reducer;
+    const { loading, moves, routines, user_id } = reducer;
     return {
         ...ownProps,
         loading,
         moves,
-        routines
+        routines,
+        user_id
     };
 };
 

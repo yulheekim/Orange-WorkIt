@@ -18,10 +18,11 @@ import './styles.css';
 class RoutineComponent extends Component {
     componentDidMount() {
         // this.props.load_routines(1);
-        this.props.load_moves(this.props.routine_id);
+        // this.props.load_moves(this.props.routine_id);
     }
 
     render() {
+        console.log(this.props.moves)
         return (
             <div>
                 <AppBar/>
@@ -30,7 +31,7 @@ class RoutineComponent extends Component {
                     <h3>Your Routine: Favorite Ab Workout</h3>
                     <Button name={"Start Workout!"} link={"/move"}/>
                     <br />
-                    <List />
+                    <List moves={this.props.moves}/>
                 </div>
             </div>
         );

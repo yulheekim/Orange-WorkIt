@@ -1,53 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
+import { Link, Redirect } from 'react-router-dom';
+
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import _ from 'lodash';
 
-import Card from '@material-ui/core/Card';
 import squats from '../../assets/squats.png';
 import plank from '../../assets/plank.png';
 import crunches from '../../assets/crunches.png';
 
-const styles = theme => ({
-    root: {
-        width: '100%',
-        // maxWidth: 360,
-        backgroundColor: theme.palette.background.paper
-    },
-    card: {
-        width: '100%',
-        justify: "center"
+import {
+    load_moves,
+    load_routines,
+} from '../../reducers/reducer';
+// import './styles.css';
+
+
+class ListRoutinesComponent extends Component {
+    handleClickRoutine = (routine_id) => {
+        this.props.load_moves(routine_id);
     }
-});
-function populateRoutines(routines) {
-    const img_lst = [squats, plank, crunches];
-    return _.map(routines, (routine, index) => {
-        return (
-            <ListItem button key={index}>
-                <Avatar src={img_lst[index]}></Avatar>
-                <ListItemText primary={routine.name} secondary={"id: " + routine.id}/>
-                <KeyboardArrowRight/>
-            </ListItem>
-        )
-    });
-}
-function FolderList(props) {
-    const {classes} = props;
-    
-    return (<Card className={classes.card}>
-        <List className={classes.root}>
-            {populateRoutines(props.routines)}
-        </List>
-    </Card>);
+    populateRoutines = (routines) => {
+        console.log(routines)
+        const img_lst = [squats, plank, crunches];
+        return _.map(routines, (routine, index) => {
+            return (
+                <ListItem button key={index} onClick={() => this.handleClickRoutine(routine.id)}>
+                    <ListItemText primary={routine.name} secondary={"id: " + routine.id}/>
+                    <KeyboardArrowRight/>
+                </ListItem>
+            )
+        });
+    }
+    render() {
+        if (this.props.loading_moves) {
+            return (
+                <Redirect to="moves" />
+            )
+        }
+        return (<Card className="card">
+            <List className="root">
+                {this.populateRoutines(this.props.routines)}
+            </List>
+        </Card>);
+    }
 }
 
-FolderList.propTypes = {
-    classes: PropTypes.object.isRequired
+export { ListRoutinesComponent };
+
+const mapStateToProps = (state, ownProps) => {
+    const { reducer } = state;
+    const { loading_moves, loading, moves, routines } = reducer;
+    return {
+        ...ownProps,
+        loading_moves,
+        loading,
+        moves,
+        routines
+    };
 };
 
-export default withStyles(styles)(FolderList);
+export const ListRoutines = connect(mapStateToProps, {
+    load_moves,
+    load_routines,
+})(ListRoutinesComponent);

@@ -22,7 +22,7 @@ const INITIAL_STATE = {
                 username: "",
                 user_id: 0,
                 loggedin: false,
-                loading: true,
+                loading: false,
                 routine_id: 0,
                 routines: [{
                     id: 1,
@@ -32,6 +32,7 @@ const INITIAL_STATE = {
                     id: 2,
                     name: "back"
                 }],
+                loading_moves: false,
                 moves: [{
                     end_time: "131",
                     start_time: "91",
@@ -118,14 +119,14 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_MOVES:
             return {
                 ...state,
-                loading: true,
+                loading_moves: false,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
                 return {
                     ...state,
                     moves: action.payload,
-                    loading: false,
+                    loading_moves: true,
                 };
             }
             return {
