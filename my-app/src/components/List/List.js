@@ -28,12 +28,13 @@ function populateMoves(moves) {
     const img_lst = [squats, plank, crunches];
     return _.map(moves, (move, index) => {
         return (
-            <ListItem button key={index}>
-                <Avatar src={img_lst[index]}></Avatar>
-                <ListItemText primary={move.name} secondary={"time: " + moves.total_time + "sec"}/>
-                <KeyboardArrowRight/>
-            </ListItem>
-        )
+          <ListItem button key={index}>
+              <Avatar src={img_lst[index]}>
+              </Avatar>
+              <ListItemText primary={move.name} secondary={"time: " + move.total_time + "sec"} />
+              <KeyboardArrowRight/>
+          </ListItem>
+            )
     });
 }
 function FolderList(props) {

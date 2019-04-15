@@ -14,9 +14,6 @@ import {
     handle_login,
     load_routines
 } from '../../reducers/reducer';
-import './styles.css';
-
-// import AppBar from '../../components/Heading/AppBar.js';
 
 class LoginComponent extends Component {
     componentDidMount() {
@@ -30,9 +27,6 @@ class LoginComponent extends Component {
         this.props.handle_login(this.props.username);
     }
     render() {
-        if (!this.props.loading) {
-            console.log(this.props.routines)
-        }
         if(this.props.loggedin) {
             this.props.load_routines(this.props.user_id);
             return (
@@ -41,9 +35,9 @@ class LoginComponent extends Component {
         }
         return (
             <div>
-                <h1>WorkIt</h1>
+                <AppBar/>
+                <br/>
                 <div className="page-content">
-                    username:
                     <TextField
                         id="outlined-name"
                         label="Name"
@@ -53,6 +47,9 @@ class LoginComponent extends Component {
                         margin="normal"
                         variant="outlined"
                     />
+                </div>
+                <br/>
+                <div className={"page-content"}>
                     <Button variant="contained" color="primary" onClick={()=>this.handleLogin()} className="loginButton">
                         Login
                     </Button>

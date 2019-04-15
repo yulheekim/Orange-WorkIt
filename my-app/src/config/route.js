@@ -6,7 +6,8 @@ import {
     Login,
     Move,
     Addroutine,
-    Addmove
+    Addmove,
+    SetTime
 } from '../pages';
 
 const AppNavigator = () => (
@@ -16,6 +17,7 @@ const AppNavigator = () => (
             <Route exact path="/routines" component={Routines} />
             <Route exact path="/moves" component={Routine} />
             <Route exact path="/timer" component={Move} />
+            <Route exact path="/settime" component={SetTime} />
             <Route exact path="/addroutine" component={Addroutine} />
             <Route exact path="/addmove" component={Addmove} />
         </Switch>

@@ -29,7 +29,7 @@ class RoutineComponent extends Component {
                 <br />
                 <div class="page-content">
                     <h3>Your Routine: Favorite Ab Workout</h3>
-                    <Button name={"Start Workout!"} link={"/move"}/>
+                    <Button to='/settime'/>
                     <br />
                     <List moves={this.props.moves}/>
                 </div>
