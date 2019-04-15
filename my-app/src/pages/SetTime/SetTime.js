@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid';
 
 import {
     AppBar,
     TextField,
-    Button
 } from '../../components';
 import {
     load_moves,
@@ -50,7 +50,13 @@ class SetTimeComponent extends Component {
                         type="number"
                         onChange={e => this.setState({ break_time: e.target.value })}
                     />
-                    <Button to={{pathname: "/move",state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}/>
+                    <br />
+                    <Button to={{pathname: "/move", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
+                            component={Link}
+                            variant="contained"
+                            color="primary">
+                    Start Workout!
+                    </Button>
                     <br />
                 </div>
             </div>
