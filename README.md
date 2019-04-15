@@ -1,3 +1,16 @@
+### how to run backend on your local machine
+
+1. go into the workit-back folder
+
+2. `virtualenv env --python=python3.6`
+
+3. `source env/bin/activate`
+
+4. `pip install -r requirements.txt`
+
+5. `python app.py`
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

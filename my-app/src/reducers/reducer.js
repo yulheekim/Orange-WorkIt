@@ -1,3 +1,5 @@
+// testing keren's commits
+
 import axios from 'axios';
 
 const api = "http://127.0.0.1:5000/";
@@ -54,7 +56,8 @@ const INITIAL_STATE = {
                 error_message: "",
             }
 
-//Reducers
+// Reducers
+
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
         case CHANGE_USERNAME:

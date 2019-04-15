@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import firebase from '../../firebaseTest.js';
 
 
 import Grid from '@material-ui/core/Grid';
@@ -10,10 +11,6 @@ import {
     List,
     Button
 } from '../../components';
-import {
-    load_moves,
-    load_routines
-} from '../../reducers/reducer';
 import './styles.css';
 
 // import AppBar from '../../components/Heading/AppBar.js';
@@ -25,19 +22,15 @@ class RoutineComponent extends Component {
     }
 
     render() {
-        if (this.props.loading) {
-            return <div>Loading...</div>
-        }
-        console.log(this.props.routines);
         return (
             <div>
                 <AppBar/>
                 <br />
-                <div className="page-content">
+                <div class="page-content">
                     <h3>Your Routine: Favorite Ab Workout</h3>
-                    <Button/>
+                    <Button name={"Start Workout!"} link={"/move"}/>
                     <br />
-                    <List moves={this.props.moves} />
+                    <List />
                 </div>
             </div>
         );
@@ -59,6 +52,5 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const Routine = connect(mapStateToProps, {
-    load_moves,
-    load_routines
+
 })(RoutineComponent);

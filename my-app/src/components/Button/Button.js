@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: "theme.spacing.unit",
   },
   input: {
     display: 'none',
@@ -18,9 +18,15 @@ function SimpleButton(props) {
 
   return (
     <div>
+<<<<<<< HEAD
       <Button component={Link} to="/timer" variant="contained" color="primary" 
       className={classes.button}>
         Start Workout!
+=======
+      <Button component={Link} to={props.link} variant="contained" color="primary" 
+      className={classes.button} >
+        {props.name}
+>>>>>>> master
       </Button>
     </div>
   );
@@ -31,3 +37,7 @@ SimpleButton.propTypes = {
 };
 
 export default withStyles(styles)(SimpleButton);
+
+// You can use Button component as follow:
+// import { Button } from '../../components';
+// ...<Button name={"the title of your button"} link={"the path"}/>
