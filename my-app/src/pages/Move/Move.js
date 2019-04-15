@@ -6,8 +6,7 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 
 import {
-    AppBar,
-    TextField
+    AppBar
 } from '../../components';
 import './styles.css';
 
@@ -113,10 +112,44 @@ const styles = theme => ({
 //====================
 
 class MoveComponent extends Component {
-    loadNext = (move_index) => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            index: 0,
+            move_time: this.props.location.state.move_time,
+            break_time: this.props.location.state.break_time,
+            timerKey: 0,
+        };
+
+    };
+    // componentDidMount() {
+    //     //console.log(this.props.location.state.move_time)
+    //     this.state.index = 0;
+    // }
+
+    handleNext(move_index) {
+        if (this.props.move_index >= this.props.moves.length - 1) {
+            return;
+        }
         this.props.increment_move_index(move_index);
         setTimeout(() => console.log(this.props.move_index), 2000);
+
+        console.log(this.state.move_time)
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+        console.log(this.state.move_time)
+
+    }
+
+    loadNext = (move_index) => {
+
     };
+
     render() {
         console.log(this.props.move_index)
         return ( // hardcode <h2>. replace.
@@ -132,29 +165,33 @@ class MoveComponent extends Component {
                 <br />
                 <h2>{this.props.moves[this.props.move_index].name}</h2>
                 <Card>
-                        <div class="timer">
-                        <Timer
-                                initialTime={1000} // hardcode. replace.
-                                direction="backward"
-                                checkpoints={[
-                                    {time: 0,
-                                    callback: () => this.loadNext(this.props.move_index), } // callback function for when timer reaches 0
-                                ]}
-                            >
-                                {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
-                                    <React.Fragment>
-                                    <div>
-                                        <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
-                                        <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
-                                    </div>
-                                    <div>
-                                        <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
-                                    </div>
-                                    </React.Fragment>
-                                )}
-                            </Timer>
-                        </div>
-                    </Card>
+                    <div class="timer">
+                    <Timer
+                            key={this.state.timerKey}
+                            initialTime={this.state.move_time} // hardcode. replace.
+                            direction="backward"
+                            onReset={() => {
+
+                            }}
+                            checkpoints={[
+                                {time: 0,
+                                callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                            ]}
+                        >
+                            {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                                <React.Fragment>
+                                <div>
+                                    <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                                    <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
+                                </div>
+                                <div>
+                                    <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
+                                </div>
+                                </React.Fragment>
+                            )}
+                        </Timer>
+                    </div>
+                </Card>
             </div>
         </div>
 
@@ -189,7 +226,7 @@ export const Move = connect(mapStateToProps, {
 //         this.state = {
 //             index: 0
 //         };
-       
+
 //     };
 
 //     handleNext() {
@@ -198,7 +235,7 @@ export const Move = connect(mapStateToProps, {
 //             return {index: state.index + 1}
 //         })
 //         console.log(this.state.index)
-        
+
 //     };
 
 //     render() {
