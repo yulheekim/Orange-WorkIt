@@ -66,6 +66,7 @@ class TextFields extends React.Component {
                     placeholder={this.props.placeholder}
                     type={this.props.type}
                     style={{margin: 'auto'}}
+                    onChange={this.props.onChange}
                     // onChange={this.handleChange('name')}
                     // helperText="Full width!"
                     // fullWidth

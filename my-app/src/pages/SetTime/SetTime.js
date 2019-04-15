@@ -19,6 +19,15 @@ import SetTimeButton from "../../components/Button/Button";
 // import AppBar from '../../components/Heading/AppBar.js';
 
 class SetTimeComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            move_time: 45000,
+            break_time: 20000,
+        };
+
+    };
+
     componentDidMount() {
     }
 
@@ -33,13 +42,15 @@ class SetTimeComponent extends Component {
                         id="moveTime"
                         label="Move Time(s)"
                         type="number"
+                        onChange={e => this.setState({ move_time: e.target.value })}
                     />
                     <TextField
                         id="moveTime"
                         label="Break Time(s)"
                         type="number"
+                        onChange={e => this.setState({ break_time: e.target.value })}
                     />
-                    <Button to={{pathname: "/move",state: {move_time: 45, break_time:20}}}/>
+                    <Button to={{pathname: "/move",state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}/>
                     <br />
                 </div>
             </div>
