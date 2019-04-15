@@ -14,11 +14,6 @@ import {
     handle_login,
     load_routines
 } from '../../reducers/reducer';
-// import './styles.css';
-
-// import AppBar from '../../components/Heading/AppBar.js';
-
-
 
 class LoginComponent extends Component {
     componentDidMount() {
@@ -32,9 +27,6 @@ class LoginComponent extends Component {
         this.props.handle_login(this.props.username);
     }
     render() {
-        if (!this.props.loading) {
-            console.log(this.props.routines)
-        }
         if(this.props.loggedin) {
             this.props.load_routines(this.props.user_id);
             return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,15 +14,15 @@ import plank from '../../assets/plank.png';
 import crunches from '../../assets/crunches.png';
 
 const styles = theme => ({
-  root: {
-    width: '100%',
-    // maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  card: {
-    width: '100%',
-    justify: "center"
-  }
+    root: {
+        width: '100%',
+        // maxWidth: 360,
+        backgroundColor: theme.palette.background.paper
+    },
+    card: {
+        width: '100%',
+        justify: "center"
+    }
 });
 function populateMoves(moves) {
     const img_lst = [squats, plank, crunches];
@@ -48,7 +48,7 @@ function FolderList(props) {
 }
 
 FolderList.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(FolderList);
