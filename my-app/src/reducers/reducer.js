@@ -19,6 +19,7 @@ export const LOAD_ROUTINES_FAILURE= 'workit/LOAD_ROUTINES_FAILURE';
 export const LOAD_MOVES= 'workit/LOAD_MOVES';
 export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
+export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 
 const INITIAL_STATE = {
                 username: "",
@@ -54,12 +55,19 @@ const INITIAL_STATE = {
                     video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
                 }],
                 error_message: "",
+                move_index: 0,
             }
 
 // Reducers
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case INCREMENT_MOVE_INDEX:
+                console.log("red")
+                return {
+                    ...state,
+                    move_index: action.payload + 1
+            }
         case CHANGE_USERNAME:
             return{
                 ...state,
@@ -130,7 +138,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 error_message: "Error in loading moves",
-            };
+            }
         default:
             return {
                 ...state
@@ -139,6 +147,15 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
+export const increment_move_index = (move_idx) => {
+    console.log("inside action")
+    return (dispatch) => {
+        dispatch({
+            type: INCREMENT_MOVE_INDEX,
+            payload: move_idx
+        })
+    }
+}
 
 export const change_username = (username) => {
     return (dispatch) => {
@@ -221,5 +238,3 @@ export const load_moves_failure = (dispatch, response) => {
         type: LOAD_MOVES_FAILURE,
     })
 }
-
-
