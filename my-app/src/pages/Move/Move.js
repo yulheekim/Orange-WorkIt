@@ -127,27 +127,27 @@ class MoveComponent extends Component {
     //     this.state.index = 0;
     // }
 
-    handleNext() {
-        console.log("made it to handle next!")
-        if (this.state.index >= this.props.moves.length) {
+    handleNext(move_index) {
+        if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
+        this.props.increment_move_index(move_index);
+        setTimeout(() => console.log(this.props.move_index), 2000);
+
         console.log(this.state.move_time)
         this.setState((state) => {
             return {
-                index: state.index + 1,
                 timerKey: Math.random(),
                 move_time: this.props.location.state.move_time,
                 break_time: this.props.location.state.break_time,
             }
         })
         console.log(this.state.move_time)
+
     }
 
     loadNext = (move_index) => {
-        this.props.increment_move_index(move_index);
-        setTimeout(() => console.log(this.props.move_index), 2000);
-        this.updateTimer()
+
     };
 
     render() {
@@ -175,7 +175,7 @@ class MoveComponent extends Component {
                             }}
                             checkpoints={[
                                 {time: 0,
-                                callback: () => this.handleNext() } // callback function for when timer reaches 0
+                                callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
                             ]}
                         >
                             {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
