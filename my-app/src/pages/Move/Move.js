@@ -113,10 +113,16 @@ const styles = theme => ({
 //====================
 
 class MoveComponent extends Component {
+    updateTimer() {
+        this.forceUpdate();
+    }
+
     loadNext = (move_index) => {
         this.props.increment_move_index(move_index);
         setTimeout(() => console.log(this.props.move_index), 2000);
+        this.updateTimer()
     };
+
     render() {
         console.log(this.props.move_index)
         return ( // hardcode <h2>. replace.
@@ -141,7 +147,7 @@ class MoveComponent extends Component {
                                     callback: () => this.loadNext(this.props.move_index), } // callback function for when timer reaches 0
                                 ]}
                             >
-                                {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                                {( { pause, resume , reset } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
                                     <React.Fragment>
                                     <div>
                                         <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
