@@ -239,13 +239,13 @@ export const load_moves_failure = (dispatch, response) => {
     })
 }
 
-export const send_move = (routine_id) => {
+export const send_move = (move) => {
     const url = api + 'move';
     return (dispatch) => {
         dispatch({
             type: SEND_MOVE
         });
-        axios.post(url)
+        axios.post(url, move)
           .then((response) => send_move_success(dispatch, response))
           .catch((error) => send_move_failure(dispatch, error))
     }
