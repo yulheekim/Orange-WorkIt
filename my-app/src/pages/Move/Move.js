@@ -112,7 +112,9 @@ class MoveComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            index: 0
+            index: 0,
+            move_time: this.props.location.state.move_time,
+            break_time: this.props.location.state.break_time ,
         };
        
     };
@@ -123,8 +125,16 @@ class MoveComponent extends Component {
 
     handleNext() {
         console.log("made it to handle next!")
+        if (this.state.index >= this.props.moves.length) {
+            return;
+        }
+        console.log(this.props.location.state.move_time)
         this.setState((state) => {
-            return {index: state.index + 1}
+            return {
+                index: state.index + 1,
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
         })
         console.log(this.state.index)
     };
@@ -145,8 +155,11 @@ class MoveComponent extends Component {
                 <Card>
                     <div class="timer">
                     <Timer
-                            initialTime={1000} // hardcode. replace.
+                            initialTime={this.state.move_time} // hardcode. replace.
                             direction="backward"
+                            onReset={() => {
+
+                            }}
                             checkpoints={[
                                 {time: 0,
                                 callback: () => this.handleNext() } // callback function for when timer reaches 0
