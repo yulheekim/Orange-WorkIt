@@ -13,7 +13,8 @@ import './styles.css';
 import {
     load_moves,
     load_routines, 
-    increment_move_index
+    increment_move_index,
+    toggle_move_or_break
 } from '../../reducers/reducer';
 
 const styles = theme => ({
@@ -127,11 +128,12 @@ class MoveComponent extends Component {
     //     this.state.index = 0;
     // }
 
-    handleNext(move_index) {
+    handleNext(move_index, move_or_break) {
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
         this.props.increment_move_index(move_index);
+        this.props.toggle_move_or_break(this.props.move_or_break);
         setTimeout(() => console.log(this.props.move_index), 2000);
 
         console.log(this.state.move_time)
@@ -149,69 +151,78 @@ class MoveComponent extends Component {
     render() {
         console.log("rendering move component!")
         console.log(this.props.move_index)
-        return (
-        <div>
-            <AppBar />
-            <br />
-            <br />
-            <div class="page-content">
-            <div class="resp-container">
-            <iframe class="resp-iframe" width="560" height="315" src="https://www.youtube.com/embed/aCa8R9II8F0?version=3&controls=0&start=54&end=83&autoplay=1"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-                <br />
-                <h2>{this.props.moves[this.props.move_index].name}</h2>
-                <Card>
-                    <div class="timer">
-                    <Timer
-                            key={this.state.timerKey}
-                            initialTime={this.state.move_time} // hardcode. replace.
-                            direction="backward"
-                            onReset={() => {
-
-                            }}
-                            checkpoints={[
-                                {time: 0,
-                                callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
-                            ]}
-                        >
-                            {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
-                                <React.Fragment>
-                                <div>
-                                    <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
-                                    <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
-                                </div>
-                                <div>
-                                    <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
-                                </div>
-                                </React.Fragment>
-                            )}
-                        </Timer>
+        if (this.props.move_or_break === true) {
+            return (
+                <div>
+                    <AppBar />
+                    <br />
+                    <br />
+                    <div class="page-content">
+                    <div class="resp-container">
+                    <iframe class="resp-iframe" width="560" height="315" src="https://www.youtube.com/embed/aCa8R9II8F0?version=3&controls=0&start=54&end=83&autoplay=1"
+                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                </Card>
-            </div>
-        </div>
-
-        );
+                        <br />
+                        <h2>{this.props.moves[this.props.move_index].name}</h2>
+                        <Card>
+                            <div class="timer">
+                            <Timer
+                                    key={this.state.timerKey}
+                                    initialTime={this.state.move_time} // hardcode. replace.
+                                    direction="backward"
+                                    onReset={() => {
+        
+                                    }}
+                                    checkpoints={[
+                                        {time: 0,
+                                        callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                                    ]}
+                                >
+                                    {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                                        <React.Fragment>
+                                        <div>
+                                            <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                                            <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
+                                        </div>
+                                        <div>
+                                            <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
+                                        </div>
+                                        </React.Fragment>
+                                    )}
+                                </Timer>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+        
+                );
+        }
+        else {
+            return(
+                <h1>break time!</h1>
+            );
+        }
     }
 }
 export { MoveComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, move_index } = reducer;
+    const { loading, moves, move_index, move_or_break } = reducer;
     return {
         ...ownProps,
         loading,
         moves,
-        move_index
+        move_index,
+        move_or_break
     };
 };
 
 export const Move = connect(mapStateToProps, {
     load_moves,
     load_routines,
-    increment_move_index
+    increment_move_index,
+    toggle_move_or_break
 })(MoveComponent);
 
 //====================

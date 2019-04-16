@@ -18,6 +18,7 @@ export const LOAD_MOVES= 'workit/LOAD_MOVES';
 export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
+export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
 
 const INITIAL_STATE = {
                 username: "",
@@ -57,12 +58,19 @@ const INITIAL_STATE = {
                 }],
                 error_message: "",
                 move_index: 0,
+                move_or_break: true, // true = working out. false = break.
             }
 
 // Reducers
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case TOGGLE_MOVE_OR_BREAK:
+            console.log("case toggle move or break")
+            return {
+                ...state,
+                move_or_break: !action.payload
+            }
         case INCREMENT_MOVE_INDEX:
                 console.log("red")
                 return {
@@ -154,7 +162,15 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
-
+export const toggle_move_or_break = (move_or_break) => {
+    console.log("inside toggle status")
+    return (dispatch) => {
+        dispatch({
+            type: TOGGLE_MOVE_OR_BREAK,
+            payload: move_or_break
+        })
+    }
+}
 export const increment_move_index = (move_idx) => {
     console.log("inside action")
     return (dispatch) => {
