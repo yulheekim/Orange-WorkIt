@@ -22,7 +22,7 @@ function FloatingActionButtons(props) {
       <div>
         <Fab color="primary" variant="extended" aria-label="Delete" className={classes.fab}>
         <AddIcon className={classes.extendedIcon} />
-          Routine
+          {props.name}
         </Fab>
         </ div>
     )
