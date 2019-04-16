@@ -34,7 +34,7 @@ class RoutinesComponent extends Component {
                     <br />
                     <ListRoutines routines={this.props.routines} />
                 </div>
-                <AddFloatingIcon name="Routine"/>
+                {/* <AddFloatingIcon name="Routine"/> */}
             </div>
         );
     }
