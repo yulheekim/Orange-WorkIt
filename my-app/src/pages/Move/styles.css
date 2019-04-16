@@ -1,3 +1,4 @@
+/* styling for move timer */
 .timer {
     font-size: 100px;
 }
@@ -21,7 +22,7 @@
     color: white;
 }
 
-/* styling for break component */
+/* styling for break timer */
 h1 {
     color: white;
     text-align: center;
@@ -34,13 +35,6 @@ h1 {
     color: white;
     text-align: center;
 }
-
-
-
-
-/* body, html {
-    height: 100%;
-} */
 
 /* The hero image */
 .hero-image {
