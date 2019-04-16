@@ -51,7 +51,7 @@ class SetTimeComponent extends Component {
                         onChange={e => this.setState({ break_time: e.target.value })}
                     />
                     <br />
-                    <Button to={{pathname: "/move", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
+                    <Button to={{pathname: "/do-moves", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
                             component={Link}
                             variant="contained"
                             color="primary">
