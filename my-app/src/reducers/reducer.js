@@ -23,13 +23,11 @@ export const SEND_MOVE= 'workit/SEND_MOVE';
 export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
 export const SEND_MOVE_FAILURE= 'workit/SEND_MOVE_FAILURE';
 
-<<<<<<< HEAD
-=======
 export const SEND_ROUTINE= 'workit/SEND_ROUTINE';
 export const SEND_ROUTINE_SUCCESS= 'workit/SEND_ROUTINE_SUCCESS';
 export const SEND_ROUTINE_FAILURE= 'workit/SEND_ROUTINE_FAILURE';
 
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
+
 const INITIAL_STATE = {
                 username: "",
                 user_id: 0,
@@ -151,12 +149,12 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 error_message: ""
-            }
+            };
         case LOAD_MOVES_FAILURE:
             return {
                 ...state,
                 error_message: "Error in loading moves",
-<<<<<<< HEAD
+
             };
         case SEND_MOVE:
             return {
@@ -169,10 +167,7 @@ export default function reducer(state = INITIAL_STATE, action) {
         case SEND_MOVE_FAILURE:
             return {
                 ...state,
-<<<<<<< HEAD
                 error_message: "Error in sending move",
-=======
-                error_message: "Error in sending routine",
             };
         case SEND_ROUTINE:
             return {
@@ -186,11 +181,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 error_message: "Error in sending routine",
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
             };
-=======
-            }
->>>>>>> master
         default:
             return {
                 ...state
@@ -290,7 +281,6 @@ export const load_moves_failure = (dispatch, response) => {
         type: LOAD_MOVES_FAILURE,
     })
 }
-<<<<<<< HEAD
 
 export const send_move = (move) => {
     const url = api + 'move';
@@ -314,8 +304,6 @@ export const send_move_failure = (dispatch, response) => {
         type: SEND_MOVE_FAILURE,
     })
 }
-<<<<<<< HEAD
-=======
 
 export const send_routine = (routine) => {
     const url = api + 'routine';
@@ -339,6 +327,3 @@ export const send_routine_failure = (dispatch, response) => {
         type: SEND_ROUTINE_FAILURE,
     })
 }
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
-=======
->>>>>>> master

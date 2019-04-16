@@ -12,7 +12,7 @@ import './styles.css';
 
 import {
     load_moves,
-    load_routines, 
+    load_routines,
     increment_move_index
 } from '../../reducers/reducer';
 

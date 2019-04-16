@@ -19,51 +19,17 @@ import './styles.css';
 // import AppBar from '../../components/Heading/AppBar.js';
 
 class RoutineComponent extends Component {
-<<<<<<< HEAD
-    componentDidMount() {
-<<<<<<< HEAD
-        this.props.load_routines(1);
-        this.props.load_moves(1);
-    }
-
-    render() {
-        if (this.props.loading) {
-            return <div>Loading...</div>
-        }
-        console.log(this.props.routines);
-=======
-        // this.props.load_routines(1);
-        // this.props.load_moves(this.props.routine_id);
-    }
-
     render() {
         console.log(this.props.moves)
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
-=======
-    render() {
-        console.log(this.props.moves)
->>>>>>> master
         return (
             <div>
                 <AppBar/>
                 <br />
                 <div className="page-content">
                     <h3>Your Routine: Favorite Ab Workout</h3>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <Button/>
-                    <br />
-                    <List moves={this.props.moves} />
-=======
-                    <Button to='/settime'/>
+                    <Button name={"Start Workout!"} link={"/move"}/>
                     <br />
                     <List moves={this.props.moves}/>
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
-=======
-                    <Button name={"Start Workout!"} link={"/move"}/>                    
-                    <br />
-                    <List moves={this.props.moves}/>
->>>>>>> master
                 </div>
             </div>
         );
@@ -74,45 +40,17 @@ export { RoutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    const { loading, moves, routines } = reducer;
-=======
     const { loading, moves, routines, routine_id } = reducer;
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
-=======
-    const { loading, moves, routines, routine_id } = reducer;
->>>>>>> master
     return {
         ...ownProps,
         loading,
         moves,
-<<<<<<< HEAD
-<<<<<<< HEAD
-        routines
-=======
         routines,
         routine_id
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
-=======
-        routines,
-        routine_id
->>>>>>> master
     };
 };
 
 export const Routine = connect(mapStateToProps, {
-<<<<<<< HEAD
-<<<<<<< HEAD
     load_moves,
     load_routines
 })(RoutineComponent);
-=======
-
-})(RoutineComponent);
->>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
-=======
-    load_moves,
-    load_routines
-})(RoutineComponent);
->>>>>>> master
