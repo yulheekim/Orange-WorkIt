@@ -16,7 +16,7 @@ const AppNavigator = () => (
             <Route exact path="/" component={Login} />
             <Route exact path="/routines" component={Routines} />
             <Route exact path="/moves" component={Routine} />
-            <Route exact path="/loop-moves" component={Move} />
+            <Route exact path="/do-moves" component={Move} />
             <Route exact path="/timer" component={Move} />
             <Route exact path="/settime" component={SetTime} />
             <Route exact path="/addroutine" component={Addroutine} />
