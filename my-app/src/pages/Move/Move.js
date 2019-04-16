@@ -147,6 +147,7 @@ class MoveComponent extends Component {
     }
 
     render() {
+        console.log("rendering move component!")
         console.log(this.props.move_index)
         return (
         <div>
