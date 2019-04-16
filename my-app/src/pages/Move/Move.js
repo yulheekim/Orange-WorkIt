@@ -128,11 +128,13 @@ class MoveComponent extends Component {
     //     this.state.index = 0;
     // }
 
-    handleNext(move_index, move_or_break) {
+    flipToNext(move_index) {
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
-        this.props.increment_move_index(move_index);
+        if (this.props.move_or_break) {
+            this.props.increment_move_index(move_index);
+        }
         this.props.toggle_move_or_break(this.props.move_or_break);
         setTimeout(() => console.log(this.props.move_index), 2000);
 
@@ -145,7 +147,10 @@ class MoveComponent extends Component {
             }
         })
         console.log(this.state.move_time)
+    }
 
+    handleNext(move_index) {
+        setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
     }
 
     render() {
@@ -171,7 +176,6 @@ class MoveComponent extends Component {
                                     initialTime={this.state.move_time} // hardcode. replace.
                                     direction="backward"
                                     onReset={() => {
-        
                                     }}
                                     checkpoints={[
                                         {time: 0,
@@ -199,7 +203,32 @@ class MoveComponent extends Component {
         }
         else {
             return(
-                <h1>break time!</h1>
+                <div>
+                    <h1>break time!</h1>
+                    <Timer
+                        key={this.state.timerKey}
+                        initialTime={this.state.break_time} // hardcode. replace.
+                        direction="backward"
+                        onReset={() => {
+                        }}
+                        checkpoints={[
+                            {time: 0,
+                            callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                        ]}
+                    >
+                        {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                            <React.Fragment>
+                            <div>
+                                <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                                <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
+                            </div>
+                            <div>
+                                <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
+                            </div>
+                            </React.Fragment>
+                        )}
+                    </Timer>
+                </div>
             );
         }
     }
