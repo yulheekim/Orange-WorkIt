@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import {
     AppBar,
@@ -21,7 +22,7 @@ class RoutinesComponent extends Component {
 
     render() {
         if (this.props.loading) {
-            return <div>Loading...</div>
+            return <div>Loading... or the user might not have any routines yet :( In that case, please go to /addroutines</div>
         }
 
         console.log(this.props.routines);
@@ -44,10 +45,11 @@ export { RoutinesComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, routines, user_id } = reducer;
+    const { loading, loggedin, moves, routines, user_id } = reducer;
     return {
         ...ownProps,
         loading,
+        loggedin,
         moves,
         routines,
         user_id

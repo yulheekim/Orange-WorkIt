@@ -6,6 +6,11 @@ const api = "http://127.0.0.1:5000/";
 
 //Action Types
 export const CHANGE_USERNAME= 'workit/CHANGE_USERNAME';
+
+export const HANDLE_REGISTER= 'workit/HANDLE_REGISTER';
+export const HANDLE_REGISTER_SUCCESS= 'workit/HANDLE_REGISTER_SUCCESS';
+export const HANDLE_REGISTER_FAILURE= 'workit/HANDLE_REGISTER_FAILURE';
+
 export const HANDLE_LOGIN= 'workit/HANDLE_LOGIN';
 export const HANDLE_LOGIN_SUCCESS= 'workit/HANDLE_LOGIN_SUCCESS';
 export const HANDLE_LOGIN_FAILURE= 'workit/HANDLE_LOGIN_FAILURE';
@@ -91,6 +96,30 @@ export default function reducer(state = INITIAL_STATE, action) {
                 ...state,
                 username: action.payload,
             };
+        case HANDLE_REGISTER:
+            return {
+                ...state,
+                registered: false
+            }
+        case HANDLE_REGISTER_SUCCESS:
+            if(action.payload){
+                console.log("register succeded!")
+                return {
+                    ...state,
+                    error_message: "",
+                    registered: true
+                }
+            } else {
+                return {
+                    ...state,
+                }
+            }
+
+        case HANDLE_REGISTER_FAILURE:
+            return {
+                ...state,
+                error_message: "Something went wrong while registering.",
+            }
         case HANDLE_LOGIN:
             return {
                 ...state,
@@ -226,6 +255,33 @@ export const change_username = (new_username) => {
         })
     }
 }
+
+export const handle_register = (username) => {
+    const url = api + `signup`;
+    return (dispatch) => {
+        dispatch({
+            type: HANDLE_REGISTER,
+        });
+        axios.post(url, {
+            "username": username,
+        })
+          .then((response) => handle_register_success(dispatch, response))
+          .catch((error) => handle_register_failure(dispatch, error))
+    }
+}
+export const handle_register_success = (dispatch, response) => {
+    dispatch({
+        type: HANDLE_REGISTER_SUCCESS,
+        payload: response.data.response,
+    });
+}
+
+export const handle_register_failure = (dispatch, error) => {
+    dispatch({
+        type: HANDLE_REGISTER_FAILURE,
+    });
+}
+
 export const handle_login = (username) => {
     const url = api + `signin`;
     return (dispatch) => {
