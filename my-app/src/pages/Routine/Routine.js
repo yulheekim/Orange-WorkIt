@@ -26,7 +26,7 @@ class RoutineComponent extends Component {
                 <AppBar/>
                 <br />
                 <div className="page-content">
-                    <h3>Your Routine: Favorite Ab Workout</h3>
+                    <h3>Your Routine: Total Body Workout</h3>
                     <Button name={"Start Workout!"} link={"/settime"}/>
                     <br />
                     <List moves={this.props.moves}/>
