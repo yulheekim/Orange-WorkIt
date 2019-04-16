@@ -31,7 +31,7 @@ class RoutineComponent extends Component {
                     <br />
                     <List moves={this.props.moves}/>
                 </div>
-                {/* <AddFloatingIcon name="Move" /> */}
+                <AddFloatingIcon name="Move" />
             </div>
         );
     }
