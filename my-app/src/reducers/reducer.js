@@ -24,6 +24,15 @@ export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 
+export const SEND_MOVE= 'workit/SEND_MOVE';
+export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
+export const SEND_MOVE_FAILURE= 'workit/SEND_MOVE_FAILURE';
+
+export const SEND_ROUTINE= 'workit/SEND_ROUTINE';
+export const SEND_ROUTINE_SUCCESS= 'workit/SEND_ROUTINE_SUCCESS';
+export const SEND_ROUTINE_FAILURE= 'workit/SEND_ROUTINE_FAILURE';
+
+
 const INITIAL_STATE = {
                 username: "",
                 user_id: 0,
@@ -169,12 +178,39 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 error_message: ""
-            }
+            };
         case LOAD_MOVES_FAILURE:
             return {
                 ...state,
                 error_message: "Error in loading moves",
-            }
+
+            };
+        case SEND_MOVE:
+            return {
+                ...state,
+            };
+        case SEND_MOVE_SUCCESS:
+            return {
+                ...state,
+            };
+        case SEND_MOVE_FAILURE:
+            return {
+                ...state,
+                error_message: "Error in sending move",
+            };
+        case SEND_ROUTINE:
+            return {
+                ...state,
+            };
+        case SEND_ROUTINE_SUCCESS:
+            return {
+                ...state,
+            };
+        case SEND_ROUTINE_FAILURE:
+            return {
+                ...state,
+                error_message: "Error in sending routine",
+            };
         default:
             return {
                 ...state
@@ -299,5 +335,51 @@ export const load_moves_success = (dispatch, response) => {
 export const load_moves_failure = (dispatch, response) => {
     dispatch({
         type: LOAD_MOVES_FAILURE,
+    })
+}
+
+export const send_move = (move) => {
+    const url = api + 'move';
+    return (dispatch) => {
+        dispatch({
+            type: SEND_MOVE
+        });
+        axios.post(url, move)
+          .then((response) => send_move_success(dispatch, response))
+          .catch((error) => send_move_failure(dispatch, error))
+    }
+}
+export const send_move_success = (dispatch, response) => {
+    dispatch({
+        type: SEND_MOVE_SUCCESS,
+        payload: response.data.response
+    });
+}
+export const send_move_failure = (dispatch, response) => {
+    dispatch({
+        type: SEND_MOVE_FAILURE,
+    })
+}
+
+export const send_routine = (routine) => {
+    const url = api + 'routine';
+    return (dispatch) => {
+        dispatch({
+            type: SEND_ROUTINE
+        });
+        axios.post(url, routine)
+          .then((response) => send_routine_success(dispatch, response))
+          .catch((error) => send_routine_failure(dispatch, error))
+    }
+}
+export const send_routine_success = (dispatch, response) => {
+    dispatch({
+        type: SEND_ROUTINE_SUCCESS,
+        payload: response.data.response
+    });
+}
+export const send_routine_failure = (dispatch, response) => {
+    dispatch({
+        type: SEND_ROUTINE_FAILURE,
     })
 }
