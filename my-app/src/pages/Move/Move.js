@@ -146,13 +146,9 @@ class MoveComponent extends Component {
 
     }
 
-    loadNext = (move_index) => {
-
-    };
-
     render() {
         console.log(this.props.move_index)
-        return ( // hardcode <h2>. replace.
+        return (
         <div>
             <AppBar />
             <br />
