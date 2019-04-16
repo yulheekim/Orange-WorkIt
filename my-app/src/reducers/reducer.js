@@ -4,13 +4,11 @@ import axios from 'axios';
 
 const api = "http://127.0.0.1:5000/";
 
-// Action Types
-
-export const CHANGE_USERNAME = 'workit/CHANGE_USERNAME';
-export const HANDLE_LOGIN = 'workit/HANDLE_LOGIN';
-export const HANDLE_LOGIN_SUCCESS = 'workit/HANDLE_LOGIN_SUCCESS';
-export const HANDLE_LOGIN_FAILURE = 'workit/HANDLE_LOGIN_FAILURE';
-
+//Action Types
+export const CHANGE_USERNAME= 'workit/CHANGE_USERNAME';
+export const HANDLE_LOGIN= 'workit/HANDLE_LOGIN';
+export const HANDLE_LOGIN_SUCCESS= 'workit/HANDLE_LOGIN_SUCCESS';
+export const HANDLE_LOGIN_FAILURE= 'workit/HANDLE_LOGIN_FAILURE';
 
 export const LOAD_ROUTINES= 'workit/LOAD_ROUTINES';
 export const LOAD_ROUTINES_SUCCESS= 'workit/LOAD_ROUTINES_SUCCESS';
@@ -19,6 +17,7 @@ export const LOAD_ROUTINES_FAILURE= 'workit/LOAD_ROUTINES_FAILURE';
 export const LOAD_MOVES= 'workit/LOAD_MOVES';
 export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
+export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 
 export const SEND_MOVE= 'workit/SEND_MOVE';
 export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
@@ -34,7 +33,9 @@ export const SEND_ROUTINE_FAILURE= 'workit/SEND_ROUTINE_FAILURE';
 const INITIAL_STATE = {
                 username: "",
                 user_id: 0,
-                loading: true,
+                loggedin: false,
+                loading: false,
+                routine_id: 0,
                 routines: [{
                     id: 1,
                     name: "abs",
@@ -43,6 +44,7 @@ const INITIAL_STATE = {
                     id: 2,
                     name: "back"
                 }],
+                loading_moves: false,
                 moves: [{
                     end_time: "131",
                     start_time: "91",
@@ -65,45 +67,58 @@ const INITIAL_STATE = {
                     video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
                 }],
                 error_message: "",
+                move_index: 0,
             }
 
 // Reducers
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
-        case CHANGE_USERNAME:
-            return{
-                ...state,
-                username: action.payload
-            };
-        case HANDLE_LOGIN:
-            return{
-                ...state
-            };
-        case HANDLE_LOGIN_SUCCESS:
-            if (action.payload) {
-                console.log(action.payload)
+        case INCREMENT_MOVE_INDEX:
+                console.log("red")
                 return {
                     ...state,
-                    user_id: action.payload
-                }
+                    move_index: action.payload + 1
             }
+        case CHANGE_USERNAME:
             return {
                 ...state,
-                error_message: "Login data not fetched!"
+                username: action.payload,
+            };
+        case HANDLE_LOGIN:
+            return {
+                ...state,
+                loggedin: false
             }
+        case HANDLE_LOGIN_SUCCESS:
+            if(action.payload){
+                return {
+                    ...state,
+                    error_message: "",
+                    username: "",
+                    user_id: action.payload,
+                    loggedin: true
+                }
+            } else {
+                return {
+                    ...state,
+                }
+            }
+
         case HANDLE_LOGIN_FAILURE:
             return {
                 ...state,
-                error_message: "Error loading user's login data",
-            };
+                error_message: "Something went wrong while logging in.",
+            }
         case LOAD_ROUTINES:
+            console.log("loading routines...")
             return {
                 ...state,
                 loading: true,
             };
         case LOAD_ROUTINES_SUCCESS:
             if (action.payload) {
+                console.log("successfully loaded routines")
                 return {
                     ...state,
                     routines: action.payload,
@@ -123,14 +138,14 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_MOVES:
             return {
                 ...state,
-                loading: true,
+                loading_moves: false,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
                 return {
                     ...state,
                     moves: action.payload,
-                    loading: false
+                    loading_moves: true,
                 };
             }
             return {
@@ -141,6 +156,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 error_message: "Error in loading moves",
+<<<<<<< HEAD
             };
         case SEND_MOVE:
             return {
@@ -172,6 +188,9 @@ export default function reducer(state = INITIAL_STATE, action) {
                 error_message: "Error in sending routine",
 >>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
             };
+=======
+            }
+>>>>>>> master
         default:
             return {
                 ...state
@@ -181,41 +200,50 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 //Action Creators
 
-export const change_username = (username) => {
+export const increment_move_index = (move_idx) => {
+    console.log("inside action")
+    return (dispatch) => {
+        dispatch({
+            type: INCREMENT_MOVE_INDEX,
+            payload: move_idx
+        })
+    }
+}
+
+export const change_username = (new_username) => {
+
     return (dispatch) => {
         dispatch({
             type: CHANGE_USERNAME,
-            payload: username
+            payload: new_username
         })
-}}
-
+    }
+}
 export const handle_login = (username) => {
-    const url = api + "signin";
+    const url = api + `signin`;
     return (dispatch) => {
         dispatch({
-            type: HANDLE_LOGIN
+            type: HANDLE_LOGIN,
         });
         axios.post(url, {
             "username": username,
         })
-            .then((response) => handle_login_success(dispatch, response))
-            .catch((error) => handle_login_failure(dispatch, error))
+          .then((response) => handle_login_success(dispatch, response))
+          .catch((error) => handle_login_failure(dispatch, error))
     }
 }
-
 export const handle_login_success = (dispatch, response) => {
     dispatch({
         type: HANDLE_LOGIN_SUCCESS,
-        payload: response.data.response
+        payload: response.data.response,
     });
 }
 
-export const handle_login_failure = (dispatch, response) => {
+export const handle_login_failure = (dispatch, error) => {
     dispatch({
         type: HANDLE_LOGIN_FAILURE,
-    })
+    });
 }
-
 
 export const load_routines = (user_id) => {
     const url = api + `routines/${user_id}`;
@@ -262,6 +290,7 @@ export const load_moves_failure = (dispatch, response) => {
         type: LOAD_MOVES_FAILURE,
     })
 }
+<<<<<<< HEAD
 
 export const send_move = (move) => {
     const url = api + 'move';
@@ -311,3 +340,5 @@ export const send_routine_failure = (dispatch, response) => {
     })
 }
 >>>>>>> b21883c974a2aa57ba27f2e82bc733334f2b8307
+=======
+>>>>>>> master
