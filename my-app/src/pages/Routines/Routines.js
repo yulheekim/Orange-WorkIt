@@ -4,9 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 import {
     AppBar,
-    Paper,
     ListRoutines,
-    Button
+    AddFloatingIcon
 } from '../../components';
 import {
     load_moves,
@@ -36,6 +35,7 @@ class RoutinesComponent extends Component {
                     <br />
                     <ListRoutines routines={this.props.routines} />
                 </div>
+                {/* <AddFloatingIcon name="Routine"/> */}
             </div>
         );
     }

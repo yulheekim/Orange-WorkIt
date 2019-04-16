@@ -6,9 +6,9 @@ import Grid from '@material-ui/core/Grid';
 
 import {
     AppBar,
-    Paper,
     List,
-    Button
+    Button,
+    AddFloatingIcon
 } from '../../components';
 import {
     load_moves,
@@ -31,6 +31,7 @@ class RoutineComponent extends Component {
                     <br />
                     <List moves={this.props.moves}/>
                 </div>
+                {/* <AddFloatingIcon name="Move" /> */}
             </div>
         );
     }
