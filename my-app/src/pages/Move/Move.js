@@ -203,32 +203,34 @@ class MoveComponent extends Component {
         }
         else {
             return(
-                <div>
-                    <h1>break time!</h1>
-                    <Timer
-                        key={this.state.timerKey}
-                        initialTime={this.state.break_time} // hardcode. replace.
-                        direction="backward"
-                        onReset={() => {
-                        }}
-                        checkpoints={[
-                            {time: 0,
-                            callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
-                        ]}
-                    >
-                        {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
-                            <React.Fragment>
-                            <div>
-                                <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
-                                <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
-                            </div>
-                            <div>
-                                <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
-                            </div>
-                            </React.Fragment>
-                        )}
-                    </Timer>
-                </div>
+                    <section class="hero-image">
+                        <h1>break time!</h1>
+                        <div className="break-timer">
+                            <Timer
+                                key={this.state.timerKey}
+                                initialTime={this.state.break_time} // hardcode. replace.
+                                direction="backward"
+                                onReset={() => {
+                                }}
+                                checkpoints={[
+                                    {time: 0,
+                                    callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                                ]}
+                            >
+                                {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                                    <React.Fragment>
+                                    <div>
+                                        <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                                        <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
+                                    </div>
+                                    <div>
+                                        <Button variant="contained" color="primary" onClick={pause}>Pause</Button>  <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
+                                    </div>
+                                    </React.Fragment>
+                                )}
+                            </Timer>
+                        </div>
+                    </section>
             );
         }
     }
