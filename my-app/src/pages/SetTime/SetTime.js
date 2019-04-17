@@ -22,8 +22,8 @@ class SetTimeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            move_time: 45000,
-            break_time: 20000,
+            move_time: 0,
+            break_time: 0,
         };
 
     };
@@ -32,6 +32,8 @@ class SetTimeComponent extends Component {
     }
 
     render() {
+        const {break_time, move_time} = this.state;
+        const buttonEnabled = break_time > 0 && move_time > 0;
         return (
             <div>
                 <AppBar/>
@@ -51,7 +53,8 @@ class SetTimeComponent extends Component {
                         onChange={e => this.setState({ break_time: e.target.value })}
                     />
                     <br />
-                    <Button to={{pathname: "/timer", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
+                    <Button disabled={!buttonEnabled}
+                        to={{pathname: "/timer", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
                             component={Link}
                             variant="contained"
                             color="primary">
