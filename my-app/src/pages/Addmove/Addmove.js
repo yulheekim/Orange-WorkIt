@@ -43,23 +43,26 @@ class AddmoveComponent extends Component {
     }
 
     render() {
+        const {name, start_time, end_time, total_time, video_url} = this.state;
+        const buttonEnabled = name.length > 0 && start_time > 0 && end_time > 0 && total_time > 0 && video_url.length > 0;
         return (
             <div>
                 <AppBar/>
                 <br />
                 <div class="page-content">
                     <h3>Add a Move!</h3>
-                    <TextField id="1" label="Name" name="name" onChange={this.handleChange}/>
+                    <TextField required id="1" label="Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="2" label="Video URL" name="video_url" onChange={this.handleChange}/>
+                    <TextField required id="2" label="Video URL" name="video_url" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="3" label="Start Time" name="start_time" onChange={this.handleChange}/>
+                    <TextField required type='number' id="3" label="Start Time" name="start_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="4" label="End Time" name="end_time" onChange={this.handleChange}/>
+                    <TextField required type='number' id="4" label="End Time" name="end_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <TextField id="5" label="Duration" name="total_time" onChange={this.handleChange}/>
+                    <TextField required type='number' id="5" label="Duration" name="total_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button label="Add Move" variant="contained" color="primary"
+                    <Button disabled={!buttonEnabled}
+                        label="Add Move" variant="contained" color="primary"
                     onClick={this.uploadMove}/>
                 </div>
             </div>
