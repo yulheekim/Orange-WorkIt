@@ -49,7 +49,9 @@ class AddroutineComponent extends Component {
                     <TextField required id="1" label="Rountine Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
                     <Button label="Add Routine" variant="contained" color="primary"
-                    onClick={this.uploadRoutine}/>
+                            onClick={this.uploadRoutine}>
+                        Add Routine
+                    </Button>
                 </div>
             </div>
         );
