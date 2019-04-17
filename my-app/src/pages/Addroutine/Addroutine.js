@@ -38,6 +38,8 @@ class AddroutineComponent extends Component {
     }
 
     render() {
+        const {name} = this.state;
+        const buttonEnabled = name.length > 0;
         return (
             <div>
                 <AppBar/>
@@ -48,7 +50,8 @@ class AddroutineComponent extends Component {
                     placeholder="pls input"></input> */}
                     <TextField required id="1" label="Rountine Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button label="Add Routine" variant="contained" color="primary"
+                    <Button disabled={!buttonEnabled}
+                        label="Add Routine" variant="contained" color="primary"
                             onClick={this.uploadRoutine}>
                         Add Routine
                     </Button>
