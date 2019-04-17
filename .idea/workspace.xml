@@ -2,7 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4407001-d528-4930-8665-537c14c9c137" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/my-app/src/assets/gradient.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/assets/gradient2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/assets/gradient_blue_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/assets/gradient_blue_bg2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/AddFloatingIcon/AddFloatingIcon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/AddFloatingIcon/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/ListRoutines/ListRoutines.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/ListRoutines/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/Login/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/Routines/Routines.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/Routines/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/Routines/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/SetTime/SetTime.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/SetTime/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/pages/SetTime/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Orange-WorkIt.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebaseTest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/assets/crunches.png" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/assets/crunches.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/assets/plank.png" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/assets/plank.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/assets/squats.png" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/assets/squats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Button/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Button/Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/List/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/List/List.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/TextField/TextField.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/TextField/TextField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/TextField/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/TextField/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/config/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/config/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Addmove/Addmove.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Addmove/Addmove.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Addroutine/Addroutine.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Addroutine/Addroutine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Move/Move.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Move/Move.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Move/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Move/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/Routine/Routine.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/Routine/Routine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/reducers/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/reducers/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workit-back/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/workit-back/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workit-back/localdata.db" beforeDir="false" afterPath="$PROJECT_DIR$/workit-back/localdata.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workit-back/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/workit-back/requirements.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,33 +64,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/reducers/reducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Routine/Routine.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1235">
-              <caret line="73" column="20" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addroutine/index.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addroutine/Addroutine.js">
+        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/Login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <folding>
@@ -56,14 +75,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/index.js">
+        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Move/Move2.js">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Move/Move.js">
+        <entry file="file://$PROJECT_DIR$/my-app/src/pages/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1272">
+            <state relative-caret-position="114">
+              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addroutine/Addroutine.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="526">
+              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -72,19 +101,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/login.js">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workit-back/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1072">
-              <caret line="85" column="2" lean-forward="true" selection-start-line="85" selection-start-column="2" selection-end-line="85" selection-end-column="2" />
+            <state relative-caret-position="19">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/my-app/src/config/route.js">
+        <entry file="file://$PROJECT_DIR$/my-app/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="55" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="55" />
+            <state relative-caret-position="434">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-app/src/components/Button/Button.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="15" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -93,18 +136,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/pages/index.js">
+        <entry file="file://$PROJECT_DIR$/my-app/src/components/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+            <state relative-caret-position="57">
+              <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/index.js">
+        <entry file="file://$PROJECT_DIR$/my-app/src/components/TextField/TextField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="1292">
+              <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -141,9 +185,10 @@
         <option value="$PROJECT_DIR$/my-app/src/pages/index.js" />
         <option value="$PROJECT_DIR$/my-app/src/reducers/reducer.js" />
         <option value="$PROJECT_DIR$/my-app/src/pages/Login/Login.js" />
-        <option value="$PROJECT_DIR$/my-app/.gitignore" />
-        <option value="$PROJECT_DIR$/workit-back/.gitignore" />
         <option value="$PROJECT_DIR$/my-app/src/config/route.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/workit-back/.gitignore" />
+        <option value="$PROJECT_DIR$/my-app/.gitignore" />
       </list>
     </option>
   </component>
@@ -169,7 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,106 +229,13 @@
             <path>
               <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
               <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Button" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="List" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Paper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Addmove" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Addroutine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Move" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Orange-WorkIt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Orange-WorkIt" type="462c0819:PsiDirectoryNode" />
-              <item name="my-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Routine" type="462c0819:PsiDirectoryNode" />
+              <item name="workit-back" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -318,11 +269,12 @@
       <updated>1554682969053</updated>
       <workItem from="1554682971724" duration="15327000" />
       <workItem from="1555112415658" duration="89000" />
+      <workItem from="1555525250807" duration="82000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16016000" />
+    <option name="totallyTimeSpent" value="16133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -390,6 +342,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="form validation for set time complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="form validation for set time complete" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/my-app/package.json">
@@ -468,15 +424,6 @@
     <entry file="file://$PROJECT_DIR$/my-app/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/components/Button/Button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/node_modules/@types/react/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -506,9 +453,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/styles.css" />
-    <entry file="file://$PROJECT_DIR$/firebaseTest.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/firebaseTest.js" />
     <entry file="file://$PROJECT_DIR$/my-app/src/pages/Move/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -557,27 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workit-back/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addmove/Addmove.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-238">
@@ -590,13 +514,6 @@
     <entry file="file://$PROJECT_DIR$/my-app/src/pages/Routine/styles.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/components/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -606,26 +523,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/pages/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/reducers/reducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="379">
           <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Move/Move.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1272">
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,24 +543,8 @@
     <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addroutine/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addroutine/Addroutine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/index.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1072">
-          <caret line="85" column="2" lean-forward="true" selection-start-line="85" selection-start-column="2" selection-end-line="85" selection-end-column="2" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/config/route.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -668,6 +553,86 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Move/Move.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4199">
+          <caret line="238" selection-start-line="238" selection-end-line="238" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Login/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Move/Move2.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/pages/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/Button/Button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" selection-start-line="20" selection-end-line="23" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/TextField/TextField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/pages/Addroutine/Addroutine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workit-back/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>

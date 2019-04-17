@@ -12,13 +12,9 @@ import {
 import {
     change_username,
     handle_login,
+    handle_register,
     load_routines
 } from '../../reducers/reducer';
-// import './styles.css';
-
-// import AppBar from '../../components/Heading/AppBar.js';
-
-
 
 class LoginComponent extends Component {
     componentDidMount() {
@@ -31,10 +27,10 @@ class LoginComponent extends Component {
     handleLogin = () => {
         this.props.handle_login(this.props.username);
     }
+    handleRegister = () => {
+        this.props.handle_register(this.props.username);
+    }
     render() {
-        if (!this.props.loading) {
-            console.log(this.props.routines)
-        }
         if(this.props.loggedin) {
             this.props.load_routines(this.props.user_id);
             return (
@@ -61,7 +57,7 @@ class LoginComponent extends Component {
                     <Button variant="contained" color="primary" onClick={()=>this.handleLogin()} className="loginButton">
                         Login
                     </Button>
-                    <Button variant="contained" color="secondary" className="registerButton">
+                    <Button variant="contained" color="secondary" onClick={()=>this.handleRegister()} className="registerButton">
                         Register
                     </Button>
                 </div>
@@ -88,5 +84,6 @@ const mapStateToProps = (state, ownProps) => {
 export const Login = connect(mapStateToProps, {
     change_username,
     handle_login,
+    handle_register,
     load_routines
 })(LoginComponent);

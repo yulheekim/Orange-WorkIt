@@ -1,63 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import firebase from '../../firebaseTest.js';
 
 
 import Grid from '@material-ui/core/Grid';
 
 import {
     AppBar,
-    Paper,
     List,
-    Button
+    Button,
+    AddFloatingIcon
 } from '../../components';
+import {
+    load_moves,
+    load_routines
+} from '../../reducers/reducer';
 import './styles.css';
 
 // import AppBar from '../../components/Heading/AppBar.js';
 
 class RoutineComponent extends Component {
-    constructor(props) {
-    super(props);
-    this.state = {
-      routines: [],
-      key: ''
-    };
-  }
-    // componentDidMount() {
-    //     let routines = [];
-    //     const ref = firebase.firestore().collection('routines');
-    //     ref.get().then((doc) => {
-    //         doc.forEach(doc => {
-    //             if (doc.exists) {
-    //                 // console.log(doc.data());
-    //                 let new_routine = doc.data();
-    //                 new_routine.moves = [];
-    //                 doc.ref.collection('moves').get().then((docs) => {
-    //                     docs.forEach(doc => {
-    //                         // console.log(doc.data());
-    //                         new_routine.moves.push(doc.data());
-    //                     });
-    //                 });
-    //                 routines.push(new_routine);
-    //                 this.setState({routines: routines, key: doc.id, isLoading: false});
-    //             } else {
-    //                 console.log("No such document!");
-    //             }
-    //         })
-    //     });
-    //     setTimeout(() => { console.log(this.state.routines); }, 1000);
-    // }
     render() {
+        console.log(this.props.moves)
         return (
             <div>
                 <AppBar/>
                 <br />
-                <div class="page-content">
-                    <h3>Your Routine: Favorite Ab Workout</h3>
-                    <Button name={"Start Workout!"} link={"/move"}/>
+                <div className="page-content">
+                    <h3>Your Routine: Total Body Workout</h3>
+                    <Button name={"Start Workout!"} link={"/settime"}/>
                     <br />
-                    <List />
+                    <List moves={this.props.moves}/>
                 </div>
+                {/* <AddFloatingIcon name="Move" /> */}
             </div>
         );
     }
@@ -66,11 +40,18 @@ class RoutineComponent extends Component {
 export { RoutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
+    const { reducer } = state;
+    const { loading, moves, routines, routine_id } = reducer;
     return {
-        ...ownProps
+        ...ownProps,
+        loading,
+        moves,
+        routines,
+        routine_id
     };
 };
 
 export const Routine = connect(mapStateToProps, {
-
+    load_moves,
+    load_routines
 })(RoutineComponent);
