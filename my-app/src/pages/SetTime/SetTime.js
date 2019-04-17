@@ -16,8 +16,6 @@ import {
 import './styles.css';
 import SetTimeButton from "../../components/Button/Button";
 
-// import AppBar from '../../components/Heading/AppBar.js';
-
 class SetTimeComponent extends Component {
     constructor(props) {
         super(props);
@@ -28,9 +26,6 @@ class SetTimeComponent extends Component {
 
     };
 
-    componentDidMount() {
-    }
-
     render() {
         return (
             <div>
@@ -38,18 +33,26 @@ class SetTimeComponent extends Component {
                 <br />
                 <div className="page-content">
                     <h3>Set Time</h3>
+                    <h4>For how many seconds would you like to do each move?</h4>
                     <TextField
+                        required
                         id="moveTime"
-                        label="Move Time(s)"
+                        label="Move Time"
                         type="number"
+                        placeholder="45"
                         onChange={e => this.setState({ move_time: e.target.value })}
                     />
+                    <h4>For how many seconds would you like to rest between each move?</h4>
                     <TextField
+                        required
                         id="moveTime"
-                        label="Break Time(s)"
+                        label="Break Time"
                         type="number"
+                        placeholder="15"
                         onChange={e => this.setState({ break_time: e.target.value })}
                     />
+                    <br />
+                    <br />
                     <br />
                     <Button to={{pathname: "/timer", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
                             component={Link}
