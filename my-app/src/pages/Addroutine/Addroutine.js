@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { TextField,Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 import {
-    AppBar
+    AppBar,
+    Button
 } from '../../components';
 import './styles.css';
 
