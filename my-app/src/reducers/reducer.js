@@ -85,6 +85,8 @@ export default function reducer(state = INITIAL_STATE, action) {
             console.log("case toggle finish routine")
             return {
                 ...state,
+                move_index: 0,
+                move_or_break: true,
                 routine_is_finished: !action.payload
             }
         case TOGGLE_MOVE_OR_BREAK:
@@ -181,14 +183,14 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_MOVES:
             return {
                 ...state,
-                loading_moves: false,
+                loading_moves: true,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
                 return {
                     ...state,
                     moves: action.payload,
-                    loading_moves: true,
+                    loading_moves: false,
                 };
             }
             return {
