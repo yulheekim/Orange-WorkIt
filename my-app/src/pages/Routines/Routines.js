@@ -28,7 +28,7 @@ class RoutinesComponent extends Component {
         console.log(this.props.routines);
         return (
             <div>
-                <AppBar/>
+                {/* <AppBar/> */}
                 <br />
                 <div className="page-content">
                     <h3>Your Routines: </h3>

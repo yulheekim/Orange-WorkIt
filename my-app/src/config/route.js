@@ -10,8 +10,15 @@ import {
     SetTime
 } from '../pages';
 
+import {
+    Header
+} from '../components'
+
 const AppNavigator = () => (
+    <div>
+
     <BrowserRouter>
+        <Header />
         <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/routines" component={Routines} />
@@ -23,6 +30,7 @@ const AppNavigator = () => (
             <Route exact path="/addmove" component={Addmove} />
         </Switch>
     </BrowserRouter>
+    </div>
 )
 
 export { AppNavigator };

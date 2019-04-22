@@ -31,6 +31,7 @@ class AppBarComponent extends Component {
 
   render() {
     if(this.props.go_home) {
+      this.props.toggle_go_home()
         return (
           <div>
         <AppBar position="static">
