@@ -1,12 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import { AppBar as MatAppBar} from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+
+import {
+    toggle_go_home
+} from '../../reducers/reducer';
 
 const styles = {
   root: {
@@ -21,27 +26,51 @@ const styles = {
   // background: '#000000'
 };
 
-function SimpleAppBar(props) {
-  const { classes } = props;
+class AppBarComponent extends React.Component {
+  // const { classes } = props;
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-        <IconButton aria-label="Home" color="inherit" component={Link} to="/routines">
-          <HomeIcon/>
-        </IconButton>
-          <Typography variant="h6" color="inherit">
-            WorkIt
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+  render() {
+    if(this.props.go_home) {
+        return (
+            <Redirect to="routines" />
+        );
+    }
+
+    return (
+      <div>
+        <MatAppBar position="static">
+          <Toolbar>
+          <IconButton aria-label="Home" color="inherit" onClick={this.props.toggle_go_home()}>
+            <HomeIcon/>
+          </IconButton>
+            <Typography variant="h6" color="inherit">
+              WorkIt
+            </Typography>
+          </Toolbar>
+        </MatAppBar>
+      </div>
+    );
+  }
 }
 
-SimpleAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+// AppBarComponent.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
+
+export { AppBarComponent };
+
+// export default withStyles(styles)(AppBarComponent);
+
+const mapStateToProps = (state, ownProps) => {
+    const { reducer } = state;
+    const { user_id, go_home } = reducer;
+    return {
+        ...ownProps,
+        user_id,
+        go_home
+    };
 };
 
-export default withStyles(styles)(SimpleAppBar);
+export const AppBar = connect(mapStateToProps, {
+    toggle_go_home
+})(AppBarComponent);

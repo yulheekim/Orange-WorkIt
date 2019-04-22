@@ -12,7 +12,7 @@ import './styles.css';
 
 import {
     load_moves,
-    load_routines, 
+    load_routines,
     increment_move_index,
     toggle_move_or_break
 } from '../../reducers/reducer';
@@ -198,7 +198,7 @@ class MoveComponent extends Component {
                         </Card>
                     </div>
                 </div>
-        
+
                 );
         }
         else {
