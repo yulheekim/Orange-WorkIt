@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Timer from 'react-compound-timer';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 import {
     AppBar
@@ -17,7 +18,6 @@ import {
     toggle_move_or_break,
     toggle_finish_routine,
 } from '../../reducers/reducer';
-import {Link} from "react-router-dom";
 
 const styles = theme => ({
     card: {
@@ -67,6 +67,10 @@ class MoveComponent extends Component {
 
     handleNext(move_index) {
         setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
+    }
+
+    handleClickRoutines() {
+        this.props.toggle_finish_routine(this.props.routine_is_finished);
     }
 
 
@@ -156,14 +160,15 @@ class MoveComponent extends Component {
                 <section class="hero-image">
                     <h1>Congrats! You Made It!</h1>
                     <div className="back-to-menu-button">
-                    <Button
-                        to={{pathname: "/routines"}}
-                        component={Link}
-                        variant="contained"
-                        color="primary"
-                    >
-                        Back To Menu
-                    </Button>
+                        <Link to="routines" className="back_link">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => this.handleClickRoutines()}
+                            >
+                                Back To Your Routines
+                            </Button>
+                        </Link>
                     </div>
                 </section>
             );
@@ -174,7 +179,7 @@ export { MoveComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, move_index, move_or_break, routine_is_finished } = reducer;
+    const { loading, moves, move_index, move_or_break, routine_is_finished, user_id } = reducer;
     return {
         ...ownProps,
         loading,
@@ -182,6 +187,7 @@ const mapStateToProps = (state, ownProps) => {
         move_index,
         move_or_break,
         routine_is_finished,
+        user_id,
     };
 };
 

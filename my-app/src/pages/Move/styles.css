@@ -67,3 +67,7 @@ h1 {
 .back-to-menu-button {
     margin-top: 10px;
 }
+
+.back_link {
+    text-decoration: none;
+}
