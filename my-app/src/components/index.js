@@ -1,4 +1,4 @@
-export * from './AppBar/AppBar';
+export * from './AppBar';
 export {default as Paper} from './Paper/Paper';
 export {default as List} from './List/List';
 export * from './ListRoutines/ListRoutines';

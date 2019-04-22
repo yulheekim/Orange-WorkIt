@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import {
-    AppBar,
+    Header as AppBar,
     ListRoutines,
     AddFloatingIcon
 } from '../../components';
