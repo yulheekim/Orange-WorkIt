@@ -32,7 +32,19 @@ class AppBarComponent extends Component {
   render() {
     if(this.props.go_home) {
         return (
-            <Redirect to="routines" />
+          <div>
+        <AppBar position="static">
+          <Toolbar>
+          <IconButton aria-label="Home" color="inherit" onClick={() => this.props.toggle_go_home()}>
+            <HomeIcon/>
+          </IconButton>
+            <Typography variant="h6" color="inherit">
+              WorkIt
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Redirect to="routines" />
+      </div>
         );
     }
 
