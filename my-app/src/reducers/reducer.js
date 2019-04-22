@@ -75,6 +75,7 @@ const INITIAL_STATE = {
                 move_index: 0,
                 move_or_break: true, // true = working out. false = break.
                 routine_is_finished: false, // if the current routine finishes
+                routine_sent: false,
             }
 
 // Reducers
@@ -219,10 +220,12 @@ export default function reducer(state = INITIAL_STATE, action) {
         case SEND_ROUTINE:
             return {
                 ...state,
+                routine_sent: false,
             };
         case SEND_ROUTINE_SUCCESS:
             return {
                 ...state,
+                routine_sent: true,
             };
         case SEND_ROUTINE_FAILURE:
             return {

@@ -35,7 +35,11 @@ class AddroutineComponent extends Component {
         };
         console.log(routine);
         this.props.send_routine(routine);
-        setTimeout(() => this.props.load_routines(this.props.user_id), 1000);
+        if (this.props.routine_sent) {
+            console.log("wow");
+            this.props.load_routines(this.props.user_id);
+        }
+        //setTimeout(() => this.props.load_routines(this.props.user_id), 1000);
     }
 
     render() {
@@ -68,10 +72,11 @@ export { AddroutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { user_id } = reducer;
+    const { user_id, routine_sent } = reducer;
     return {
         ...ownProps,
-        user_id
+        user_id,
+        routine_sent,
     };
 };
 
