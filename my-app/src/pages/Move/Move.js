@@ -14,8 +14,10 @@ import {
     load_moves,
     load_routines, 
     increment_move_index,
-    toggle_move_or_break
+    toggle_move_or_break,
+    toggle_finish_routine,
 } from '../../reducers/reducer';
+import {Link} from "react-router-dom";
 
 const styles = theme => ({
     card: {
@@ -36,6 +38,7 @@ class MoveComponent extends Component {
             index: 0,
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
+            routine_finished: false,
             timerKey: 0,
         };
 
@@ -43,6 +46,11 @@ class MoveComponent extends Component {
 
     flipToNext(move_index) {
         if (this.props.move_index >= this.props.moves.length - 1) {
+            this.setState((state) => {
+                return {
+                    routine_finished: true
+                }
+            })
             return;
         }
         if (this.props.move_or_break) {
@@ -114,7 +122,7 @@ class MoveComponent extends Component {
         
                 );
         }
-        else {
+        else if (!this.state.routine_finished) {
             return(
                     <section class="hero-image">
                         <h1>break time!</h1>
@@ -146,19 +154,34 @@ class MoveComponent extends Component {
                     </section>
             );
         }
+        else {
+            return(
+                <section class="hero-image">
+                    <h1>Congrats! You Made It!</h1>
+                    <Button className="back-to-menu-button"
+                        to={{pathname: "/routines"}}
+                        component={Link}
+                        variant="contained"
+                        color="primary">
+                        Back To Menu
+                    </Button>
+                </section>
+            );
+        }
     }
 }
 export { MoveComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, move_index, move_or_break } = reducer;
+    const { loading, moves, move_index, move_or_break, routine_is_finished } = reducer;
     return {
         ...ownProps,
         loading,
         moves,
         move_index,
-        move_or_break
+        move_or_break,
+        routine_is_finished,
     };
 };
 
@@ -166,7 +189,8 @@ export const Move = connect(mapStateToProps, {
     load_moves,
     load_routines,
     increment_move_index,
-    toggle_move_or_break
+    toggle_move_or_break,
+    toggle_finish_routine,
 })(MoveComponent);
 
 //====================

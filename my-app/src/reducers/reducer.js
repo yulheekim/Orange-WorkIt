@@ -24,6 +24,7 @@ export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
+export const TOGGLE_FINISH_ROUTINE= 'workit/TOGGLE_FINISH_ROUTINE';
 
 export const SEND_MOVE= 'workit/SEND_MOVE';
 export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
@@ -73,12 +74,19 @@ const INITIAL_STATE = {
                 error_message: "",
                 move_index: 0,
                 move_or_break: true, // true = working out. false = break.
+                routine_is_finished: false, // if the current routine finishes
             }
 
 // Reducers
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case TOGGLE_FINISH_ROUTINE:
+            console.log("case toggle finish routine")
+            return {
+                ...state,
+                routine_is_finished: !action.payload
+            }
         case TOGGLE_MOVE_OR_BREAK:
             console.log("case toggle move or break")
             return {
@@ -227,6 +235,15 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
+export const toggle_finish_routine = (routine_is_finished) => {
+    console.log("inside finish routine")
+    return (dispatch) => {
+        dispatch({
+            type: TOGGLE_FINISH_ROUTINE,
+            payload: routine_is_finished
+        })
+    }
+}
 export const toggle_move_or_break = (move_or_break) => {
     console.log("inside toggle status")
     return (dispatch) => {

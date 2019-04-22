@@ -50,6 +50,8 @@ h1 {
   background-repeat: repeat;
   background-size: cover;
   position: relative;
+
+    text-align: center;
 }
 
 /* Place text in the middle of the image */
@@ -60,4 +62,8 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+
+.back-to-menu-button {
+    margin-top: 10px;
 }
