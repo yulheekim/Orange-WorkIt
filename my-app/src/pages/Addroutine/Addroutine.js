@@ -10,6 +10,7 @@ import './styles.css';
 
 import {
     send_routine,
+    load_routines,
 } from '../../reducers/reducer';
 
 
@@ -34,6 +35,7 @@ class AddroutineComponent extends Component {
         };
         console.log(routine);
         this.props.send_routine(routine);
+        setTimeout(() => this.props.load_routines(this.props.user_id), 1000);
     }
 
     render() {
@@ -49,11 +51,13 @@ class AddroutineComponent extends Component {
                     placeholder="pls input"></input> */}
                     <TextField required id="1" label="Rountine Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button disabled={!buttonEnabled}
-                        label="Add Routine" variant="contained" color="primary"
-                            onClick={this.uploadRoutine}>
-                        Add Routine
-                    </Button>
+                    <Link to="routines">
+                        <Button disabled={!buttonEnabled}
+                                label="Add Routine" variant="contained" color="primary"
+                                onClick={this.uploadRoutine}>
+                            Add Routine
+                        </Button>
+                    </Link>
                 </div>
             </div>
         );
@@ -72,5 +76,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const Addroutine = connect(mapStateToProps, {
-    send_routine
+    send_routine,
+    load_routines
 })(AddroutineComponent);

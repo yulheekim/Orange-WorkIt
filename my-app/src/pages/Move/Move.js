@@ -160,7 +160,7 @@ class MoveComponent extends Component {
                 <section class="hero-image">
                     <h1>Congrats! You Made It!</h1>
                     <div className="back-to-menu-button">
-                        <Link to="routines" className="back_link">
+                        <Link to="routines" className="back-link">
                             <Button
                                 variant="contained"
                                 color="primary"
