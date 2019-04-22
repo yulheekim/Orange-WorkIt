@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 
-import Grid from '@material-ui/core/Grid';
-
 import {
     AppBar,
     TextField,
@@ -14,7 +12,6 @@ import {
     load_routines
 } from '../../reducers/reducer';
 import './styles.css';
-import SetTimeButton from "../../components/Button/Button";
 
 class SetTimeComponent extends Component {
     constructor(props) {
