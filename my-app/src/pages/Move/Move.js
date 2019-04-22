@@ -38,7 +38,6 @@ class MoveComponent extends Component {
             index: 0,
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
-            routine_finished: false,
             timerKey: 0,
         };
 
@@ -46,11 +45,7 @@ class MoveComponent extends Component {
 
     flipToNext(move_index) {
         if (this.props.move_index >= this.props.moves.length - 1) {
-            this.setState((state) => {
-                return {
-                    routine_finished: true
-                }
-            })
+            this.props.toggle_finish_routine(this.props.routine_is_finished);
             return;
         }
         if (this.props.move_or_break) {
@@ -73,6 +68,8 @@ class MoveComponent extends Component {
     handleNext(move_index) {
         setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
     }
+
+
 
     render() {
         console.log("rendering move component!")
@@ -122,7 +119,7 @@ class MoveComponent extends Component {
         
                 );
         }
-        else if (!this.state.routine_finished) {
+        else if (!this.props.routine_is_finished) {
             return(
                     <section class="hero-image">
                         <h1>break time!</h1>
@@ -158,13 +155,16 @@ class MoveComponent extends Component {
             return(
                 <section class="hero-image">
                     <h1>Congrats! You Made It!</h1>
-                    <Button className="back-to-menu-button"
+                    <div className="back-to-menu-button">
+                    <Button
                         to={{pathname: "/routines"}}
                         component={Link}
                         variant="contained"
-                        color="primary">
+                        color="primary"
+                    >
                         Back To Menu
                     </Button>
+                    </div>
                 </section>
             );
         }

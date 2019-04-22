@@ -17,7 +17,6 @@ class AddroutineComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_id: 0,
             name:'',
         };
     };
@@ -30,7 +29,8 @@ class AddroutineComponent extends Component {
     uploadRoutine = () => {
         console.log('Rountine uploading')
         const routine = {
-            ...this.state
+            user_id: this.props.user_id,
+            name: this.state.name,
         };
         console.log(routine);
         this.props.send_routine(routine);
@@ -63,8 +63,11 @@ class AddroutineComponent extends Component {
 export { AddroutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
+    const { reducer } = state;
+    const { user_id } = reducer;
     return {
-        ...ownProps
+        ...ownProps,
+        user_id
     };
 };
 
