@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Timer from 'react-compound-timer';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -68,8 +67,6 @@ class MoveComponent extends Component {
     handleNext(move_index) {
         setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
     }
-
-
 
     render() {
         console.log("rendering move component!")

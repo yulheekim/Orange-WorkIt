@@ -13,8 +13,6 @@ import {
 } from '../../reducers/reducer';
 import './styles.css';
 
-// import AppBar from '../../components/Heading/AppBar.js';
-
 class RoutinesComponent extends Component {
     componentDidMount() {
         this.props.load_routines(this.props.user_id);
