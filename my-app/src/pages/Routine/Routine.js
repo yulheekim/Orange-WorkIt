@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
+import {Button} from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
 import {
@@ -25,8 +25,12 @@ class RoutineComponent extends Component {
                 <br />
                 <div className="page-content">
                     <h3>Your Routine: Total Body Workout</h3>
-                    <Button name={"Start Workout!"} link={"/settime"}/>
-                    <br />
+                    <Link to="/settime" className="setTimeLink">
+                        <Button variant="contained" color="primary">
+                            Start Workout!
+                        </Button>
+                    </Link>
+                    <br /><br />
                     <List moves={this.props.moves}/>
                 </div>
                 <AddFloatingIcon name="Move" link="/Addmove"/>
