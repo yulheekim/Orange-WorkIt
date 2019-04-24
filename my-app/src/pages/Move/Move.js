@@ -162,7 +162,7 @@ class MoveComponent extends Component {
     }
 
     // this is the function that gets called when you click on the right arrow button when the workout has started
-    handleSkipToNext(move_index) {
+    handleToNextFromMove(move_index) {
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
@@ -177,11 +177,42 @@ class MoveComponent extends Component {
     }
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
-    handleSkipToPrev(move_index) {
+    handleToPrevFromMove(move_index) {
         if (this.props.move_index < 0) {
             return;
         }
         this.props.decrement_move_index(move_index);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+    }
+
+    handleToNextFromBreak(move_index) {
+        if (this.props.move_index >= this.props.moves.length - 1) {
+            return;
+        }
+        this.props.increment_move_index(move_index);
+        this.props.toggle_move_or_break(this.props.move_or_break);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+    }
+
+    // this is the function that gets called when you click on the left arrow button when the workout has started
+    handleToPrevFromBreak(move_index) {
+        if (this.props.move_index < 0) {
+            return;
+        }
+        this.props.decrement_move_index(move_index);
+        this.props.toggle_move_or_break(this.props.move_or_break);
         this.setState((state) => {
             return {
                 timerKey: Math.random(),
@@ -205,7 +236,7 @@ class MoveComponent extends Component {
             )
         }
 
-        if (this.props.move_or_break === true) {
+        if (this.props.move_or_break === true) { // true means you're on a workout page
             return (
                 <div>
                     <AppBar />
@@ -252,12 +283,12 @@ class MoveComponent extends Component {
                         </Card>
                     </div>
                     <div className="fab-left">
-                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToPrev(this.props.move_index) }}>
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToPrevFromMove(this.props.move_index) }}>
                                 <ArrowBackIcon />
                             </Fab>
                         </div>
                     <div className="fab-right">
-                        <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToNext(this.props.move_index) }}>
+                        <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToNextFromMove(this.props.move_index) }}>
                             <ArrowForwardIcon />
                         </Fab>
                     </div>
@@ -265,7 +296,7 @@ class MoveComponent extends Component {
 
                 );
         }
-        else {
+        else { // break page
             return(
                     <section class="hero-image">
                         <h1>break time!</h1>
@@ -295,12 +326,12 @@ class MoveComponent extends Component {
                             </Timer>
                         </div>
                         <div className="fab-left">
-                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToPrev(this.props.move_index) }}>
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToPrevFromBreak(this.props.move_index) }}>
                                 <ArrowBackIcon />
                             </Fab>
                         </div>
                         <div className="fab-right">
-                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToNext(this.props.move_index) }}>
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToNextFromBreak(this.props.move_index) }}>
                                 <ArrowForwardIcon />
                             </Fab>
                         </div>
