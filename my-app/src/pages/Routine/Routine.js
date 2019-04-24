@@ -23,7 +23,7 @@ class RoutineComponent extends Component {
         console.log(this.props.moves)
         return (
             <div>
-                {/* <AppBar/> */}
+                <AppBar/>
                 <br />
                 <div className="page-content">
                     <h3>Your Routine: Total Body Workout</h3>
@@ -31,7 +31,7 @@ class RoutineComponent extends Component {
                     <br />
                     <List moves={this.props.moves}/>
                 </div>
-                {/* <AddFloatingIcon name="Move" /> */}
+                <AddFloatingIcon name="Move" />
             </div>
         );
     }

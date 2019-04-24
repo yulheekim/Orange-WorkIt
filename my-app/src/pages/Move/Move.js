@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Timer from 'react-compound-timer';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import {
     Header as AppBar,
@@ -15,7 +17,8 @@ import {
     load_moves,
     load_routines,
     increment_move_index,
-    toggle_move_or_break
+    toggle_move_or_break,
+    decrement_move_index
 } from '../../reducers/reducer';
 
 const styles = theme => ({
@@ -154,13 +157,28 @@ class MoveComponent extends Component {
         setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
     }
 
+    handleSkipToNext(move_index) {
+        if (this.props.move_index >= this.props.moves.length - 1) {
+            return;
+        }
+        this.props.increment_move_index(move_index);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+        // console.log("I MADE IT!")
+    }
+
     render() {
         console.log("rendering move component!")
         console.log(this.props.move_index)
         if (this.props.move_or_break === true) {
             return (
                 <div>
-                    {/* <AppBar /> */}
+                    <AppBar />
                     <br />
                     <br />
                     <div class="page-content">
@@ -198,7 +216,11 @@ class MoveComponent extends Component {
                             </div>
                         </Card>
                     </div>
-                    <NavigationFloatingIcon />
+                    <div className="fab">
+                        <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToNext(this.props.move_index) }}>
+                            <ArrowForwardIcon />
+                        </Fab>
+                    </div>
                 </div>
 
                 );
@@ -256,7 +278,8 @@ export const Move = connect(mapStateToProps, {
     load_moves,
     load_routines,
     increment_move_index,
-    toggle_move_or_break
+    toggle_move_or_break,
+    decrement_move_index
 })(MoveComponent);
 
 //====================

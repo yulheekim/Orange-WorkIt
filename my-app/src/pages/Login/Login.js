@@ -39,7 +39,7 @@ class LoginComponent extends Component {
         }
         return (
             <div>
-                {/* <AppBar/> */}
+                <AppBar/>
                 <br/>
                 <div className="page-content">
                     <TextField
