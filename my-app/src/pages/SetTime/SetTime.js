@@ -63,16 +63,18 @@ class SetTimeComponent extends Component {
                         onChange={e => this.setState({ break_time: e.target.value })}
                     />
                     <br />
-                    <Button onClick={this.handleBack}
-                            variant="contained"
-                            color="secondary">
-                    Cancel
-                    </Button>
                     <Button to={{pathname: "/timer", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
                             component={Link}
                             variant="contained"
                             color="primary">
                     Start Workout!
+                    </Button>
+                    <br />
+                    <br />
+                    <Button onClick={this.handleBack}
+                            variant="outlined"
+                            color="secondary">
+                    Cancel
                     </Button>
                     <br />
                 </div>

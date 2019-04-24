@@ -217,11 +217,6 @@ class MoveComponent extends Component {
                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                         <br />
-                        <Button onClick={this.handleBack}
-                                variant="contained"
-                                color="secondary">
-                        End Workout
-                        </Button>
                         <h2>{this.props.moves[this.props.move_index].name}</h2>
                         <Card>
                             <div class="timer">
@@ -249,6 +244,13 @@ class MoveComponent extends Component {
                                     )}
                                 </Timer>
                             </div>
+                            <Button onClick={this.handleBack}
+                                    variant="outlined"
+                                    color="secondary">
+                            End Workout
+                            </Button>
+                            <br />
+                            <br />
                         </Card>
                     </div>
                     <div className="fab-left">
