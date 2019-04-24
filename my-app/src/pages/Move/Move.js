@@ -6,7 +6,8 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 
 import {
-    Header as AppBar
+    Header as AppBar,
+    NavigationFloatingIcon 
 } from '../../components';
 import './styles.css';
 
@@ -159,7 +160,7 @@ class MoveComponent extends Component {
         if (this.props.move_or_break === true) {
             return (
                 <div>
-                    <AppBar />
+                    {/* <AppBar /> */}
                     <br />
                     <br />
                     <div class="page-content">
@@ -197,6 +198,7 @@ class MoveComponent extends Component {
                             </div>
                         </Card>
                     </div>
+                    <NavigationFloatingIcon />
                 </div>
 
                 );
@@ -230,6 +232,7 @@ class MoveComponent extends Component {
                                 )}
                             </Timer>
                         </div>
+                        <NavigationFloatingIcon />
                     </section>
             );
         }

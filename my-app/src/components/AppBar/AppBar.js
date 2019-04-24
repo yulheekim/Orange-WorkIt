@@ -30,8 +30,8 @@ class AppBarComponent extends Component {
   // const { classes } = props;
 
   render() {
-    if(this.props.go_home) {
-      this.props.toggle_go_home()
+    // if(this.props.go_home) {
+    //   this.props.toggle_go_home()
         return (
           <div>
         <AppBar position="static">
@@ -44,26 +44,26 @@ class AppBarComponent extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Redirect to="routines" />
+        {/* <Redirect to="routines" /> */}
       </div>
         );
     }
 
-    return (
-      <div>
-        <AppBar position="static">
-          <Toolbar>
-          <IconButton aria-label="Home" color="inherit" onClick={() => this.props.toggle_go_home()}>
-            <HomeIcon/>
-          </IconButton>
-            <Typography variant="h6" color="inherit">
-              WorkIt
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
-  }
+  //   return (
+  //     <div>
+  //       <AppBar position="static">
+  //         <Toolbar>
+  //         <IconButton aria-label="Home" color="inherit" onClick={() => this.props.toggle_go_home()}>
+  //           <HomeIcon/>
+  //         </IconButton>
+  //           <Typography variant="h6" color="inherit">
+  //             WorkIt
+  //           </Typography>
+  //         </Toolbar>
+  //       </AppBar>
+  //     </div>
+  //   );
+  // }
 }
 
 // AppBarComponent.propTypes = {

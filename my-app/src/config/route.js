@@ -16,7 +16,6 @@ import {
 
 const AppNavigator = () => (
     <div>
-
     <BrowserRouter>
         <Header />
         <Switch>
