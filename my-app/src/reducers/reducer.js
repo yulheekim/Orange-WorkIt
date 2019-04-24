@@ -24,7 +24,7 @@ export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
-export const TOGGLE_GO_HOME='workit/TOGGLE_GO_HOME';
+export const SET_GO_HOME='workit/SET_GO_HOME';
 
 export const SEND_MOVE= 'workit/SEND_MOVE';
 export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
@@ -87,11 +87,10 @@ export default function reducer(state = INITIAL_STATE, action) {
                 ...state,
                 move_or_break: !action.payload
             }
-        case TOGGLE_GO_HOME:
-            console.log("case toggle go home")
+        case SET_GO_HOME:
             return {
                 ...state,
-                go_home: !action.payload
+                go_home: action.payload
             }
         case INCREMENT_MOVE_INDEX:
                 console.log("red")
@@ -181,14 +180,14 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_MOVES:
             return {
                 ...state,
-                loading_moves: false,
+                loading_moves: true,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
                 return {
                     ...state,
                     moves: action.payload,
-                    loading_moves: true,
+                    loading_moves: false,
                 };
             }
             return {
@@ -245,11 +244,10 @@ export const toggle_move_or_break = (move_or_break) => {
     }
 }
 
-export const toggle_go_home = (go_home) => {
-    console.log("inside toggle status")
+export const set_go_home = (go_home) => {
     return (dispatch) => {
         dispatch({
-            type: TOGGLE_GO_HOME,
+            type: SET_GO_HOME,
             payload: go_home
         })
     }
