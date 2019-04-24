@@ -9,7 +9,8 @@ import {
 } from '../../components';
 import {
     load_moves,
-    load_routines
+    load_routines,
+    set_go_home
 } from '../../reducers/reducer';
 import './styles.css';
 
@@ -18,17 +19,18 @@ import './styles.css';
 class RoutinesComponent extends Component {
     componentDidMount() {
         this.props.load_routines(this.props.user_id);
+        this.props.set_go_home(false);
     }
 
     render() {
-        if (this.props.loading) {
+        if (this.props.loading || this.props.go_home) {
             return <div>Loading... or the user might not have any routines yet :( In that case, please go to /addroutines</div>
         }
 
         console.log(this.props.routines);
         return (
             <div>
-                {/* <AppBar/> */}
+                <AppBar/>
                 <br />
                 <div className="page-content">
                     <h3>Your Routines: </h3>
@@ -45,18 +47,20 @@ export { RoutinesComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, loggedin, moves, routines, user_id } = reducer;
+    const { loading, loggedin, moves, routines, user_id, go_home } = reducer;
     return {
         ...ownProps,
         loading,
         loggedin,
         moves,
         routines,
-        user_id
+        user_id,
+        go_home
     };
 };
 
 export const Routines = connect(mapStateToProps, {
     load_moves,
-    load_routines
+    load_routines,
+    set_go_home
 })(RoutinesComponent);

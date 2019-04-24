@@ -10,7 +10,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { Link, Redirect } from 'react-router-dom';
 
 import {
-    toggle_go_home
+    set_go_home
 } from '../../reducers/reducer';
 
 // const styles = {
@@ -29,14 +29,24 @@ import {
 class AppBarComponent extends Component {
   // const { classes } = props;
 
+  handleHome = () => {
+      if (this.props.user_id != 0) {
+          this.props.set_go_home(true);
+      }
+  };
+
   render() {
-    // if(this.props.go_home) {
-    //   this.props.toggle_go_home()
+    if(this.props.go_home) {
         return (
-          <div>
+          <Redirect to="routines" />
+        );
+    }
+
+    return (
+      <div>
         <AppBar position="static">
           <Toolbar>
-          <IconButton aria-label="Home" color="inherit" onClick={() => this.props.toggle_go_home()}>
+          <IconButton aria-label="Home" color="inherit" onClick={this.handleHome}>
             <HomeIcon/>
           </IconButton>
             <Typography variant="h6" color="inherit">
@@ -44,26 +54,9 @@ class AppBarComponent extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        {/* <Redirect to="routines" /> */}
       </div>
-        );
-    }
-
-  //   return (
-  //     <div>
-  //       <AppBar position="static">
-  //         <Toolbar>
-  //         <IconButton aria-label="Home" color="inherit" onClick={() => this.props.toggle_go_home()}>
-  //           <HomeIcon/>
-  //         </IconButton>
-  //           <Typography variant="h6" color="inherit">
-  //             WorkIt
-  //           </Typography>
-  //         </Toolbar>
-  //       </AppBar>
-  //     </div>
-  //   );
-  // }
+    );
+  }
 }
 
 // AppBarComponent.propTypes = {
@@ -85,5 +78,5 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const Header = connect(mapStateToProps, {
-    toggle_go_home
+    set_go_home
 })(AppBarComponent);

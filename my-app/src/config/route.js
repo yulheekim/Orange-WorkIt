@@ -17,7 +17,6 @@ import {
 const AppNavigator = () => (
     <div>
     <BrowserRouter>
-        <Header />
         <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/routines" component={Routines} />
