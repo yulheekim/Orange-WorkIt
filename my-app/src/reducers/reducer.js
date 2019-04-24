@@ -185,6 +185,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 loading_moves: true,
+                routine_id: action.payload,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
@@ -354,10 +355,12 @@ export const load_routines_failure = (dispatch, response) => {
 }
 
 export const load_moves = (routine_id) => {
+    //console.log("already load moves");
     const url = api + `moves/${routine_id}`;
     return (dispatch) => {
         dispatch({
-            type: LOAD_MOVES
+            type: LOAD_MOVES,
+            payload: routine_id,
         });
         axios.get(url)
           .then((response) => load_moves_success(dispatch, response))

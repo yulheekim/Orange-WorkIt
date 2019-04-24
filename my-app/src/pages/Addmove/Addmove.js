@@ -8,6 +8,7 @@ import {
 } from '../../components';
 import {
     send_move,
+    load_moves,
 } from '../../reducers/reducer';
 import './styles.css';
 
@@ -32,14 +33,14 @@ class AddmoveComponent extends Component {
     uploadMove = () => {
         //TODO: checking for valid form
         //TODO: implement props (routine_id, routine_size)
-        console.log('Move uploading')
+        //console.log('Move uploading')
         const move = {
-            routine_id: 1,
-            order: 3,
+            routine_id: this.props.routine_id,
+            order: this.props.moves.length,
             ...this.state
         };
-        console.log(move);
         this.props.send_move(move);
+        setTimeout(() => this.props.load_moves(this.props.routine_id), 1000);
     }
 
     render() {
@@ -61,9 +62,14 @@ class AddmoveComponent extends Component {
                     <br /><br />
                     <TextField required type='number' id="5" label="Duration" name="total_time" onChange={this.handleChange}/>
                     <br /><br />
-                    <Button disabled={!buttonEnabled}
+                    <Link className="no_text_decoration" to="moves">
+                    <Button
+                        disabled={!buttonEnabled}
                         label="Add Move" variant="contained" color="primary"
-                    onClick={this.uploadMove}/>
+                            onClick={this.uploadMove}>
+                        Add Move
+                    </Button>
+                    </Link>
                 </div>
             </div>
         );
@@ -73,11 +79,16 @@ class AddmoveComponent extends Component {
 export { AddmoveComponent };
 
 const mapStateToProps = (state, ownProps) => {
+    const { reducer } = state;
+    const { routine_id, moves } = reducer;
     return {
-        ...ownProps
+        ...ownProps,
+        routine_id,
+        moves,
     };
 };
 
 export const Addmove = connect(mapStateToProps, {
-    send_move
+    send_move,
+    load_moves,
 })(AddmoveComponent);

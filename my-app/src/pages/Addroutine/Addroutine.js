@@ -28,18 +28,18 @@ class AddroutineComponent extends Component {
     };
 
     uploadRoutine = () => {
-        console.log('Rountine uploading')
+        //console.log('Rountine uploading')
         const routine = {
             user_id: this.props.user_id,
             name: this.state.name,
         };
-        console.log(routine);
+        //console.log(routine);
         this.props.send_routine(routine);
-        if (this.props.routine_sent) {
-            console.log("wow");
-            this.props.load_routines(this.props.user_id);
-        }
-        //setTimeout(() => this.props.load_routines(this.props.user_id), 1000);
+
+        //this.props.load_routines(this.props.user_id);
+        console.log('wow');
+        console.log(this.props.routine_id);
+        setTimeout(() => this.props.load_routines(this.props.user_id), 1000);
     }
 
     render() {
@@ -55,8 +55,9 @@ class AddroutineComponent extends Component {
                     placeholder="pls input"></input> */}
                     <TextField required id="1" label="Rountine Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    <Link to="routines">
-                        <Button disabled={!buttonEnabled}
+                    <Link className="no_text_decoration" to="routines">
+                        <Button
+                            disabled={!buttonEnabled}
                                 label="Add Routine" variant="contained" color="primary"
                                 onClick={this.uploadRoutine}>
                             Add Routine
@@ -72,11 +73,12 @@ export { AddroutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { user_id, routine_sent } = reducer;
+    const { user_id, routine_sent, routine_id } = reducer;
     return {
         ...ownProps,
         user_id,
         routine_sent,
+        routine_id,
     };
 };
 
