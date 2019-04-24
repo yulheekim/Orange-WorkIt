@@ -179,7 +179,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
     handleToPrevFromMove(move_index) {
-        if (this.props.move_index < 0) {
+        if (this.props.move_index <= 0) {
             return;
         }
         this.props.decrement_move_index(move_index);
