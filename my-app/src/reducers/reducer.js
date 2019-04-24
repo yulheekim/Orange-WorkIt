@@ -23,7 +23,7 @@ export const LOAD_MOVES= 'workit/LOAD_MOVES';
 export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
-export const DECREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
+export const DECREMENT_MOVE_INDEX= 'workit/DECREMENT_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
 export const SET_GO_HOME='workit/SET_GO_HOME';
 
@@ -271,10 +271,10 @@ export const increment_move_index = (move_idx) => {
 }
 
 export const decrement_move_index = (move_idx) => {
-    console.log("inside action")
+    console.log("decrementing action!")
     return (dispatch) => {
         dispatch({
-            type: INCREMENT_MOVE_INDEX,
+            type: DECREMENT_MOVE_INDEX,
             payload: move_idx
         })
     }

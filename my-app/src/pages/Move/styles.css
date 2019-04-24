@@ -70,10 +70,18 @@ h1 {
 
 
 /* Floating Button positioning */
-.fab {
-    margin: 5px; /* margin: theme.spacing.unit; */
+.fab-right {
+    margin: 10px; /* margin: theme.spacing.unit; */
     position: 'absolute';
     float: right;
+    /* bottom: theme.spacing.unit * 2;
+    right: theme.spacing.unit * 2; */
+}
+
+.fab-left {
+    margin: 10px; /* margin: theme.spacing.unit; */
+    position: 'absolute';
+    float: left;
     /* bottom: theme.spacing.unit * 2;
     right: theme.spacing.unit * 2; */
 }

@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import {
     Header as AppBar,
@@ -157,6 +158,7 @@ class MoveComponent extends Component {
         setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
     }
 
+    // this is the function that gets called when you click on the right arrow button when the workout has started
     handleSkipToNext(move_index) {
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
@@ -169,7 +171,21 @@ class MoveComponent extends Component {
                 break_time: this.props.location.state.break_time,
             }
         })
-        // console.log("I MADE IT!")
+    }
+
+    // this is the function that gets called when you click on the left arrow button when the workout has started
+    handleSkipToPrev(move_index) {
+        if (this.props.move_index < 0) {
+            return;
+        }
+        this.props.decrement_move_index(move_index);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
     }
 
     render() {
@@ -216,7 +232,12 @@ class MoveComponent extends Component {
                             </div>
                         </Card>
                     </div>
-                    <div className="fab">
+                    <div className="fab-left">
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToPrev(this.props.move_index) }}>
+                                <ArrowBackIcon />
+                            </Fab>
+                        </div>
+                    <div className="fab-right">
                         <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToNext(this.props.move_index) }}>
                             <ArrowForwardIcon />
                         </Fab>
@@ -254,7 +275,16 @@ class MoveComponent extends Component {
                                 )}
                             </Timer>
                         </div>
-                        <NavigationFloatingIcon />
+                        <div className="fab-left">
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToPrev(this.props.move_index) }}>
+                                <ArrowBackIcon />
+                            </Fab>
+                        </div>
+                        <div className="fab-right">
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleSkipToNext(this.props.move_index) }}>
+                                <ArrowForwardIcon />
+                            </Fab>
+                        </div>
                     </section>
             );
         }
