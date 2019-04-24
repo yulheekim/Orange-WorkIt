@@ -24,6 +24,7 @@ export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 export const DECREMENT_MOVE_INDEX= 'workit/DECREMENT_MOVE_INDEX';
+export const ZERO_MOVE_INDEX= 'workit/ZERO_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
 export const SET_GO_HOME='workit/SET_GO_HOME';
 
@@ -104,6 +105,12 @@ export default function reducer(state = INITIAL_STATE, action) {
                 return {
                     ...state,
                     move_index: action.payload - 1
+            }
+        case ZERO_MOVE_INDEX:
+                console.log("zeroing")
+                return {
+                    ...state,
+                    move_index: 0
             }
         case CHANGE_USERNAME:
             return {
@@ -276,6 +283,15 @@ export const decrement_move_index = (move_idx) => {
         dispatch({
             type: DECREMENT_MOVE_INDEX,
             payload: move_idx
+        })
+    }
+}
+
+export const zero_move_index = () => {
+    console.log("zeroing action!")
+    return (dispatch) => {
+        dispatch({
+            type: ZERO_MOVE_INDEX,
         })
     }
 }

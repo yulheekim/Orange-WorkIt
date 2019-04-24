@@ -21,7 +21,8 @@ import {
     load_routines,
     increment_move_index,
     toggle_move_or_break,
-    decrement_move_index
+    decrement_move_index,
+    zero_move_index
 } from '../../reducers/reducer';
 
 const styles = theme => ({
@@ -231,6 +232,7 @@ class MoveComponent extends Component {
         console.log(this.props.move_index)
 
         if (this.state.go_back) {
+            this.props.zero_move_index();
             return (
                 <Redirect to="moves" />
             )
@@ -361,7 +363,8 @@ export const Move = connect(mapStateToProps, {
     load_routines,
     increment_move_index,
     toggle_move_or_break,
-    decrement_move_index
+    decrement_move_index,
+    zero_move_index
 })(MoveComponent);
 
 //====================
