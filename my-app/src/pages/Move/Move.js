@@ -7,10 +7,12 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Link, Redirect } from 'react-router-dom';
+
 
 import {
     Header as AppBar,
-    NavigationFloatingIcon 
+    NavigationFloatingIcon
 } from '../../components';
 import './styles.css';
 
@@ -125,6 +127,7 @@ class MoveComponent extends Component {
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
             timerKey: 0,
+            go_back: false,
         };
 
     };
@@ -188,9 +191,20 @@ class MoveComponent extends Component {
         })
     }
 
+    handleBack = () => {
+        this.setState({ go_back: true });
+    }
+
     render() {
         console.log("rendering move component!")
         console.log(this.props.move_index)
+
+        if (this.state.go_back) {
+            return (
+                <Redirect to="moves" />
+            )
+        }
+
         if (this.props.move_or_break === true) {
             return (
                 <div>
@@ -203,6 +217,11 @@ class MoveComponent extends Component {
                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                         <br />
+                        <Button onClick={this.handleBack}
+                                variant="contained"
+                                color="secondary">
+                        End Workout
+                        </Button>
                         <h2>{this.props.moves[this.props.move_index].name}</h2>
                         <Card>
                             <div class="timer">
