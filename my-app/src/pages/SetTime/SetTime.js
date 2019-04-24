@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid';
 
@@ -24,6 +24,7 @@ class SetTimeComponent extends Component {
         this.state = {
             move_time: 45000,
             break_time: 20000,
+            go_back: false,
         };
 
     };
@@ -31,7 +32,18 @@ class SetTimeComponent extends Component {
     componentDidMount() {
     }
 
+    handleBack = () => {
+        this.setState({ go_back: true });
+    }
+
     render() {
+
+        if (this.state.go_back)  {
+            return (
+                <Redirect to="moves" />
+            )
+        }
+
         return (
             <div>
                 <AppBar/>
@@ -51,6 +63,11 @@ class SetTimeComponent extends Component {
                         onChange={e => this.setState({ break_time: e.target.value })}
                     />
                     <br />
+                    <Button onClick={this.handleBack}
+                            variant="contained"
+                            color="secondary">
+                    Cancel
+                    </Button>
                     <Button to={{pathname: "/timer", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
                             component={Link}
                             variant="contained"
