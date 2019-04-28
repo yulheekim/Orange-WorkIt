@@ -10,6 +10,7 @@ import {
     SetTime
 } from '../pages';
 
+
 const AppNavigator = () => (
     <BrowserRouter>
         <Switch>
@@ -25,4 +26,4 @@ const AppNavigator = () => (
     </BrowserRouter>
 )
 
-export { AppNavigator };
+export { AppNavigator};

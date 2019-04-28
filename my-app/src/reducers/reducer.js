@@ -1,5 +1,3 @@
-// testing keren's commits
-
 import axios from 'axios';
 
 const api = "http://127.0.0.1:5000/";
@@ -75,6 +73,7 @@ const INITIAL_STATE = {
                 move_index: 0,
                 move_or_break: true, // true = working out. false = break.
                 routine_is_finished: false, // if the current routine finishes
+                routine_sent: false,
             }
 
 // Reducers
@@ -85,6 +84,8 @@ export default function reducer(state = INITIAL_STATE, action) {
             console.log("case toggle finish routine")
             return {
                 ...state,
+                move_index: 0,
+                move_or_break: true,
                 routine_is_finished: !action.payload
             }
         case TOGGLE_MOVE_OR_BREAK:
@@ -181,14 +182,15 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_MOVES:
             return {
                 ...state,
-                loading_moves: false,
+                loading_moves: true,
+                routine_id: action.payload,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
                 return {
                     ...state,
                     moves: action.payload,
-                    loading_moves: true,
+                    loading_moves: false,
                 };
             }
             return {
@@ -217,10 +219,12 @@ export default function reducer(state = INITIAL_STATE, action) {
         case SEND_ROUTINE:
             return {
                 ...state,
+                routine_sent: false,
             };
         case SEND_ROUTINE_SUCCESS:
             return {
                 ...state,
+                routine_sent: true,
             };
         case SEND_ROUTINE_FAILURE:
             return {
@@ -349,10 +353,12 @@ export const load_routines_failure = (dispatch, response) => {
 }
 
 export const load_moves = (routine_id) => {
+    //console.log("already load moves");
     const url = api + `moves/${routine_id}`;
     return (dispatch) => {
         dispatch({
-            type: LOAD_MOVES
+            type: LOAD_MOVES,
+            payload: routine_id,
         });
         axios.get(url)
           .then((response) => load_moves_success(dispatch, response))

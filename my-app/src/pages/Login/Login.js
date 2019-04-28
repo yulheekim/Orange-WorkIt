@@ -40,7 +40,7 @@ class LoginComponent extends Component {
             <div>
                 <AppBar/>
                 <br/>
-                <div className="page-content">
+         <div className="page-content">
                     <TextField
                         id="outlined-name"
                         label="Name"
