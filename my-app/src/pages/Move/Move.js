@@ -225,14 +225,14 @@ class MoveComponent extends Component {
                                 >
                                     {({pause, resume}) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
                                         <React.Fragment>
-                                        <div>
-                                            <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
-                                            <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
-                                        </div>
-                                        <div>
-                                            <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>  
-                                            <Button variant="contained" color="primary" onClick={resume} disabled={this.state.resumeMoveTag}>Resume</Button>
-                                        </div
+                                            <div>
+                                                <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                                                <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
+                                            </div>
+                                            <div>
+                                                <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>  
+                                                <Button variant="contained" color="primary" onClick={resume} disabled={this.state.resumeMoveTag}>Resume</Button>
+                                            </div>
                                         </React.Fragment>
                                     )}
                                 </Timer>
@@ -266,32 +266,32 @@ class MoveComponent extends Component {
         }
         else if (!this.props.routine_is_finished) {
             return(
-                    <section class="hero-image">
-                        <h1>break time!</h1>
-                        <div className="break-timer">
-                            <Timer
-                                key={this.state.timerKey}
-                                initialTime={this.state.break_time} // hardcode. replace.
-                                direction="backward"
-                                onPause = { ()=> {
-                                    console.log(' onPause hook ')
-                                    this.setState({ pauseTag: !this.state.pauseTag });
-                                    this.setState({ resumeTag: !this.state.resumeTag });
-                                }} 
-                                onResume = { ()=> {
-                                    console.log(' onResume hook ')
-                                    this.setState({ pauseTag: !this.state.pauseTag });
-                                    this.setState({ resumeTag: !this.state.resumeTag });
-                                }} 
-                                onReset={() => {
-                                }}
-                                checkpoints={[
-                                    {time: 0,
-                                    callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
-                                ]}
-                            >
-                                {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
-                                    <React.Fragment>
+                <section class="hero-image">
+                    <h1>break time!</h1>
+                    <div className="break-timer">
+                        <Timer
+                            key={this.state.timerKey}
+                            initialTime={this.state.break_time} // hardcode. replace.
+                            direction="backward"
+                            onPause = { ()=> {
+                                console.log(' onPause hook ')
+                                this.setState({ pauseTag: !this.state.pauseTag });
+                                this.setState({ resumeTag: !this.state.resumeTag });
+                            }} 
+                            onResume = { ()=> {
+                                console.log(' onResume hook ')
+                                this.setState({ pauseTag: !this.state.pauseTag });
+                                this.setState({ resumeTag: !this.state.resumeTag });
+                            }} 
+                            onReset={() => {
+                            }}
+                            checkpoints={[
+                                {time: 0,
+                                callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                            ]}
+                        >
+                            {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                                <React.Fragment>
                                     <div>
                                         <Timer.Minutes
                                             formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
