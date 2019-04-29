@@ -1,5 +1,3 @@
-// testing keren's commits
-
 import axios from 'axios';
 
 const api = "http://127.0.0.1:5000/";
@@ -26,6 +24,7 @@ export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 export const DECREMENT_MOVE_INDEX= 'workit/DECREMENT_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
 export const SET_GO_HOME='workit/SET_GO_HOME';
+export const TOGGLE_FINISH_ROUTINE= 'workit/TOGGLE_FINISH_ROUTINE';
 
 export const SEND_MOVE= 'workit/SEND_MOVE';
 export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
@@ -76,12 +75,22 @@ const INITIAL_STATE = {
                 move_index: 0,
                 move_or_break: true, // true = working out. false = break.
                 go_home: false,
+                routine_is_finished: false, // if the current routine finishes
+                routine_sent: false,
             }
 
 // Reducers
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case TOGGLE_FINISH_ROUTINE:
+            console.log("case toggle finish routine")
+            return {
+                ...state,
+                move_index: 0,
+                move_or_break: true,
+                routine_is_finished: !action.payload
+            }
         case TOGGLE_MOVE_OR_BREAK:
             console.log("case toggle move or break")
             return {
@@ -188,6 +197,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 loading_moves: true,
+                routine_id: action.payload,
             };
         case LOAD_MOVES_SUCCESS:
             if (action.payload) {
@@ -223,10 +233,12 @@ export default function reducer(state = INITIAL_STATE, action) {
         case SEND_ROUTINE:
             return {
                 ...state,
+                routine_sent: false,
             };
         case SEND_ROUTINE_SUCCESS:
             return {
                 ...state,
+                routine_sent: true,
             };
         case SEND_ROUTINE_FAILURE:
             return {
@@ -241,6 +253,15 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
+export const toggle_finish_routine = (routine_is_finished) => {
+    console.log("inside finish routine")
+    return (dispatch) => {
+        dispatch({
+            type: TOGGLE_FINISH_ROUTINE,
+            payload: routine_is_finished
+        })
+    }
+}
 export const toggle_move_or_break = (move_or_break) => {
     console.log("inside toggle status")
     return (dispatch) => {
@@ -366,10 +387,12 @@ export const load_routines_failure = (dispatch, response) => {
 }
 
 export const load_moves = (routine_id) => {
+    //console.log("already load moves");
     const url = api + `moves/${routine_id}`;
     return (dispatch) => {
         dispatch({
-            type: LOAD_MOVES
+            type: LOAD_MOVES,
+            payload: routine_id,
         });
         axios.get(url)
           .then((response) => load_moves_success(dispatch, response))

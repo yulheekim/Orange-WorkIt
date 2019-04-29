@@ -31,4 +31,4 @@ const AppNavigator = () => (
     </div>
 )
 
-export { AppNavigator };
+export { AppNavigator};
