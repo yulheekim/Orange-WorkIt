@@ -44,6 +44,10 @@ class MoveComponent extends Component {
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
             timerKey: 0,
+            pauseTag: false,
+            resumeTag: true,
+            pauseMoveTag: false,
+            resumeMoveTag: true,
             go_back: false,
         };
 
@@ -200,8 +204,18 @@ class MoveComponent extends Component {
                                     key={this.state.timerKey}
                                     initialTime={this.state.move_time} // hardcode. replace.
                                     direction="backward"
-                                    onReset={() => {
+                                    onReset={() => {             
                                     }}
+                                    onPause = { ()=> {
+                                        console.log(' onPause hook ')
+                                        this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
+                                        this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
+                                    }} 
+                                    onResume = { ()=> {
+                                        console.log(' onResume hook ')
+                                        this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
+                                        this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
+                                    }}  
                                     checkpoints={[
                                         {
                                             time: 0,
@@ -211,18 +225,14 @@ class MoveComponent extends Component {
                                 >
                                     {({pause, resume}) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
                                         <React.Fragment>
-                                            <div>
-                                                <Timer.Minutes
-                                                    formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
-                                                <Timer.Seconds
-                                                    formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
-                                            </div>
-                                            <div>
-                                                <Button variant="contained" color="primary"
-                                                        onClick={pause}>Pause</Button> <Button variant="contained"
-                                                                                               color="primary"
-                                                                                               onClick={resume}>Resume</Button>
-                                            </div>
+                                        <div>
+                                            <Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
+                                            <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
+                                        </div>
+                                        <div>
+                                            <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>  
+                                            <Button variant="contained" color="primary" onClick={resume} disabled={this.state.resumeMoveTag}>Resume</Button>
+                                        </div
                                         </React.Fragment>
                                     )}
                                 </Timer>
@@ -251,28 +261,37 @@ class MoveComponent extends Component {
                         </Fab>
                     </div>
                 </div>
-
-            );
-        } else {
-            return (
-                <section class="hero-image">
-                    <h1>break time!</h1>
-                    <div className="break-timer">
-                        <Timer
-                            key={this.state.timerKey}
-                            initialTime={this.state.break_time} // hardcode. replace.
-                            direction="backward"
-                            onReset={() => {
-                            }}
-                            checkpoints={[
-                                {
-                                    time: 0,
-                                    callback: () => this.handleNext(this.props.move_index)
-                                } // callback function for when timer reaches 0
-                            ]}
-                        >
-                            {({pause, resume}) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
-                                <React.Fragment>
+        
+                );
+        }
+        else if (!this.props.routine_is_finished) {
+            return(
+                    <section class="hero-image">
+                        <h1>break time!</h1>
+                        <div className="break-timer">
+                            <Timer
+                                key={this.state.timerKey}
+                                initialTime={this.state.break_time} // hardcode. replace.
+                                direction="backward"
+                                onPause = { ()=> {
+                                    console.log(' onPause hook ')
+                                    this.setState({ pauseTag: !this.state.pauseTag });
+                                    this.setState({ resumeTag: !this.state.resumeTag });
+                                }} 
+                                onResume = { ()=> {
+                                    console.log(' onResume hook ')
+                                    this.setState({ pauseTag: !this.state.pauseTag });
+                                    this.setState({ resumeTag: !this.state.resumeTag });
+                                }} 
+                                onReset={() => {
+                                }}
+                                checkpoints={[
+                                    {time: 0,
+                                    callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                                ]}
+                            >
+                                {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
+                                    <React.Fragment>
                                     <div>
                                         <Timer.Minutes
                                             formatValue={(value) => `${(value < 10 ? `0${value}` : value)}:`}/>
@@ -280,8 +299,8 @@ class MoveComponent extends Component {
                                             formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
                                     </div>
                                     <div>
-                                        <Button variant="contained" color="primary" onClick={pause}>Pause</Button>
-                                        <Button variant="contained" color="primary" onClick={resume}>Resume</Button>
+                                        <Button id='btn_pause' variant="contained" color="primary" onClick={pause} disabled={this.state.pauseTag}>Pause</Button>  
+                                        <Button id='btn_resume' variant="contained" color="primary" onClick={resume} disabled={this.state.resumeTag}>Resume</Button>
                                     </div>
                                 </React.Fragment>
                             )}
