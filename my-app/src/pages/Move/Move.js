@@ -296,11 +296,8 @@ export const Move = connect(mapStateToProps, {
     increment_move_index,
     toggle_move_or_break,
     decrement_move_index,
-<<<<<<< HEAD
     toggle_finish_routine,
-=======
     zero_move_index
->>>>>>> c6aaa3a241a58824a4b0ed2971b391be6b751109
 })(MoveComponent);
 
 //====================
