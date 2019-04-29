@@ -84,7 +84,6 @@ class AddmoveComponent extends Component {
                     <br /><br /><br />
                     <TextField required id="2" label="Youtube Video URL" name="video_url" onChange={this.handleURL} 
                     defaultValue="https://youtu.be/"
-                    // error={false}
                     helperText="Follow the URL instruction!"
                     />
                     <br /><br />
