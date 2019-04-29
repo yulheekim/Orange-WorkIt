@@ -3,20 +3,27 @@ import { connect } from 'react-redux';
 import Timer from 'react-compound-timer';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Link, Redirect } from 'react-router-dom';
+
 
 import {
-    AppBar
+    Header as AppBar,
+    NavigationFloatingIcon
 } from '../../components';
 import './styles.css';
 
 import {
     load_moves,
-    load_routines, 
+    load_routines,
     increment_move_index,
     toggle_move_or_break,
+    decrement_move_index,
     toggle_finish_routine,
+    zero_move_index
 } from '../../reducers/reducer';
-import {Link} from "react-router-dom";
 
 const styles = theme => ({
     card: {
@@ -38,6 +45,7 @@ class MoveComponent extends Component {
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
             timerKey: 0,
+            go_back: false,
         };
 
     };
@@ -68,10 +76,83 @@ class MoveComponent extends Component {
         setTimeout(() => this.flipToNext(move_index), 1000); // add this timeout because timer kept resetting at 00:01 instead of 00:00
     }
 
+    // this is the function that gets called when you click on the right arrow button when the workout has started
+    handleToNextFromMove(move_index) {
+        if (this.props.move_index >= this.props.moves.length - 1) {
+            return;
+        }
+        this.props.increment_move_index(move_index);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+    }
+
+    // this is the function that gets called when you click on the left arrow button when the workout has started
+    handleToPrevFromMove(move_index) {
+        if (this.props.move_index <= 0) {
+            return;
+        }
+        this.props.decrement_move_index(move_index);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+    }
+
+    handleToNextFromBreak(move_index) {
+        if (this.props.move_index >= this.props.moves.length - 1) {
+            return;
+        }
+        this.props.increment_move_index(move_index);
+        this.props.toggle_move_or_break(this.props.move_or_break);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+    }
+
+    // this is the function that gets called when you click on the left arrow button when the workout has started
+    handleToPrevFromBreak(move_index) {
+        if (this.props.move_index < 0) {
+            return;
+        }
+        this.props.decrement_move_index(move_index);
+        this.props.toggle_move_or_break(this.props.move_or_break);
+        this.setState((state) => {
+            return {
+                timerKey: Math.random(),
+                move_time: this.props.location.state.move_time,
+                break_time: this.props.location.state.break_time,
+            }
+        })
+    }
+
+    handleBack = () => {
+        this.setState({ go_back: true });
+    }
+
     render() {
         console.log("rendering move component!")
         console.log(this.props.move_index)
-        if (this.props.move_or_break === true) {
+
+        if (this.state.go_back) {
+            this.props.zero_move_index();
+            return (
+                <Redirect to="moves" />
+            )
+        }
+
+        if (this.props.move_or_break === true) { // true means you're on a workout page
             return (
                 <div>
                     <AppBar />
@@ -110,10 +191,27 @@ class MoveComponent extends Component {
                                     )}
                                 </Timer>
                             </div>
+                            <Button onClick={this.handleBack}
+                                    variant="outlined"
+                                    color="secondary">
+                            End Workout
+                            </Button>
+                            <br />
+                            <br />
                         </Card>
                     </div>
+                    <div className="fab-left">
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToPrevFromMove(this.props.move_index) }}>
+                                <ArrowBackIcon />
+                            </Fab>
+                        </div>
+                    <div className="fab-right">
+                        <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToNextFromMove(this.props.move_index) }}>
+                            <ArrowForwardIcon />
+                        </Fab>
+                    </div>
                 </div>
-        
+
                 );
         }
         else if (!this.props.routine_is_finished) {
@@ -144,6 +242,16 @@ class MoveComponent extends Component {
                                     </React.Fragment>
                                 )}
                             </Timer>
+                        </div>
+                        <div className="fab-left">
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToPrevFromBreak(this.props.move_index) }}>
+                                <ArrowBackIcon />
+                            </Fab>
+                        </div>
+                        <div className="fab-right">
+                            <Fab color="primary" aria-label="Delete" onClick={() => { this.handleToNextFromBreak(this.props.move_index) }}>
+                                <ArrowForwardIcon />
+                            </Fab>
                         </div>
                     </section>
             );
@@ -187,7 +295,9 @@ export const Move = connect(mapStateToProps, {
     load_routines,
     increment_move_index,
     toggle_move_or_break,
+    decrement_move_index,
     toggle_finish_routine,
+    zero_move_index
 })(MoveComponent);
 
 //====================

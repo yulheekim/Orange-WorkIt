@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
 
 import {
-    AppBar,
+    Header as AppBar,
     Paper,
     List,
 } from '../../components';

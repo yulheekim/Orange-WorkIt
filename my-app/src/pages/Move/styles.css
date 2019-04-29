@@ -64,6 +64,24 @@ h1 {
   color: white;
 }
 
+
+/* Floating Button positioning */
+.fab-right {
+    margin: 10px; /* margin: theme.spacing.unit; */
+    position: 'absolute';
+    float: right;
+    /* bottom: theme.spacing.unit * 2;
+    right: theme.spacing.unit * 2; */
+}
+
+.fab-left {
+    margin: 10px; /* margin: theme.spacing.unit; */
+    position: 'absolute';
+    float: left;
+    /* bottom: theme.spacing.unit * 2;
+    right: theme.spacing.unit * 2; */
+}
+
 .back-to-menu-button {
     margin-top: 10px;
 }
