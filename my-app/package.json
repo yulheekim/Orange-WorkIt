@@ -17,6 +17,7 @@
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "speak-tts": "^2.0.8",
     "typescript": "^3.3.3333"
   },
   "scripts": {
