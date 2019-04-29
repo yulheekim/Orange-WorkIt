@@ -22,6 +22,7 @@ import {
     toggle_move_or_break,
     decrement_move_index,
     toggle_finish_routine,
+    zero_move_index
 } from '../../reducers/reducer';
 
 const styles = theme => ({
@@ -92,7 +93,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
     handleToPrevFromMove(move_index) {
-        if (this.props.move_index < 0) {
+        if (this.props.move_index <= 0) {
             return;
         }
         this.props.decrement_move_index(move_index);
@@ -145,6 +146,7 @@ class MoveComponent extends Component {
         console.log(this.props.move_index)
 
         if (this.state.go_back) {
+            this.props.zero_move_index();
             return (
                 <Redirect to="moves" />
             )
@@ -294,7 +296,11 @@ export const Move = connect(mapStateToProps, {
     increment_move_index,
     toggle_move_or_break,
     decrement_move_index,
+<<<<<<< HEAD
     toggle_finish_routine,
+=======
+    zero_move_index
+>>>>>>> c6aaa3a241a58824a4b0ed2971b391be6b751109
 })(MoveComponent);
 
 //====================
