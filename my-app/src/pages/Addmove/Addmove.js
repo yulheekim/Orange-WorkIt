@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
 
 import {
-    AppBar,
+    Header as AppBar,
 } from '../../components';
 import {
     send_move,
@@ -26,7 +26,7 @@ class AddmoveComponent extends Component {
             validURL:0,
         };
     };
-    
+
 
     handleURL = (event) => {
         const { target: { name, value } } = event;
@@ -57,7 +57,9 @@ class AddmoveComponent extends Component {
     };
 
     uploadMove = () => {
-        console.log('Move uploading')
+        //TODO: checking for valid form
+        //TODO: implement props (routine_id, routine_size)
+        //console.log('Move uploading')
         const move = {
             routine_id: this.props.routine_id,
             order: this.props.moves.length,
@@ -67,6 +69,7 @@ class AddmoveComponent extends Component {
             total_time:this.state.total_time,
             video_url: this.state.video_url,
         };
+        console.log(move);
         this.props.send_move(move);
         setTimeout(() => this.props.load_moves(this.props.routine_id), 1000);
     }
@@ -82,7 +85,7 @@ class AddmoveComponent extends Component {
                     <h3>Add a Move!</h3>
                     <TextField required id="1" label="Routine Name" name="name" onChange={this.handleChange}/>
                     <br /><br /><br />
-                    <TextField required id="2" label="Youtube Video URL" name="video_url" onChange={this.handleURL} 
+                    <TextField required id="2" label="Youtube Video URL" name="video_url" onChange={this.handleURL}
                     defaultValue="https://youtu.be/"
                     helperText="Follow the URL instruction!"
                     />
@@ -93,6 +96,7 @@ class AddmoveComponent extends Component {
                     <br /><br />
                     <TextField required type='number' id="5" label="Duration" name="total_time" onChange={this.handleChange}/>
                     <br /><br /><br />
+                    <Link className="no_text_decoration" to="moves">
                     <Button id="add" disabled={!buttonEnabled}
                         label="Add Move" variant="contained" color="primary"
                     onClick={this.uploadMove} component={Link} to="moves">
@@ -105,6 +109,7 @@ class AddmoveComponent extends Component {
                     <br /><br />
                     <img className="img " src={require(`../../img/2.png`)} />
                     <br /><br />
+                    </Link>
                 </div>
             </div>
         );

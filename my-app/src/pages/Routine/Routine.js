@@ -4,7 +4,7 @@ import {Button} from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
 import {
-    AppBar,
+    Header as AppBar,
     List,
     AddFloatingIcon
 } from '../../components';
@@ -18,7 +18,7 @@ import './styles.css';
 
 class RoutineComponent extends Component {
     render() {
-        console.log(this.props.moves)
+        //console.log(this.props.moves)
         return (
             <div>
                 <AppBar/>

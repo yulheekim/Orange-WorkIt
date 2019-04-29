@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { TextField, Button } from '@material-ui/core';
 
 import {
-    AppBar,
+    Header as AppBar
 } from '../../components';
 import './styles.css';
 
@@ -65,14 +65,14 @@ class AddroutineComponent extends Component {
                     placeholder="pls input"></input> */}
                     <TextField required id="1" label="Rountine Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
-                    {/* <Link className="no_text_decoration" to="routines"> */}
-                    <Button
-                        disabled={!buttonEnabled}
-                            label="Add Routine" variant="contained" color="primary"
-                            onClick={this.uploadRoutine} component={Link} to="routines">
-                        Add Routine
-                    </Button>
-                    {/* </Link> */}
+                    <Link className="no_text_decoration" to="routines">
+                        <Button
+                            disabled={!buttonEnabled}
+                                label="Add Routine" variant="contained" color="primary"
+                                onClick={this.uploadRoutine}>
+                            Add Routine
+                        </Button>
+                    </Link>
                 </div>
             </div>
         );
