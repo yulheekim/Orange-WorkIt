@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
-
-import Grid from '@material-ui/core/Grid';
+import { Link, Redirect } from 'react-router-dom'
 
 import {
-    AppBar,
+    Header as AppBar,
     TextField,
 } from '../../components';
 import {
@@ -14,19 +12,33 @@ import {
     load_routines
 } from '../../reducers/reducer';
 import './styles.css';
-import SetTimeButton from "../../components/Button/Button";
 
 class SetTimeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            go_back: false,
             move_time: 0,
             break_time: 0,
         };
 
     };
 
+    componentDidMount() {
+    }
+
+    handleBack = () => {
+        this.setState({ go_back: true });
+    }
+
     render() {
+
+        if (this.state.go_back)  {
+            return (
+                <Redirect to="moves" />
+            )
+        }
+
         const {break_time, move_time} = this.state;
         const buttonEnabled = break_time > 0 && move_time > 0;
         return (
@@ -62,6 +74,13 @@ class SetTimeComponent extends Component {
                             variant="contained"
                             color="primary">
                     Start Workout!
+                    </Button>
+                    <br />
+                    <br />
+                    <Button onClick={this.handleBack}
+                            variant="outlined"
+                            color="secondary">
+                    Cancel
                     </Button>
                     <br />
                 </div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { TextField, Button } from '@material-ui/core';
 
 import {
-    AppBar,
+    Header as AppBar
 } from '../../components';
 import './styles.css';
 
@@ -26,6 +26,16 @@ class AddroutineComponent extends Component {
         const { target: { name, value } } = event;
         this.setState({ [name]: value });
     };
+
+    // uploadRoutine = () => {
+    //     console.log('Rountine uploading')
+    //     const routine = {
+    //         user_id: this.props.user_id,
+    //         name: this.state.name,
+    //     };
+    //     console.log(routine);
+    //     this.props.send_routine(routine);
+    // }
 
     uploadRoutine = () => {
         //console.log('Rountine uploading')

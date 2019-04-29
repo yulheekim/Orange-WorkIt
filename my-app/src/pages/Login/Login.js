@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-
 import { Button, TextField } from '@material-ui/core';
 
 import {
-    AppBar,
+    Header as AppBar,
     Paper,
     List,
 } from '../../components';
@@ -41,7 +40,7 @@ class LoginComponent extends Component {
             <div>
                 <AppBar/>
                 <br/>
-                <div className="page-content">
+         <div className="page-content">
                     <TextField
                         id="outlined-name"
                         label="Name"

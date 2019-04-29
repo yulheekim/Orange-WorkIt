@@ -1,5 +1,3 @@
-// testing keren's commits
-
 import axios from 'axios';
 
 const api = "http://127.0.0.1:5000/";
@@ -23,7 +21,10 @@ export const LOAD_MOVES= 'workit/LOAD_MOVES';
 export const LOAD_MOVES_SUCCESS= 'workit/LOAD_MOVES_SUCCESS';
 export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
+export const DECREMENT_MOVE_INDEX= 'workit/DECREMENT_MOVE_INDEX';
+export const ZERO_MOVE_INDEX= 'workit/ZERO_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
+export const SET_GO_HOME='workit/SET_GO_HOME';
 export const TOGGLE_FINISH_ROUTINE= 'workit/TOGGLE_FINISH_ROUTINE';
 export const SET_MOVE_INDEX= 'workit/SET_MOVE_INDEX';
 
@@ -75,6 +76,7 @@ const INITIAL_STATE = {
                 error_message: "",
                 move_index: 0,
                 move_or_break: true, // true = working out. false = break.
+                go_home: false,
                 routine_is_finished: false, // if the current routine finishes
                 routine_sent: false,
             }
@@ -104,11 +106,28 @@ export default function reducer(state = INITIAL_STATE, action) {
                 ...state,
                 move_or_break: !action.payload
             }
+        case SET_GO_HOME:
+            return {
+                ...state,
+                go_home: action.payload
+            }
         case INCREMENT_MOVE_INDEX:
                 console.log("red")
                 return {
                     ...state,
                     move_index: action.payload + 1
+            }
+        case DECREMENT_MOVE_INDEX:
+                console.log("decrementing")
+                return {
+                    ...state,
+                    move_index: action.payload - 1
+            }
+        case ZERO_MOVE_INDEX:
+                console.log("zeroing")
+                return {
+                    ...state,
+                    move_index: 0
             }
         case CHANGE_USERNAME:
             return {
@@ -275,12 +294,41 @@ export const toggle_move_or_break = (move_or_break) => {
         })
     }
 }
+
+export const set_go_home = (go_home) => {
+    return (dispatch) => {
+        dispatch({
+            type: SET_GO_HOME,
+            payload: go_home
+        })
+    }
+}
+
 export const increment_move_index = (move_idx) => {
     console.log("inside action")
     return (dispatch) => {
         dispatch({
             type: INCREMENT_MOVE_INDEX,
             payload: move_idx
+        })
+    }
+}
+
+export const decrement_move_index = (move_idx) => {
+    console.log("decrementing action!")
+    return (dispatch) => {
+        dispatch({
+            type: DECREMENT_MOVE_INDEX,
+            payload: move_idx
+        })
+    }
+}
+
+export const zero_move_index = () => {
+    console.log("zeroing action!")
+    return (dispatch) => {
+        dispatch({
+            type: ZERO_MOVE_INDEX,
         })
     }
 }
