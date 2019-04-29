@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -12,6 +12,11 @@ import Card from '@material-ui/core/Card';
 import squats from '../../assets/squats.png';
 import plank from '../../assets/plank.png';
 import crunches from '../../assets/crunches.png';
+import {connect} from "react-redux";
+import {
+    set_move_index,
+} from "../../reducers/reducer";
+import {Link} from "react-router-dom";
 
 const styles = theme => ({
     root: {
@@ -24,31 +29,58 @@ const styles = theme => ({
         justify: "center"
     }
 });
-function populateMoves(moves) {
-    const img_lst = [squats, plank, crunches];
-    return _.map(moves, (move, index) => {
-        return (
-          <ListItem button key={index}>
-              <Avatar src={img_lst[index]}>
-              </Avatar>
-              <ListItemText primary={move.name} secondary={"time: " + move.total_time + "sec"} />
-              <KeyboardArrowRight/>
-          </ListItem>
+
+class FolderList extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    handleSetMoveIndex(index) {
+        this.props.set_move_index(index);
+        //console.log("wow! handle set move index!  " + index);
+    }
+
+    populateMoves(moves) {
+        const img_lst = [squats, plank, crunches];
+        return _.map(moves, (move, index) => {
+            return (
+                <Link to="settime" className="back-link">
+                    <ListItem button key={index} onClick={() => this.handleSetMoveIndex(index)}>
+                        <Avatar src={img_lst[index % img_lst.length]}>
+                        </Avatar>
+                        <ListItemText primary={move.name} secondary={"time: " + move.total_time + "sec"}/>
+                        <KeyboardArrowRight/>
+                    </ListItem>
+                </Link>
             )
-    });
-}
-function FolderList(props) {
-    const {classes} = props;
+        });
+    }
 
-    return (<Card className={classes.card}>
-        <List className={classes.root}>
-            {populateMoves(props.moves)}
-        </List>
-    </Card>);
+    render() {
+        return (<Card className={this.props.classes.card}>
+            <List className={this.props.classes.root}>
+                {this.populateMoves(this.props.moves)}
+            </List>
+        </Card>);
+    }
+
 }
 
-FolderList.propTypes = {
-    classes: PropTypes.object.isRequired
+// FolderList.propTypes = {
+//     classes: PropTypes.object.isRequired
+// };
+
+const mapStateToProps = (state, ownProps) => {
+    const {reducer} = state;
+    const {move_index} = reducer;
+    return {
+        ...ownProps,
+        move_index,
+    };
 };
 
-export default withStyles(styles)(FolderList);
+const ExportList = connect(mapStateToProps, {
+    set_move_index
+})(FolderList);
+
+export default withStyles(styles)(ExportList);

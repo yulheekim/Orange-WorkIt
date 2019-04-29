@@ -26,7 +26,7 @@ class ListRoutinesComponent extends Component {
         this.props.load_moves(routine_id);
     }
     populateRoutines = (routines) => {
-        console.log(routines)
+        //console.log(routines)
         const img_lst = [squats, plank, crunches];
         return _.map(routines, (routine, index) => {
             return (

@@ -13,7 +13,7 @@ import './styles.css';
 
 import {
     load_moves,
-    load_routines, 
+    load_routines,
     increment_move_index,
     toggle_move_or_break,
     toggle_finish_routine,
@@ -35,7 +35,6 @@ class MoveComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            index: 0,
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
             timerKey: 0,
@@ -44,17 +43,18 @@ class MoveComponent extends Component {
     };
 
     flipToNext(move_index) {
-        if (this.props.move_index >= this.props.moves.length - 1) {
+        if (this.props.move_index >= this.props.moves.length - 1 && !this.props.move_or_break) {
             this.props.toggle_finish_routine(this.props.routine_is_finished);
             return;
         }
+        this.props.toggle_move_or_break(this.props.move_or_break);
         if (this.props.move_or_break) {
             this.props.increment_move_index(move_index);
         }
-        this.props.toggle_move_or_break(this.props.move_or_break);
-        setTimeout(() => console.log(this.props.move_index), 2000);
 
-        console.log(this.state.move_time)
+        //setTimeout(() => console.log(this.props.move_index), 2000);
+
+        //console.log(this.state.move_time)
         this.setState((state) => {
             return {
                 timerKey: Math.random(),
@@ -62,7 +62,7 @@ class MoveComponent extends Component {
                 break_time: this.props.location.state.break_time,
             }
         })
-        console.log(this.state.move_time)
+        //console.log(this.state.move_time)
     }
 
     handleNext(move_index) {
@@ -76,8 +76,26 @@ class MoveComponent extends Component {
 
 
     render() {
-        console.log("rendering move component!")
-        console.log(this.props.move_index)
+        // console.log("rendering move component!")
+        // console.log(this.props.move_index)
+        if (this.props.routine_is_finished) {
+            return(
+                <section class="hero-image">
+                    <h1>Congrats! You Made It!</h1>
+                    <div className="back-to-menu-button">
+                        <Link to="routines" className="back-link">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => this.handleClickRoutines()}
+                            >
+                                Back To Your Routines
+                            </Button>
+                        </Link>
+                    </div>
+                </section>
+            );
+        }
         if (this.props.move_or_break === true) {
             return (
                 <div>
@@ -123,7 +141,7 @@ class MoveComponent extends Component {
         
                 );
         }
-        else if (!this.props.routine_is_finished) {
+        else {
             return(
                     <section class="hero-image">
                         <h1>break time!</h1>
@@ -153,24 +171,6 @@ class MoveComponent extends Component {
                             </Timer>
                         </div>
                     </section>
-            );
-        }
-        else {
-            return(
-                <section class="hero-image">
-                    <h1>Congrats! You Made It!</h1>
-                    <div className="back-to-menu-button">
-                        <Link to="routines" className="back-link">
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={() => this.handleClickRoutines()}
-                            >
-                                Back To Your Routines
-                            </Button>
-                        </Link>
-                    </div>
-                </section>
             );
         }
     }

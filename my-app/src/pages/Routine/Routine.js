@@ -20,7 +20,7 @@ import './styles.css';
 
 class RoutineComponent extends Component {
     render() {
-        console.log(this.props.moves)
+        //console.log(this.props.moves)
         return (
             <div>
                 <AppBar/>

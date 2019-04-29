@@ -25,6 +25,7 @@ export const LOAD_MOVES_FAILURE= 'workit/LOAD_MOVES_FAILURE';
 export const INCREMENT_MOVE_INDEX= 'workit/INCREMENT_MOVE_INDEX';
 export const TOGGLE_MOVE_OR_BREAK= 'workit/TOGGLE_MOVE_OR_BREAK';
 export const TOGGLE_FINISH_ROUTINE= 'workit/TOGGLE_FINISH_ROUTINE';
+export const SET_MOVE_INDEX= 'workit/SET_MOVE_INDEX';
 
 export const SEND_MOVE= 'workit/SEND_MOVE';
 export const SEND_MOVE_SUCCESS= 'workit/SEND_MOVE_SUCCESS';
@@ -82,6 +83,13 @@ const INITIAL_STATE = {
 
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type){
+        case SET_MOVE_INDEX:
+            // console.log("wwwwwwww");
+            // console.log(action.payload);
+            return {
+                ...state,
+                move_index: action.payload
+            }
         case TOGGLE_FINISH_ROUTINE:
             console.log("case toggle finish routine")
             return {
@@ -241,6 +249,14 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 //Action Creators
+export const set_move_index = (move_index) => {
+    return (dispatch) => {
+        dispatch({
+            type: SET_MOVE_INDEX,
+            payload: move_index
+        })
+    }
+}
 export const toggle_finish_routine = (routine_is_finished) => {
     console.log("inside finish routine")
     return (dispatch) => {
