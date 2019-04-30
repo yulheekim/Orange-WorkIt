@@ -25,7 +25,7 @@ import {
     zero_move_index
 } from '../../reducers/reducer';
 
-import { saySomething } from '../../config/voiceover.js'
+import { saySomething, changeVoiceSpeed } from '../../config/voiceover.js'
 
 const styles = theme => ({
     card: {
@@ -154,10 +154,21 @@ class MoveComponent extends Component {
     // function to count down using voice over with 5 seconds left
     countDown = () => {
         console.log("made it to countdown")
+        changeVoiceSpeed(1.25)
         saySomething("5...... 4...... 3...... 2...... 1")
+    }
+    sayBreak = () => {
+        console.log("made it to say break!")
+        saySomething("Break")
+    }
+    sayMove = (moveName) => {
+        console.log("made it to say move!")
+        changeVoiceSpeed(.75)
+        saySomething(moveName)
     }
 
     render() {
+        changeVoiceSpeed(1.25) // initialize voice speed to be fast to call out the workout name
         // console.log("rendering move component!")
         // console.log(this.props.move_index)
         if (this.props.routine_is_finished) {
@@ -192,6 +203,7 @@ class MoveComponent extends Component {
         }
 
         if (this.props.move_or_break === true) { // true means you're on a workout page
+            // saySomething(this.props.moves[this.props.move_index].name)
             return (
                 <div>
                     <AppBar/>
@@ -213,6 +225,7 @@ class MoveComponent extends Component {
                                     key={this.state.timerKey}
                                     initialTime={this.state.move_time}
                                     direction="backward"
+                                    onStart={() => console.log('onStart hook')}
                                     onReset={() => {             
                                     }}
                                     onPause = { ()=> {
@@ -226,6 +239,10 @@ class MoveComponent extends Component {
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
                                     }}  
                                     checkpoints={[
+                                        {
+                                            time: this.state.move_time - 1,
+                                            callback: () => this.sayMove(this.props.moves[this.props.move_index].name)
+                                        },
                                         {
                                             time: 5000,
                                             callback: () => this.countDown()
@@ -284,8 +301,9 @@ class MoveComponent extends Component {
                     <div className="break-timer">
                         <Timer
                             key={this.state.timerKey}
-                            initialTime={this.state.break_time} // hardcode. replace.
+                            initialTime={this.state.break_time} 
                             direction="backward"
+                            onStart={() => this.sayBreak()}
                             onPause = { ()=> {
                                 console.log(' onPause hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
