@@ -31,7 +31,7 @@ class ListRoutinesComponent extends Component {
         return _.map(routines, (routine, index) => {
             return (
                 <ListItem button key={index} onClick={() => this.handleClickRoutine(routine.id)}>
-                    <ListItemText primary={routine.name} secondary={"id: " + routine.id}/>
+                    <ListItemText primary={routine.name}/>
                     <KeyboardArrowRight/>
                 </ListItem>
             )

@@ -42,10 +42,10 @@ export { RoutineComponent };
 
 const mapStateToProps = (state, ownProps) => {
     const { reducer } = state;
-    const { loading, moves, routines, routine_id } = reducer;
+    const { loading_moves, moves, routines, routine_id } = reducer;
     return {
         ...ownProps,
-        loading,
+        loading_moves,
         moves,
         routines,
         routine_id
