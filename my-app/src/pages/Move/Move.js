@@ -134,7 +134,9 @@ class MoveComponent extends Component {
         if (this.props.move_index < 0) {
             return;
         }
-        this.props.decrement_move_index(move_index);
+        if(move_index != 0){
+            this.props.decrement_move_index(move_index);
+        }
         this.props.toggle_move_or_break(this.props.move_or_break);
         this.setState((state) => {
             return {
