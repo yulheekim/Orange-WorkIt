@@ -25,6 +25,8 @@ import {
     zero_move_index
 } from '../../reducers/reducer';
 
+import { saySomething } from '../../config/voiceover.js'
+
 const styles = theme => ({
     card: {
         width: '100%',
@@ -149,10 +151,17 @@ class MoveComponent extends Component {
         this.setState({go_back: true});
     }
 
+    // function to count down using voice over with 5 seconds left
+    countDown = () => {
+        console.log("made it to countdown")
+        saySomething("5...... 4...... 3...... 2...... 1")
+    }
+
     render() {
         // console.log("rendering move component!")
         // console.log(this.props.move_index)
         if (this.props.routine_is_finished) {
+            saySomething("Congrats! You made it!")
             return (
                 <section class="hero-image">
                     <h1>Congrats! You Made It!</h1>
@@ -202,7 +211,7 @@ class MoveComponent extends Component {
                             <div class="timer">
                                 <Timer
                                     key={this.state.timerKey}
-                                    initialTime={this.state.move_time} // hardcode. replace.
+                                    initialTime={this.state.move_time}
                                     direction="backward"
                                     onReset={() => {             
                                     }}
@@ -218,9 +227,13 @@ class MoveComponent extends Component {
                                     }}  
                                     checkpoints={[
                                         {
+                                            time: 5000,
+                                            callback: () => this.countDown()
+                                        },
+                                        {
                                             time: 0,
                                             callback: () => this.handleNext(this.props.move_index)
-                                        } // callback function for when timer reaches 0
+                                        }, // callback function for when timer reaches 0
                                     ]}
                                 >
                                     {({pause, resume}) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
