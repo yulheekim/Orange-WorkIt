@@ -7,7 +7,8 @@ import {
     Move,
     Addroutine,
     Addmove,
-    SetTime
+    SetTime,
+    Countdown
 } from '../pages';
 
 import {
@@ -23,6 +24,7 @@ const AppNavigator = () => (
             <Route exact path="/moves" component={Routine} />
             <Route exact path="/do-moves" component={Move} />
             <Route exact path="/timer" component={Move} />
+            <Route exact path="/countdown" component={Countdown} />
             <Route exact path="/settime" component={SetTime} />
             <Route exact path="/addroutine" component={Addroutine} />
             <Route exact path="/addmove" component={Addmove} />
