@@ -10,7 +10,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import { Link, Redirect } from 'react-router-dom';
 
 import {
-    set_go_home
+    set_go_home,
+    zero_move_index
 } from '../../reducers/reducer';
 
 // const styles = {
@@ -32,6 +33,7 @@ class AppBarComponent extends Component {
   handleHome = () => {
       if (this.props.user_id != 0) {
           this.props.set_go_home(true);
+          this.props.zero_move_index();
       }
   };
 
@@ -78,5 +80,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const Header = connect(mapStateToProps, {
-    set_go_home
+    set_go_home,
+    zero_move_index
 })(AppBarComponent);
