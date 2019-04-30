@@ -16,39 +16,39 @@ import {
 } from '../../reducers/reducer';
 import './styles.css';
 
-import Speech from 'speak-tts';
-const speech = new Speech;
+import { saySomething } from '../../config/voiceover.js'
+// import Speech from 'speak-tts';
+// const speech = new Speech;
 
-if(speech.hasBrowserSupport()) { // returns a boolean
-    console.log("speech synthesis supported")
-}
+// if(speech.hasBrowserSupport()) { // returns a boolean
+//     console.log("speech synthesis supported")
+// }
 
-speech.init({
-    'volume': 1,
-    'lang': 'en-GB',
-    'rate': 1,
-    'pitch': 1,
-    'voice':'Google UK English Male',
-    'splitSentences': true,
-    'listeners': {
-        'onvoiceschanged': (voices) => {
-            console.log("Event voiceschanged", voices)
-        }
-    }
-});
+// speech.init({
+//     'volume': 1,
+//     'lang': 'en-GB',
+//     'rate': 1,
+//     'pitch': 1,
+//     'voice':'Google UK English Male',
+//     'splitSentences': true,
+//     'listeners': {
+//         'onvoiceschanged': (voices) => {
+//             console.log("Event voiceschanged", voices)
+//         }
+//     }
+// });
 
+// function say_something(myText) {
+//     speech.speak({
+//         text: myText,
+//     }).then(() => {
+//         console.log("Success !")
+//     }).catch(e => {
+//         console.error("An error occurred :", e)
+//     })
+// }
 
-function say_something(speech) {
-    speech.speak({
-        text: "Get ready to sweat.",
-    }).then(() => {
-        console.log("Success !")
-    }).catch(e => {
-        console.error("An error occurred :", e)
-    })
-}
-
-say_something(speech);
+saySomething("hello trooper!");
 
 // import AppBar from '../../components/Heading/AppBar.js';
 
@@ -61,7 +61,7 @@ class RoutineComponent extends Component {
                 <br />
                 <div className="page-content">
                     <h3>Your Routine: Total Body Workout</h3>
-                    <Button name={"Start Workout!"} link={"/settime"} onmouseover = { () => say_something(speech) } />
+                    <Button name={"Start Workout!"} link={"/settime"} onClick = {saySomething("Start Workout!") } />
                     <br />
                     <List moves={this.props.moves}/>
                 </div>
