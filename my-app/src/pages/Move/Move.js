@@ -174,6 +174,7 @@ class MoveComponent extends Component {
     }
 
     render() {
+        cancelSpeech()
         changeVoiceSpeed(1.25) // initialize voice speed to be fast to call out the workout name
         // console.log("rendering move component!")
         // console.log(this.props.move_index)
