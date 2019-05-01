@@ -13,6 +13,18 @@ import {
     set_go_home
 } from '../../reducers/reducer';
 
+const styles = {
+  root: {
+    flexGrow: 1,
+    color:'#3f51b5',
+    textalign:'center',
+    fontStyle:'italic',
+    fontWeight:"bold",
+    fontSize:'30px',
+    // border:'1px #666 solid',
+  },
+  // background: '#000000'
+};
 
 class AppBarComponent extends Component {
   // const { classes } = props;
@@ -37,9 +49,10 @@ class AppBarComponent extends Component {
           <IconButton aria-label="Home" color="inherit" onClick={this.handleHome}>
             <HomeIcon/>
           </IconButton>
-            <Typography variant="h6" color="inherit">
-              WorkIt
+            <Typography className="text" variant="h6" text-align='center' color="inherit"  text-align="center" display="flex">
+                WorkIt
             </Typography>
+            {/* <div >WorkIt</div> */}
           </Toolbar>
         </AppBar>
       </div>
