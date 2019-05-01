@@ -206,18 +206,18 @@ class MoveComponent extends Component {
                                     key={this.state.timerKey}
                                     initialTime={this.state.move_time} // hardcode. replace.
                                     direction="backward"
-                                    onReset={() => {             
+                                    onReset={() => {
                                     }}
                                     onPause = { ()=> {
                                         console.log(' onPause hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                    }} 
+                                    }}
                                     onResume = { ()=> {
                                         console.log(' onResume hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                    }}  
+                                    }}
                                     checkpoints={[
                                         {
                                             time: 0,
@@ -232,7 +232,7 @@ class MoveComponent extends Component {
                                                 <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
                                             </div>
                                             <div>
-                                                <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>  
+                                                <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>
                                                 <Button variant="contained" color="primary" onClick={resume} disabled={this.state.resumeMoveTag}>Resume</Button>
                                             </div>
                                         </React.Fragment>
@@ -263,7 +263,7 @@ class MoveComponent extends Component {
                         </Fab>
                     </div>
                 </div>
-        
+
                 );
         }
         else if (!this.props.routine_is_finished) {
@@ -279,12 +279,12 @@ class MoveComponent extends Component {
                                 console.log(' onPause hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                            }} 
+                            }}
                             onResume = { ()=> {
                                 console.log(' onResume hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                            }} 
+                            }}
                             onReset={() => {
                             }}
                             checkpoints={[
@@ -301,7 +301,7 @@ class MoveComponent extends Component {
                                             formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
                                     </div>
                                     <div>
-                                        <Button id='btn_pause' variant="contained" color="primary" onClick={pause} disabled={this.state.pauseTag}>Pause</Button>  
+                                        <Button id='btn_pause' variant="contained" color="primary" onClick={pause} disabled={this.state.pauseTag}>Pause</Button>
                                         <Button id='btn_resume' variant="contained" color="primary" onClick={resume} disabled={this.state.resumeTag}>Resume</Button>
                                     </div>
                                 </React.Fragment>
@@ -315,6 +315,11 @@ class MoveComponent extends Component {
                             <ArrowBackIcon/>
                         </Fab>
                     </div>
+                    <Button onClick={this.handleBack}
+                            variant="outlined"
+                            color="secondary">
+                        End Workout
+                    </Button>
                     <div className="fab-right">
                         <Fab color="primary" aria-label="Delete" onClick={() => {
                             this.handleToNextFromBreak(this.props.move_index)
