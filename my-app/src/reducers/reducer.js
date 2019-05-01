@@ -50,6 +50,10 @@ const INITIAL_STATE = {
                 go_home: false,
                 routine_is_finished: false, // if the current routine finishes
                 routine_sent: false,
+                routines: [{
+                    id: 0,
+                    name: "Default Workout",
+                }],
             }
 
 // Reducers
