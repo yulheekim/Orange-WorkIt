@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = "http://127.0.0.1:5000/";
+const api = "https://cors-anywhere.herokuapp.com/https://orange-workit.herokuapp.com/";
 
 //Action Types
 export const CHANGE_USERNAME= 'workit/CHANGE_USERNAME';
