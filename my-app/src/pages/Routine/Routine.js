@@ -18,13 +18,12 @@ import './styles.css';
 
 class RoutineComponent extends Component {
     render() {
-        //console.log(this.props.moves)
         return (
             <div>
                 <AppBar/>
                 <br />
                 <div className="page-content">
-                    <h3>Your Routine</h3>
+                    <h3>Your Routine: {this.props.routines.filter((r) => r.id === this.props.routine_id)[0].name}</h3>
                     <Link to="/settime" className="setTimeLink">
                         <Button variant="contained" color="primary">
                             Start Workout!
