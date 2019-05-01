@@ -241,26 +241,24 @@ class MoveComponent extends Component {
                             </div>
                             <Button onClick={this.handleBack}
                                     variant="outlined"
-                                    color="secondary">
+                                    color="primary">
                                 End Workout
                             </Button>
-                            <br/>
-                            <br/>
+                            <div className="fab-left">
+                                <Fab color="primary" aria-label="Delete" onClick={() => {
+                                    this.handleToPrevFromMove(this.props.move_index)
+                                }}>
+                                    <ArrowBackIcon/>
+                                </Fab>
+                            </div>
+                            <div className="fab-right">
+                                <Fab color="primary" aria-label="Delete" onClick={() => {
+                                    this.handleToNextFromMove(this.props.move_index)
+                                }}>
+                                    <ArrowForwardIcon/>
+                                </Fab>
+                            </div>
                         </Card>
-                    </div>
-                    <div className="fab-left">
-                        <Fab color="primary" aria-label="Delete" onClick={() => {
-                            this.handleToPrevFromMove(this.props.move_index)
-                        }}>
-                            <ArrowBackIcon/>
-                        </Fab>
-                    </div>
-                    <div className="fab-right">
-                        <Fab color="primary" aria-label="Delete" onClick={() => {
-                            this.handleToNextFromMove(this.props.move_index)
-                        }}>
-                            <ArrowForwardIcon/>
-                        </Fab>
                     </div>
                 </div>
 
