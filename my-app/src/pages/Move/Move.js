@@ -25,7 +25,7 @@ import {
     zero_move_index
 } from '../../reducers/reducer';
 
-import { saySomething, changeVoiceSpeed } from '../../config/voiceover.js'
+import { saySomething, changeVoiceSpeed, pauseSpeech, resumeSpeech } from '../../config/voiceover.js'
 
 const styles = theme => ({
     card: {
@@ -159,6 +159,7 @@ class MoveComponent extends Component {
     }
     sayBreak = () => {
         console.log("made it to say break!")
+        changeVoiceSpeed(.75)
         saySomething("Break")
     }
     sayMove = (moveName) => {
@@ -232,11 +233,13 @@ class MoveComponent extends Component {
                                         console.log(' onPause hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
+                                        pauseSpeech()
                                     }} 
                                     onResume = { ()=> {
                                         console.log(' onResume hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
+                                        resumeSpeech()
                                     }}  
                                     checkpoints={[
                                         {
@@ -294,7 +297,7 @@ class MoveComponent extends Component {
         
                 );
         }
-        else if (!this.props.routine_is_finished) {
+        else if (!this.props.routine_is_finished) { // break page
             return(
                 <section class="hero-image">
                     <h1>break time!</h1>
@@ -308,17 +311,29 @@ class MoveComponent extends Component {
                                 console.log(' onPause hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
+                                pauseSpeech()
                             }} 
                             onResume = { ()=> {
                                 console.log(' onResume hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
+                                resumeSpeech()
                             }} 
                             onReset={() => {
                             }}
                             checkpoints={[
-                                {time: 0,
-                                callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                                {
+                                    time: this.state.break_time - 1,
+                                    callback: () => this.sayBreak()
+                                },
+                                {
+                                    time: 5000,
+                                    callback: () => this.countDown()
+                                },
+                                {
+                                    time: 0,
+                                    callback: () => this.handleNext(this.props.move_index) 
+                                } // callback function for when timer reaches 0
                             ]}
                         >
                             {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits

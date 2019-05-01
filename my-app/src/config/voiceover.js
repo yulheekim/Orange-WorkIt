@@ -45,4 +45,12 @@ export function saySomething(myText) {
     })
 }
 
+export function pauseSpeech() {
+    speech.pause()
+}
+
+export function resumeSpeech() {
+    speech.resume()
+}
+
 // say_something("hello trooper!");
