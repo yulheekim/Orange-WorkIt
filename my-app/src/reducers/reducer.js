@@ -51,7 +51,7 @@ const INITIAL_STATE = {
                 routine_is_finished: false, // if the current routine finishes
                 routine_sent: false,
                 routines: [{
-                    id: 0,
+                    id: 999,
                     name: "Default Workout",
                 }],
             }
@@ -205,6 +205,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 loading_moves: true,
+                moves:[],
                 error_message: "Error in loading moves",
 
             };
