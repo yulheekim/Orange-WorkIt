@@ -67,7 +67,6 @@ class SetTimeComponent extends Component {
                     />
                     <br />
                     <br />
-                    <br />
                     <Button disabled={!buttonEnabled}
                         to={{pathname: "/timer", state: {move_time: this.state.move_time * 1000, break_time:this.state.break_time * 1000}}}
                             component={Link}
