@@ -241,7 +241,7 @@ class MoveComponent extends Component {
                             </div>
                             <Button onClick={this.handleBack}
                                     variant="outlined"
-                                    color="secondary">
+                                    color="primary">
                                 End Workout
                             </Button>
                             <br/>

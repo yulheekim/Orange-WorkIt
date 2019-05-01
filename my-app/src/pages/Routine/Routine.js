@@ -24,7 +24,7 @@ class RoutineComponent extends Component {
                 <AppBar/>
                 <br />
                 <div className="page-content">
-                    <h3>Your Routine: Total Body Workout</h3>
+                    <h3>Your Routine</h3>
                     <Link to="/settime" className="setTimeLink">
                         <Button variant="contained" color="primary">
                             Start Workout!
