@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = "http://127.0.0.1:5000/";
+const api = "https://cors-anywhere.herokuapp.com/https://orange-workit.herokuapp.com/";
 
 //Action Types
 export const CHANGE_USERNAME= 'workit/CHANGE_USERNAME';
@@ -43,42 +43,17 @@ const INITIAL_STATE = {
                 loggedin: false,
                 loading: false,
                 routine_id: 0,
-                routines: [{
-                    id: 1,
-                    name: "abs",
-                },
-                {
-                    id: 2,
-                    name: "back"
-                }],
                 loading_moves: false,
-                moves: [{
-                    end_time: "131",
-                    start_time: "91",
-                    name: "spiderman plank",
-                    total_time: "45",
-                    video_url: "https://youtu.be/UBnfm4s7CRA?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
-                },
-                {
-                    end_time: "91",
-                    start_time: "51",
-                    name: "plank squat",
-                    total_time: "45",
-                    video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
-                },
-                {
-                    end_time: "1",
-                    start_time: "41",
-                    name: "crunches",
-                    total_time: "45",
-                    video_url: "https://youtu.be/Th97oQ4eF9U?list=PL48bwuiYkDmf3UAZjxBWCKvVGGIUi2xuj"
-                }],
                 error_message: "",
                 move_index: 0,
                 move_or_break: true, // true = working out. false = break.
                 go_home: false,
                 routine_is_finished: false, // if the current routine finishes
                 routine_sent: false,
+                routines: [{
+                    id: 999,
+                    name: "Default Workout",
+                }],
             }
 
 // Reducers
@@ -205,7 +180,7 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_ROUTINES_FAILURE:
             return {
                 ...state,
-                error_message: "Error in loading moves",
+                error_message: "Error in loading routines",
             };
 
         case LOAD_MOVES:
@@ -229,6 +204,8 @@ export default function reducer(state = INITIAL_STATE, action) {
         case LOAD_MOVES_FAILURE:
             return {
                 ...state,
+                loading_moves: true,
+                moves:[],
                 error_message: "Error in loading moves",
 
             };

@@ -140,7 +140,9 @@ class MoveComponent extends Component {
         if (this.props.move_index < 0) {
             return;
         }
-        this.props.decrement_move_index(move_index);
+        if(move_index != 0){
+            this.props.decrement_move_index(move_index);
+        }
         this.props.toggle_move_or_break(this.props.move_or_break);
         this.setState((state) => {
             return {
@@ -231,8 +233,7 @@ class MoveComponent extends Component {
                                     key={this.state.timerKey}
                                     initialTime={this.state.move_time}
                                     direction="backward"
-                                    onStart={() => console.log('onStart hook')}
-                                    onReset={() => {             
+                                    onReset={() => {
                                     }}
                                     onPause = { ()=> {
                                         console.log(' onPause hook ')
@@ -268,7 +269,7 @@ class MoveComponent extends Component {
                                                 <Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
                                             </div>
                                             <div>
-                                                <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>  
+                                                <Button variant="contained" color="primary" onClick={pause} disabled={this.state.pauseMoveTag}>Pause</Button>
                                                 <Button variant="contained" color="primary" onClick={resume} disabled={this.state.resumeMoveTag}>Resume</Button>
                                             </div>
                                         </React.Fragment>
@@ -277,29 +278,27 @@ class MoveComponent extends Component {
                             </div>
                             <Button onClick={this.handleBack}
                                     variant="outlined"
-                                    color="secondary">
+                                    color="primary">
                                 End Workout
                             </Button>
-                            <br/>
-                            <br/>
+                            <div className="fab-left">
+                                <Fab color="primary" aria-label="Delete" onClick={() => {
+                                    this.handleToPrevFromMove(this.props.move_index)
+                                }}>
+                                    <ArrowBackIcon/>
+                                </Fab>
+                            </div>
+                            <div className="fab-right">
+                                <Fab color="primary" aria-label="Delete" onClick={() => {
+                                    this.handleToNextFromMove(this.props.move_index)
+                                }}>
+                                    <ArrowForwardIcon/>
+                                </Fab>
+                            </div>
                         </Card>
                     </div>
-                    <div className="fab-left">
-                        <Fab color="primary" aria-label="Delete" onClick={() => {
-                            this.handleToPrevFromMove(this.props.move_index)
-                        }}>
-                            <ArrowBackIcon/>
-                        </Fab>
-                    </div>
-                    <div className="fab-right">
-                        <Fab color="primary" aria-label="Delete" onClick={() => {
-                            this.handleToNextFromMove(this.props.move_index)
-                        }}>
-                            <ArrowForwardIcon/>
-                        </Fab>
-                    </div>
                 </div>
-        
+
                 );
         }
         else if (!this.props.routine_is_finished) { // break page
@@ -350,7 +349,7 @@ class MoveComponent extends Component {
                                             formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}/>
                                     </div>
                                     <div>
-                                        <Button id='btn_pause' variant="contained" color="primary" onClick={pause} disabled={this.state.pauseTag}>Pause</Button>  
+                                        <Button id='btn_pause' variant="contained" color="primary" onClick={pause} disabled={this.state.pauseTag}>Pause</Button>
                                         <Button id='btn_resume' variant="contained" color="primary" onClick={resume} disabled={this.state.resumeTag}>Resume</Button>
                                     </div>
                                 </React.Fragment>
@@ -364,6 +363,11 @@ class MoveComponent extends Component {
                             <ArrowBackIcon/>
                         </Fab>
                     </div>
+                    <Button onClick={this.handleBack}
+                            variant="outlined"
+                            color="secondary">
+                        End Workout
+                    </Button>
                     <div className="fab-right">
                         <Fab color="primary" aria-label="Delete" onClick={() => {
                             this.handleToNextFromBreak(this.props.move_index)
