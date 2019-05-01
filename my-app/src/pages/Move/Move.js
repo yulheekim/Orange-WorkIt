@@ -25,7 +25,7 @@ import {
     zero_move_index
 } from '../../reducers/reducer';
 
-import { saySomething, changeVoiceSpeed, pauseSpeech, resumeSpeech } from '../../config/voiceover.js'
+import { saySomething, changeVoiceSpeed, pauseSpeech, resumeSpeech, cancelSpeech } from '../../config/voiceover.js'
 
 const styles = theme => ({
     card: {
@@ -46,9 +46,9 @@ class MoveComponent extends Component {
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
             timerKey: 0,
-            pauseTag: false,
+            pauseTag: false, // tag for pause button on break page
             resumeTag: true,
-            pauseMoveTag: false,
+            pauseMoveTag: false, // tag for pause button on move page
             resumeMoveTag: true,
             go_back: false,
         };
@@ -88,6 +88,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the right arrow button when the workout has started
     handleToNextFromMove(move_index) {
+        cancelSpeech()
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
@@ -103,6 +104,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
     handleToPrevFromMove(move_index) {
+        cancelSpeech()
         if (this.props.move_index <= 0) {
             return;
         }
@@ -117,6 +119,7 @@ class MoveComponent extends Component {
     }
 
     handleToNextFromBreak(move_index) {
+        cancelSpeech()
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
@@ -133,6 +136,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
     handleToPrevFromBreak(move_index) {
+        cancelSpeech()
         if (this.props.move_index < 0) {
             return;
         }
@@ -148,6 +152,7 @@ class MoveComponent extends Component {
     }
 
     handleBack = () => {
+        cancelSpeech()
         this.setState({go_back: true});
     }
 

@@ -53,4 +53,8 @@ export function resumeSpeech() {
     speech.resume()
 }
 
+export function cancelSpeech() {
+    speech.cancel()
+}
+
 // say_something("hello trooper!");
