@@ -9,7 +9,7 @@ export function changeVoiceSpeed(speed) {
     speech.init({
         'volume': 1,
         'lang': 'en-GB',
-        'rate': speed, // .75 for countdown, 1.25 for names
+        'rate': 1, // .75 for countdown, 1.25 for names
         'pitch': 1,
         'voice':'Google UK English Male',
         'splitSentences': true,

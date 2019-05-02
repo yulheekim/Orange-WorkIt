@@ -163,17 +163,20 @@ class MoveComponent extends Component {
     countDown = () => {
         console.log("made it to countdown")
         this.setState({inCountdownMode: true})
-        changeVoiceSpeed(1.25)
+        // changeVoiceSpeed(1.25)
         saySomething("5...... 4...... 3...... 2...... 1")
+    }
+    countDownEach = (text) => {
+        saySomething(text)
     }
     sayBreak = () => {
         console.log("made it to say break!")
-        changeVoiceSpeed(.75)
+        // changeVoiceSpeed(.75)
         saySomething("Break")
     }
     sayMove = (moveName) => {
         console.log("made it to say move!")
-        changeVoiceSpeed(.75)
+        // changeVoiceSpeed(.75)
         saySomething(moveName)
     }
     pauseSpeechWrapper = () => {
@@ -183,12 +186,13 @@ class MoveComponent extends Component {
     } // only pause speech when we're in countdown mode
     resumeSpeechWrapper = () => {
         // if(this.inCountdownMode) {
+            changeVoiceSpeed(1)
             resumeSpeech()
         // }
     } // only pause speech when we're in countdown mode
 
     render() {
-        changeVoiceSpeed(1.25) // initialize voice speed to be fast to call out the workout name
+        // changeVoiceSpeed(1.25) // initialize voice speed to be fast to call out the workout name
         // console.log("rendering move component!")
         // console.log(this.props.move_index)
         if (this.props.routine_is_finished) {
@@ -267,7 +271,23 @@ class MoveComponent extends Component {
                                         },
                                         {
                                             time: 5000,
-                                            callback: () => this.countDown()
+                                            callback: () => this.countDownEach("five")
+                                        },
+                                        {
+                                            time: 4000,
+                                            callback: () => this.countDownEach("four")
+                                        },
+                                        {
+                                            time: 3000,
+                                            callback: () => this.countDownEach("three")
+                                        },
+                                        {
+                                            time: 2000,
+                                            callback: () => this.countDownEach("two")
+                                        },
+                                        {
+                                            time: 1000,
+                                            callback: () => this.countDownEach("one")
                                         },
                                         {
                                             time: 0,
@@ -346,7 +366,23 @@ class MoveComponent extends Component {
                                 },
                                 {
                                     time: 5000,
-                                    callback: () => this.countDown()
+                                    callback: () => this.countDownEach("five")
+                                },
+                                {
+                                    time: 4000,
+                                    callback: () => this.countDownEach("four")
+                                },
+                                {
+                                    time: 3000,
+                                    callback: () => this.countDownEach("three")
+                                },
+                                {
+                                    time: 2000,
+                                    callback: () => this.countDownEach("two")
+                                },
+                                {
+                                    time: 1000,
+                                    callback: () => this.countDownEach("one")
                                 },
                                 {
                                     time: 0,
