@@ -46,8 +46,7 @@ class FolderList extends Component {
             return (
                 <Link to="settime" className="back-link">
                     <ListItem button key={index} onClick={() => this.handleSetMoveIndex(index)}>
-                        <Avatar src={img_lst[index % img_lst.length]}>
-                        </Avatar>
+                        <b>{index+1}</b>
                         <ListItemText primary={move.name}/>
                         <KeyboardArrowRight/>
                     </ListItem>
