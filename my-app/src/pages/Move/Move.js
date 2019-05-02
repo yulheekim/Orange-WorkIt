@@ -25,6 +25,8 @@ import {
     zero_move_index
 } from '../../reducers/reducer';
 
+import { saySomething, changeVoiceSpeed, pauseSpeech, resumeSpeech, cancelSpeech } from '../../config/voiceover.js'
+
 const styles = theme => ({
     card: {
         width: '100%',
@@ -44,9 +46,9 @@ class MoveComponent extends Component {
             move_time: this.props.location.state.move_time,
             break_time: this.props.location.state.break_time,
             timerKey: 0,
-            pauseTag: false,
+            pauseTag: false, // tag for pause button on break page
             resumeTag: true,
-            pauseMoveTag: false,
+            pauseMoveTag: false, // tag for pause button on move page
             resumeMoveTag: true,
             go_back: false,
         };
@@ -86,6 +88,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the right arrow button when the workout has started
     handleToNextFromMove(move_index) {
+        cancelSpeech()
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
@@ -101,6 +104,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
     handleToPrevFromMove(move_index) {
+        cancelSpeech()
         if (this.props.move_index <= 0) {
             return;
         }
@@ -115,6 +119,7 @@ class MoveComponent extends Component {
     }
 
     handleToNextFromBreak(move_index) {
+        cancelSpeech()
         if (this.props.move_index >= this.props.moves.length - 1) {
             return;
         }
@@ -131,6 +136,7 @@ class MoveComponent extends Component {
 
     // this is the function that gets called when you click on the left arrow button when the workout has started
     handleToPrevFromBreak(move_index) {
+        cancelSpeech()
         if (this.props.move_index < 0) {
             return;
         }
@@ -148,13 +154,33 @@ class MoveComponent extends Component {
     }
 
     handleBack = () => {
+        cancelSpeech()
         this.setState({go_back: true});
     }
 
+    // function to count down using voice over with 5 seconds left
+    countDown = () => {
+        console.log("made it to countdown")
+        changeVoiceSpeed(1.25)
+        saySomething("5...... 4...... 3...... 2...... 1")
+    }
+    sayBreak = () => {
+        console.log("made it to say break!")
+        changeVoiceSpeed(.75)
+        saySomething("Break")
+    }
+    sayMove = (moveName) => {
+        console.log("made it to say move!")
+        changeVoiceSpeed(.75)
+        saySomething(moveName)
+    }
+
     render() {
+        changeVoiceSpeed(1.25) // initialize voice speed to be fast to call out the workout name
         // console.log("rendering move component!")
         // console.log(this.props.move_index)
         if (this.props.routine_is_finished) {
+            saySomething("Congrats! You made it!")
             return (
                 <section class="hero-image">
                     <h1>Congrats! You Made It!</h1>
@@ -185,6 +211,7 @@ class MoveComponent extends Component {
         }
 
         if (this.props.move_or_break === true) { // true means you're on a workout page
+            // saySomething(this.props.moves[this.props.move_index].name)
             return (
                 <div>
                     <AppBar/>
@@ -204,7 +231,7 @@ class MoveComponent extends Component {
                             <div class="timer">
                                 <Timer
                                     key={this.state.timerKey}
-                                    initialTime={this.state.move_time} // hardcode. replace.
+                                    initialTime={this.state.move_time}
                                     direction="backward"
                                     onReset={() => {
                                     }}
@@ -212,17 +239,27 @@ class MoveComponent extends Component {
                                         console.log(' onPause hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                    }}
+                                        pauseSpeech()
+                                    }} 
                                     onResume = { ()=> {
                                         console.log(' onResume hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                    }}
+                                        resumeSpeech()
+                                    }}  
                                     checkpoints={[
+                                        {
+                                            time: this.state.move_time - 1,
+                                            callback: () => this.sayMove(this.props.moves[this.props.move_index].name)
+                                        },
+                                        {
+                                            time: 5000,
+                                            callback: () => this.countDown()
+                                        },
                                         {
                                             time: 0,
                                             callback: () => this.handleNext(this.props.move_index)
-                                        } // callback function for when timer reaches 0
+                                        }, // callback function for when timer reaches 0
                                     ]}
                                 >
                                     {({pause, resume}) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
@@ -264,30 +301,43 @@ class MoveComponent extends Component {
 
                 );
         }
-        else if (!this.props.routine_is_finished) {
+        else if (!this.props.routine_is_finished) { // break page
             return(
                 <section class="hero-image">
                     <h1>break time!</h1>
                     <div className="break-timer">
                         <Timer
                             key={this.state.timerKey}
-                            initialTime={this.state.break_time} // hardcode. replace.
+                            initialTime={this.state.break_time} 
                             direction="backward"
+                            onStart={() => this.sayBreak()}
                             onPause = { ()=> {
                                 console.log(' onPause hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                            }}
+                                pauseSpeech()
+                            }} 
                             onResume = { ()=> {
                                 console.log(' onResume hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                            }}
+                                resumeSpeech()
+                            }} 
                             onReset={() => {
                             }}
                             checkpoints={[
-                                {time: 0,
-                                callback: () => this.handleNext(this.props.move_index) } // callback function for when timer reaches 0
+                                {
+                                    time: this.state.break_time - 1,
+                                    callback: () => this.sayBreak()
+                                },
+                                {
+                                    time: 5000,
+                                    callback: () => this.countDown()
+                                },
+                                {
+                                    time: 0,
+                                    callback: () => this.handleNext(this.props.move_index) 
+                                } // callback function for when timer reaches 0
                             ]}
                         >
                             {( { pause, resume } ) => ( // the formatValue attribute formats the seconds such that the leading 0 is displayed on single digits
