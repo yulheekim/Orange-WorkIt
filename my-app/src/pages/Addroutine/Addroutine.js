@@ -63,6 +63,7 @@ class AddroutineComponent extends Component {
                     <h3>Add A Routine</h3>
                     {/* <input className="myinput"
                     placeholder="pls input"></input> */}
+                    <div className="formtxt">Name: &nbsp;</div> 
                     <TextField required id="1" label="Rountine Name" name="name" onChange={this.handleChange}/>
                     <br /><br />
                     <Link className="no_text_decoration" to="routines">

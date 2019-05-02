@@ -23,7 +23,7 @@ class RoutinesComponent extends Component {
     render() {
         if (this.props.loading || this.props.go_home) {
             this.props.set_go_home(false);
-            return <div>Loading... or the user might not have any routines yet :( In that case, please go to /addroutines</div>
+            return <div className="loading">Loading... </div>
         }
 
         console.log(this.props.routines);

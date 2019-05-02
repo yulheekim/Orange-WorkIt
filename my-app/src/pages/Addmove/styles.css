@@ -1,9 +1,13 @@
-.page-content {
+.addmove-page-content {
     text-align: center;
     margin-right: 1em;
     margin-left: 1em;
+    display: inline-block;
 }
-
+.formtxt {
+    line-height: 4rem;
+    display: inline-block;
+}
 .no_text_decoration {
     text-decoration: none;
 }

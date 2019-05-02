@@ -81,19 +81,24 @@ class AddmoveComponent extends Component {
             <div>
                 <AppBar/>
                 <br />
-                <div class="page-content">
+                <div class="addmove-page-content">
                     <h3>Add a Move!</h3>
+                    <div className="formtxt">Name: &nbsp;</div> 
                     <TextField required id="1" label="Routine Name" name="name" onChange={this.handleChange}/>
-                    <br /><br /><br />
+                    <br /><br />
+                    <div className="formtxt">Video URL: &nbsp;</div>
                     <TextField required id="2" label="Youtube Video URL" name="video_url" onChange={this.handleURL}
                     defaultValue="https://youtu.be/"
                     helperText="Follow the URL instruction!"
                     />
                     <br /><br />
+                    <div className="formtxt">Start Time:&nbsp; </div>
                     <TextField required type='number' id="3" label="Start Time" name="start_time" onChange={this.handleChange}/>
                     <br /><br />
+                    <div className="formtxt">End Time: &nbsp;</div>
                     <TextField required type='number' id="4" label="End Time" name="end_time" onChange={this.handleChange}helperText="End Time > Start Time"/>
                     <br /><br />
+                    <div className="formtxt">Duration: &nbsp;</div>
                     <TextField required type='number' id="5" label="Duration" name="total_time" onChange={this.handleChange}/>
                     <br /><br /><br />
                     <Link className="no_text_decoration" to="moves">
