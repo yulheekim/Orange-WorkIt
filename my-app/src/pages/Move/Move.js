@@ -253,13 +253,13 @@ class MoveComponent extends Component {
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
                                         this.pauseSpeechWrapper()
-                                    }} 
+                                    }}
                                     onResume = { ()=> {
                                         console.log(' onResume hook ')
                                         this.resumeSpeechWrapper()
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                    }}  
+                                    }}
                                     checkpoints={[
                                         {
                                             time: this.state.move_time - 1,
@@ -291,7 +291,7 @@ class MoveComponent extends Component {
                             </div>
                             <Button onClick={this.handleBack}
                                     variant="outlined"
-                                    color="primary">
+                                    color="secondary">
                                 End Workout
                             </Button>
                             <div className="fab-left">
@@ -322,7 +322,7 @@ class MoveComponent extends Component {
                     <div className="break-timer">
                         <Timer
                             key={this.state.timerKey}
-                            initialTime={this.state.break_time} 
+                            initialTime={this.state.break_time}
                             direction="backward"
                             onStart={() => this.sayBreak()}
                             onPause = { ()=> {
@@ -330,13 +330,13 @@ class MoveComponent extends Component {
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
                                 this.pauseSpeechWrapper()
-                            }} 
+                            }}
                             onResume = { ()=> {
                                 this.resumeSpeechWrapper()
                                 console.log(' onResume hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                            }} 
+                            }}
                             onReset={() => {
                             }}
                             checkpoints={[
@@ -350,7 +350,7 @@ class MoveComponent extends Component {
                                 },
                                 {
                                     time: 0,
-                                    callback: () => this.handleNext(this.props.move_index) 
+                                    callback: () => this.handleNext(this.props.move_index)
                                 } // callback function for when timer reaches 0
                             ]}
                         >
