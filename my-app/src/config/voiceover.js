@@ -36,6 +36,7 @@ export function changeVoiceSpeed(speed) {
 // });
 
 export function saySomething(myText) {
+    console.log("changeing speed")
     speech.speak({
         text: myText,
     }).then(() => {
@@ -57,4 +58,11 @@ export function cancelSpeech() {
     speech.cancel()
 }
 
+export function speechPaused() {
+    speech.paused()
+}
+
+export function speechSpeaking() {
+    speech.speaking()
+}
 // say_something("hello trooper!");

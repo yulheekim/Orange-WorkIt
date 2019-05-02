@@ -25,7 +25,7 @@ import {
     zero_move_index
 } from '../../reducers/reducer';
 
-import { saySomething, changeVoiceSpeed, pauseSpeech, resumeSpeech, cancelSpeech } from '../../config/voiceover.js'
+import { saySomething, changeVoiceSpeed, pauseSpeech, resumeSpeech, cancelSpeech, speechPaused, speechSpeaking } from '../../config/voiceover.js'
 
 const styles = theme => ({
     card: {
@@ -51,6 +51,7 @@ class MoveComponent extends Component {
             pauseMoveTag: false, // tag for pause button on move page
             resumeMoveTag: true,
             go_back: false,
+            inCountdownMode: false // true when there's 5 or less seconds left on the timer
         };
 
     };
@@ -161,6 +162,7 @@ class MoveComponent extends Component {
     // function to count down using voice over with 5 seconds left
     countDown = () => {
         console.log("made it to countdown")
+        this.setState({inCountdownMode: true})
         changeVoiceSpeed(1.25)
         saySomething("5...... 4...... 3...... 2...... 1")
     }
@@ -174,6 +176,16 @@ class MoveComponent extends Component {
         changeVoiceSpeed(.75)
         saySomething(moveName)
     }
+    pauseSpeechWrapper = () => {
+        // if(this.inCountdownMode) {
+            pauseSpeech()
+        // }
+    } // only pause speech when we're in countdown mode
+    resumeSpeechWrapper = () => {
+        // if(this.inCountdownMode) {
+            resumeSpeech()
+        // }
+    } // only pause speech when we're in countdown mode
 
     render() {
         changeVoiceSpeed(1.25) // initialize voice speed to be fast to call out the workout name
@@ -212,6 +224,7 @@ class MoveComponent extends Component {
 
         if (this.props.move_or_break === true) { // true means you're on a workout page
             // saySomething(this.props.moves[this.props.move_index].name)
+            // cancelSpeech()
             return (
                 <div>
                     <AppBar/>
@@ -239,13 +252,13 @@ class MoveComponent extends Component {
                                         console.log(' onPause hook ')
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                        pauseSpeech()
+                                        this.pauseSpeechWrapper()
                                     }} 
                                     onResume = { ()=> {
                                         console.log(' onResume hook ')
+                                        this.resumeSpeechWrapper()
                                         this.setState({ pauseMoveTag: !this.state.pauseMoveTag });
                                         this.setState({ resumeMoveTag: !this.state.resumeMoveTag });
-                                        resumeSpeech()
                                     }}  
                                     checkpoints={[
                                         {
@@ -302,6 +315,7 @@ class MoveComponent extends Component {
                 );
         }
         else if (!this.props.routine_is_finished) { // break page
+            // cancelSpeech()
             return(
                 <section class="hero-image">
                     <h1>break time!</h1>
@@ -315,13 +329,13 @@ class MoveComponent extends Component {
                                 console.log(' onPause hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                                pauseSpeech()
+                                this.pauseSpeechWrapper()
                             }} 
                             onResume = { ()=> {
+                                this.resumeSpeechWrapper()
                                 console.log(' onResume hook ')
                                 this.setState({ pauseTag: !this.state.pauseTag });
                                 this.setState({ resumeTag: !this.state.resumeTag });
-                                resumeSpeech()
                             }} 
                             onReset={() => {
                             }}
