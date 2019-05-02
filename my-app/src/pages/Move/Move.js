@@ -267,7 +267,23 @@ class MoveComponent extends Component {
                                         },
                                         {
                                             time: 5000,
-                                            callback: () => this.countDown()
+                                            callback: () => this.countDownEach("five")
+                                        },
+                                        {
+                                            time: 4000,
+                                            callback: () => this.countDownEach("four")
+                                        },
+                                        {
+                                            time: 3000,
+                                            callback: () => this.countDownEach("three")
+                                        },
+                                        {
+                                            time: 2000,
+                                            callback: () => this.countDownEach("two")
+                                        },
+                                        {
+                                            time: 1000,
+                                            callback: () => this.countDownEach("one")
                                         },
                                         {
                                             time: 0,
