@@ -1,4 +1,4 @@
-### how to run backend on your local machine
+### To run backend on your local machine
 
 1. go into the workit-back folder
 
